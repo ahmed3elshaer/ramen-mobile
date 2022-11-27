@@ -12,9 +12,12 @@ kotlin {
     iosSimulatorArm64()
 
     sourceSets {
-        val commonMain by getting{
+        val commonMain by getting {
             dependencies {
-                implementation(project(":domain:ingredients"))
+                //Coroutines
+                implementation(libs.kotlinx.coroutines.core)
+                //Logger
+                implementation(libs.napier)
             }
         }
         val androidMain by getting
@@ -30,8 +33,9 @@ kotlin {
     }
 }
 
+// Core
 android {
-    namespace = "com.ramen.recipe.domain"
+    namespace = "com.ramen.presentation"
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     compileSdk = (findProperty("android.compileSdk") as String).toInt()
 

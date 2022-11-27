@@ -12,12 +12,29 @@ kotlin {
     iosSimulatorArm64()
 
     sourceSets {
-        val commonMain by getting{
+        val commonMain by getting {
             dependencies {
-                implementation(project(":domain:ingredients"))
+                //Network
+                implementation(libs.ktor.core)
+                implementation(libs.ktor.logging)
+                //Coroutines
+                implementation(libs.kotlinx.coroutines.core)
+                //Logger
+                implementation(libs.napier)
+                //JSON
+                implementation(libs.kotlinx.serialization.json)
+                //Key-Value storage
+                implementation(libs.multiplatform.settings)
+                // DI
+                api(libs.koin.core)
             }
         }
-        val androidMain by getting
+        val androidMain by getting {
+            dependencies {
+                //Network
+                implementation(libs.ktor.client.okhttp)
+            }
+        }
         val iosX64Main by getting
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting
@@ -26,12 +43,17 @@ kotlin {
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
+            dependencies {
+                //Network
+                implementation(libs.ktor.client.ios)
+            }
         }
     }
 }
 
+// Core
 android {
-    namespace = "com.ramen.recipe.domain"
+    namespace = "com.ramen.datasource"
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     compileSdk = (findProperty("android.compileSdk") as String).toInt()
 

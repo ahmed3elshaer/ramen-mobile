@@ -22,9 +22,20 @@ kotlin {
             baseName = "shared"
         }
     }
-    
+
     sourceSets {
-        val commonMain by getting
+        val commonMain by getting {
+            dependencies {
+                api(project(":components:presentation"))
+
+                api(project(":data:ingredients"))
+                api(project(":domain:ingredients"))
+
+                api(project(":domain:recipe"))
+
+
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
@@ -40,6 +51,9 @@ kotlin {
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
+            dependencies {
+                api(project(":components:datasource"))
+            }
         }
         val iosX64Test by getting
         val iosArm64Test by getting
@@ -54,7 +68,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.ahmed3elshaer.ramen"
+    namespace = "com.ramen.shared"
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     compileSdk = (findProperty("android.compileSdk") as String).toInt()
 

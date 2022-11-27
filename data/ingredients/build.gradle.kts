@@ -12,9 +12,23 @@ kotlin {
     iosSimulatorArm64()
 
     sourceSets {
-        val commonMain by getting{
+        val commonMain by getting {
             dependencies {
                 implementation(project(":domain:ingredients"))
+                //Network
+                implementation(libs.ktor.core)
+                implementation(libs.ktor.logging)
+                //Logger
+                implementation(libs.napier)
+                //Coroutines
+                implementation(libs.kotlinx.coroutines.core)
+                //JSON
+                implementation(libs.kotlinx.serialization.json)
+
+                //Key-Value storage
+                implementation(project(":components:datasource"))
+                // DI
+                api(libs.koin.core)
             }
         }
         val androidMain by getting
@@ -30,8 +44,9 @@ kotlin {
     }
 }
 
+// Ingredient
 android {
-    namespace = "com.ramen.recipe.domain"
+    namespace = "com.ramen.ingredient.data"
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     compileSdk = (findProperty("android.compileSdk") as String).toInt()
 

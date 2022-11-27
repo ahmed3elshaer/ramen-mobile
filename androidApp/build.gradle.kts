@@ -38,6 +38,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":components:datasource"))
+    implementation(project(":components:presentation"))
     implementation(project(":shared"))
     //desugar utils
     coreLibraryDesugaring(libs.desugar.jdk.libs)
