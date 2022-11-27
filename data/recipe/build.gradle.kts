@@ -15,7 +15,6 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":domain:recipe"))
-                implementation(project(":data:ingredients"))
                 //Network
                 implementation(libs.ktor.core)
                 implementation(libs.ktor.logging)

@@ -12,8 +12,11 @@ kotlin {
     iosSimulatorArm64()
 
     sourceSets {
-        val commonMain by getting{
+        val commonMain by getting {
             dependencies {
+                implementation(libs.kotlinx.coroutines.core)
+                implementation(libs.koin.core)
+                implementation(libs.kotlinx.datetime)
                 implementation(project(":domain:ingredients"))
             }
         }

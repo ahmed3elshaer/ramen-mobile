@@ -22,4 +22,28 @@ data class Recipe(
     val unusedIngredients: List<Ingredient> = listOf(),
     @SerialName("usedIngredients")
     val usedIngredients: List<Ingredient> = listOf()
-)
+) {
+    @Serializable
+    data class Ingredient(
+        @SerialName("aisle")
+        val aisle: String = "",
+        @SerialName("amount")
+        val amount: Double = 0.0,
+        @SerialName("id")
+        val id: Int = 0,
+        @SerialName("image")
+        val image: String = "",
+        @SerialName("name")
+        val name: String = "",
+        @SerialName("original")
+        val original: String = "",
+        @SerialName("originalName")
+        val originalName: String = "",
+        @SerialName("unit")
+        val unit: String = "",
+        @SerialName("unitLong")
+        val unitLong: String = "",
+        @SerialName("unitShort")
+        val unitShort: String = ""
+    )
+}

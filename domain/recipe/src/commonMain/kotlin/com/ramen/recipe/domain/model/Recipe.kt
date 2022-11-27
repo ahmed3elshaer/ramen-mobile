@@ -11,4 +11,18 @@ data class Recipe(
     val title: String,
     val unusedIngredients: List<Ingredient>,
     val usedIngredients: List<Ingredient>
-)
+) {
+    data class Ingredient(
+        val aisle: String,
+        val amount: Double,
+        val id: Int,
+        val image: String,
+        val name: String,
+        val original: String,
+        val originalName: String,
+        val unit: String,
+        val unitLong: String,
+        val unitShort: String
+    )
+}
+
