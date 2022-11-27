@@ -1,9 +1,10 @@
 package com.ramen.ingredient.data
 
-import com.ramen.ingredient.data.remote.IngredientsRemote
+import com.ramen.ingredient.data.storage.remote.IngredientsRemote
 import com.ramen.ingredient.data.model.toDomain
 import com.ramen.ingredient.data.storage.IngredientsStorage
 import com.ramen.ingredients.domain.IngredientsRepository
+import com.ramen.ingredients.domain.model.AutocompleteIngredient
 import com.ramen.ingredients.domain.model.Ingredient
 
 internal class IngredientsRepositoryImpl(
@@ -11,7 +12,7 @@ internal class IngredientsRepositoryImpl(
     private val storage: IngredientsStorage
 ) : IngredientsRepository {
 
-    override suspend fun findIngredient(query: String): List<Ingredient> {
+    override suspend fun findIngredient(query: String): List<AutocompleteIngredient> {
         return remote.searchIngredients(query = query)
             .map { it.toDomain() }
     }
@@ -23,5 +24,9 @@ internal class IngredientsRepositoryImpl(
     override suspend fun retrieveIngredients(): List<Ingredient> {
         return storage.retrieveIngredients()
             .map { it.toDomain() }
+    }
+
+    override suspend fun getIngredientInfo(id: String): Ingredient {
+        return remote.getIngredientInfo(id).toDomain()
     }
 }

@@ -1,3 +1,5 @@
+rootProject.name = "Ramen"
+
 pluginManagement {
     repositories {
         google()
@@ -13,15 +15,15 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Ramen"
 include(":androidApp")
-include(":components:datasource")
-include(":components:presentation")
 include(":shared")
+include(":components:presentation")
+include(":components:datasource")
 
 include(":domain:recipe")
 include(":domain:ingredients")
 
 include(":data:ingredients")
+include(":data:recipe")
 
 enableFeaturePreview("VERSION_CATALOGS")

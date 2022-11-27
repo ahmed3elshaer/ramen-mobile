@@ -27,3 +27,10 @@ fun com.ramen.ingredients.domain.model.Ingredient.toData() = Ingredient(
     unitLong = this.unitLong,
     unitShort = this.unitShort
 )
+
+fun AutocompleteIngredient.toDomain() = com.ramen.ingredients.domain.model.AutocompleteIngredient(
+    id = this.id,
+    name = this.name,
+    image = this.image
+
+)

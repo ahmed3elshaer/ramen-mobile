@@ -12,7 +12,14 @@ kotlin {
     iosSimulatorArm64()
 
     sourceSets {
-        val commonMain by getting
+        val commonMain by getting {
+            dependencies {
+                implementation(libs.kotlinx.coroutines.core)
+                implementation(libs.koin.core)
+                implementation(libs.kotlinx.datetime)
+            }
+
+        }
         val androidMain by getting
         val iosX64Main by getting
         val iosArm64Main by getting
