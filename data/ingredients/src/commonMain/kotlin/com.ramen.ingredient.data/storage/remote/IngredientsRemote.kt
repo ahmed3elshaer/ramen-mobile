@@ -17,7 +17,7 @@ internal class IngredientsRemote(private val httpClient: HttpClient) {
 
     }
 
-    suspend fun getIngredientInfo(id: String): Ingredient {
+    suspend fun getIngredientInfo(id: Int): Ingredient {
         return httpClient.get(urlString = getIngredientInfoPath(id))
             .body()
 
@@ -25,7 +25,7 @@ internal class IngredientsRemote(private val httpClient: HttpClient) {
 
     companion object {
         private const val SEARCH_INGREDIENT_PATH = "food/ingredients/autocomplete"
-        fun getIngredientInfoPath(id: String) = "food/ingredients/${id}/information"
+        fun getIngredientInfoPath(id: Int) = "food/ingredients/${id}/information"
         private const val QUERY_PARAM = "query"
     }
 

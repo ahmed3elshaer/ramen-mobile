@@ -26,7 +26,7 @@ internal class IngredientsRepositoryImpl(
             .map { it.toDomain() }
     }
 
-    override suspend fun getIngredientInfo(id: String): Ingredient {
+    override suspend fun getIngredientInfo(id: Int): Ingredient {
         return remote.getIngredientInfo(id).toDomain()
     }
 }

@@ -2,6 +2,7 @@ package com.ramen.ingredient.data.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlin.time.Duration
 
 @Serializable
 data class Ingredient(
@@ -36,7 +37,13 @@ data class Ingredient(
     @SerialName("unitLong")
     val unitLong: String = "",
     @SerialName("unitShort")
-    val unitShort: String = ""
+    val unitShort: String = "",
+    @SerialName("storedAt")
+    val storedAt: Long = 0L,
+    @SerialName("expirationAt")
+    val expirationAt: Long = 0L,
+    @SerialName("expiryDuration")
+    val expiryDuration: Duration = Duration.ZERO
 ) {
     @Serializable
     data class EstimatedCost(

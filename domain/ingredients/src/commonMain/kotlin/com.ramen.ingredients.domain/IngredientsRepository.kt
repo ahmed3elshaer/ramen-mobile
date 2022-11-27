@@ -7,5 +7,5 @@ interface IngredientsRepository {
     suspend fun findIngredient(query: String): List<AutocompleteIngredient>
     suspend fun storeIngredient(ingredient: Ingredient)
     suspend fun retrieveIngredients(): List<Ingredient>
-    suspend fun getIngredientInfo(id: String): Ingredient
+    suspend fun getIngredientInfo(id: Int): Ingredient
 }

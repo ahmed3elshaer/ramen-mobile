@@ -1,5 +1,7 @@
 package com.ramen.ingredients.domain.model
 
+import kotlin.time.Duration
+
 data class Ingredient(
     val aisle: String,
     val amount: Double,
@@ -8,7 +10,6 @@ data class Ingredient(
     val estimatedCost: EstimatedCost,
     val id: Int,
     val image: String,
-    val meta: List<Any>,
     val name: String,
     val nutrition: Nutrition,
     val original: String,
@@ -17,7 +18,10 @@ data class Ingredient(
     val shoppingListUnits: List<String>,
     val unit: String,
     val unitLong: String,
-    val unitShort: String
+    val unitShort: String,
+    val storedAt: Long,
+    val expirationAt: Long,
+    val expiryDuration: Duration
 ) {
     data class EstimatedCost(
         val unit: String,
