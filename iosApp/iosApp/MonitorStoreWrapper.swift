@@ -19,6 +19,7 @@ class MonitorStoreWrapper : ObservableObject{
     
     
     init() {
+    
             stateWatcher = self.store.watchState().watch { [weak self] state in
                 self?.state = state
             }
