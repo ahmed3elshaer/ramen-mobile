@@ -11,8 +11,27 @@
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		523B5906293478F100A5F74C /* MonitorStoreWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523B5905293478F100A5F74C /* MonitorStoreWrapper.swift */; };
-		523B590A2934813700A5F74C /* StartDependecyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523B59092934813700A5F74C /* StartDependecyContainer.swift */; };
 		523B590C2934849B00A5F74C /* AppDelgate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523B590B2934849B00A5F74C /* AppDelgate.swift */; };
+		523B59112935091F00A5F74C /* MonitorScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523B59102935091F00A5F74C /* MonitorScreen.swift */; };
+		523B591629350A4400A5F74C /* StartDependecyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523B591529350A4400A5F74C /* StartDependecyContainer.swift */; };
+		523B592D29350AA600A5F74C /* GroupButtonStyle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523B591829350AA400A5F74C /* GroupButtonStyle+Extensions.swift */; };
+		523B592E29350AA600A5F74C /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523B591929350AA400A5F74C /* Images.swift */; };
+		523B592F29350AA600A5F74C /* TextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523B591A29350AA400A5F74C /* TextFields.swift */; };
+		523B593029350AA600A5F74C /* Checkboxes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523B591B29350AA400A5F74C /* Checkboxes.swift */; };
+		523B593129350AA600A5F74C /* Cards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523B591C29350AA400A5F74C /* Cards.swift */; };
+		523B593429350AA600A5F74C /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523B592029350AA400A5F74C /* Typography.swift */; };
+		523B593529350AA600A5F74C /* NavigatorsTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523B592129350AA400A5F74C /* NavigatorsTop.swift */; };
+		523B593629350AA600A5F74C /* RadioButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523B592229350AA400A5F74C /* RadioButtons.swift */; };
+		523B593729350AA600A5F74C /* DesignSystemAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 523B592329350AA500A5F74C /* DesignSystemAssets.xcassets */; };
+		523B593829350AA600A5F74C /* ButtonGroupStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523B592429350AA500A5F74C /* ButtonGroupStyle.swift */; };
+		523B593929350AA600A5F74C /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523B592529350AA500A5F74C /* Colors.swift */; };
+		523B593A29350AA600A5F74C /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 523B592629350AA500A5F74C /* Colors.xcassets */; };
+		523B593B29350AA600A5F74C /* NavigatorsBottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523B592729350AA500A5F74C /* NavigatorsBottom.swift */; };
+		523B593C29350AA600A5F74C /* Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523B592829350AA500A5F74C /* Selection.swift */; };
+		523B593D29350AA600A5F74C /* Toggles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523B592929350AA500A5F74C /* Toggles.swift */; };
+		523B593E29350AA600A5F74C /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523B592A29350AA500A5F74C /* RoundedCorner.swift */; };
+		523B593F29350AA600A5F74C /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523B592B29350AA500A5F74C /* Buttons.swift */; };
+		523B594029350AA600A5F74C /* ButtonGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523B592C29350AA600A5F74C /* ButtonGroups.swift */; };
 		6D6DDCF5533AB89CAA5CF53D /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA73178F5D67CCE710A7B84E /* Pods_iosApp.framework */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 /* End PBXBuildFile section */
@@ -24,8 +43,27 @@
 		121FAD9E9C59D01C011835F9 /* Pods-iosApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.release.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.release.xcconfig"; sourceTree = "<group>"; };
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		523B5905293478F100A5F74C /* MonitorStoreWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorStoreWrapper.swift; sourceTree = "<group>"; };
-		523B59092934813700A5F74C /* StartDependecyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartDependecyContainer.swift; sourceTree = "<group>"; };
 		523B590B2934849B00A5F74C /* AppDelgate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelgate.swift; sourceTree = "<group>"; };
+		523B59102935091F00A5F74C /* MonitorScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorScreen.swift; sourceTree = "<group>"; };
+		523B591529350A4400A5F74C /* StartDependecyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartDependecyContainer.swift; sourceTree = "<group>"; };
+		523B591829350AA400A5F74C /* GroupButtonStyle+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GroupButtonStyle+Extensions.swift"; sourceTree = "<group>"; };
+		523B591929350AA400A5F74C /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
+		523B591A29350AA400A5F74C /* TextFields.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFields.swift; sourceTree = "<group>"; };
+		523B591B29350AA400A5F74C /* Checkboxes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Checkboxes.swift; sourceTree = "<group>"; };
+		523B591C29350AA400A5F74C /* Cards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cards.swift; sourceTree = "<group>"; };
+		523B592029350AA400A5F74C /* Typography.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
+		523B592129350AA400A5F74C /* NavigatorsTop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigatorsTop.swift; sourceTree = "<group>"; };
+		523B592229350AA400A5F74C /* RadioButtons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioButtons.swift; sourceTree = "<group>"; };
+		523B592329350AA500A5F74C /* DesignSystemAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = DesignSystemAssets.xcassets; sourceTree = "<group>"; };
+		523B592429350AA500A5F74C /* ButtonGroupStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonGroupStyle.swift; sourceTree = "<group>"; };
+		523B592529350AA500A5F74C /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		523B592629350AA500A5F74C /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		523B592729350AA500A5F74C /* NavigatorsBottom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigatorsBottom.swift; sourceTree = "<group>"; };
+		523B592829350AA500A5F74C /* Selection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Selection.swift; sourceTree = "<group>"; };
+		523B592929350AA500A5F74C /* Toggles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toggles.swift; sourceTree = "<group>"; };
+		523B592A29350AA500A5F74C /* RoundedCorner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
+		523B592B29350AA500A5F74C /* Buttons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
+		523B592C29350AA600A5F74C /* ButtonGroups.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonGroups.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -60,12 +98,49 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		523B59082934811800A5F74C /* New Group */ = {
+		523B590F293508F700A5F74C /* Monitor */ = {
 			isa = PBXGroup;
 			children = (
-				523B59092934813700A5F74C /* StartDependecyContainer.swift */,
+				523B5905293478F100A5F74C /* MonitorStoreWrapper.swift */,
+				523B59102935091F00A5F74C /* MonitorScreen.swift */,
 			);
-			path = "New Group";
+			path = Monitor;
+			sourceTree = "<group>";
+		};
+		523B59122935097300A5F74C /* App */ = {
+			isa = PBXGroup;
+			children = (
+				523B591529350A4400A5F74C /* StartDependecyContainer.swift */,
+				7555FF82242A565900829871 /* ContentView.swift */,
+				2152FB032600AC8F00CF470E /* iOSApp.swift */,
+				523B590B2934849B00A5F74C /* AppDelgate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		523B591729350A7000A5F74C /* Design System */ = {
+			isa = PBXGroup;
+			children = (
+				523B592C29350AA600A5F74C /* ButtonGroups.swift */,
+				523B592429350AA500A5F74C /* ButtonGroupStyle.swift */,
+				523B592B29350AA500A5F74C /* Buttons.swift */,
+				523B591C29350AA400A5F74C /* Cards.swift */,
+				523B591B29350AA400A5F74C /* Checkboxes.swift */,
+				523B592529350AA500A5F74C /* Colors.swift */,
+				523B592629350AA500A5F74C /* Colors.xcassets */,
+				523B592329350AA500A5F74C /* DesignSystemAssets.xcassets */,
+				523B591829350AA400A5F74C /* GroupButtonStyle+Extensions.swift */,
+				523B591929350AA400A5F74C /* Images.swift */,
+				523B592729350AA500A5F74C /* NavigatorsBottom.swift */,
+				523B592129350AA400A5F74C /* NavigatorsTop.swift */,
+				523B592229350AA400A5F74C /* RadioButtons.swift */,
+				523B592A29350AA500A5F74C /* RoundedCorner.swift */,
+				523B592829350AA500A5F74C /* Selection.swift */,
+				523B591A29350AA400A5F74C /* TextFields.swift */,
+				523B592929350AA500A5F74C /* Toggles.swift */,
+				523B592029350AA400A5F74C /* Typography.swift */,
+			);
+			path = "Design System";
 			sourceTree = "<group>";
 		};
 		7555FF72242A565900829871 = {
@@ -89,14 +164,12 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
-				523B59082934811800A5F74C /* New Group */,
+				523B591729350A7000A5F74C /* Design System */,
+				523B59122935097300A5F74C /* App */,
+				523B590F293508F700A5F74C /* Monitor */,
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
-				7555FF82242A565900829871 /* ContentView.swift */,
 				7555FF8C242A565B00829871 /* Info.plist */,
-				2152FB032600AC8F00CF470E /* iOSApp.swift */,
 				058557D7273AAEEB004C7B11 /* Preview Content */,
-				523B5905293478F100A5F74C /* MonitorStoreWrapper.swift */,
-				523B590B2934849B00A5F74C /* AppDelgate.swift */,
 			);
 			path = iosApp;
 			sourceTree = "<group>";
@@ -170,7 +243,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				523B593A29350AA600A5F74C /* Colors.xcassets in Resources */,
 				058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */,
+				523B593729350AA600A5F74C /* DesignSystemAssets.xcassets in Resources */,
 				058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -224,10 +299,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				523B593429350AA600A5F74C /* Typography.swift in Sources */,
+				523B594029350AA600A5F74C /* ButtonGroups.swift in Sources */,
+				523B593929350AA600A5F74C /* Colors.swift in Sources */,
+				523B593D29350AA600A5F74C /* Toggles.swift in Sources */,
+				523B593029350AA600A5F74C /* Checkboxes.swift in Sources */,
+				523B592D29350AA600A5F74C /* GroupButtonStyle+Extensions.swift in Sources */,
 				523B590C2934849B00A5F74C /* AppDelgate.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
+				523B59112935091F00A5F74C /* MonitorScreen.swift in Sources */,
+				523B593129350AA600A5F74C /* Cards.swift in Sources */,
+				523B593B29350AA600A5F74C /* NavigatorsBottom.swift in Sources */,
+				523B593F29350AA600A5F74C /* Buttons.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
-				523B590A2934813700A5F74C /* StartDependecyContainer.swift in Sources */,
+				523B593829350AA600A5F74C /* ButtonGroupStyle.swift in Sources */,
+				523B592F29350AA600A5F74C /* TextFields.swift in Sources */,
+				523B593529350AA600A5F74C /* NavigatorsTop.swift in Sources */,
+				523B593629350AA600A5F74C /* RadioButtons.swift in Sources */,
+				523B593C29350AA600A5F74C /* Selection.swift in Sources */,
+				523B592E29350AA600A5F74C /* Images.swift in Sources */,
+				523B591629350A4400A5F74C /* StartDependecyContainer.swift in Sources */,
+				523B593E29350AA600A5F74C /* RoundedCorner.swift in Sources */,
 				523B5906293478F100A5F74C /* MonitorStoreWrapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
