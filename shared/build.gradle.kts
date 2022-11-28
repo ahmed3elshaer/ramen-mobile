@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.plugin.mpp.Framework.BitcodeEmbeddingMode.BITCODE
+
 plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
@@ -6,11 +8,32 @@ plugins {
 
 }
 
+version = "1.0"
+
+
 kotlin {
     android()
-    iosX64()
-    iosArm64()
-    iosSimulatorArm64()
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach {
+        it.binaries.framework {
+            baseName = "shared"
+            export(project(":components:datasource"))
+            export(project(":components:presentation"))
+            //presentation
+            export(project(":presentation:monitor"))
+
+            //ingredients
+            export(project(":data:ingredients"))
+            export(project(":domain:ingredients"))
+
+            //recipe
+            export(project(":data:recipe"))
+            export(project(":domain:recipe"))
+        }
+    }
 
     cocoapods {
         summary = "Some description for the Shared Module"
@@ -20,7 +43,19 @@ kotlin {
         podfile = project.file("../iosApp/Podfile")
         framework {
             baseName = "shared"
-            isStatic = true
+            isStatic = false
+            export(project(":components:datasource"))
+            export(project(":components:presentation"))
+            //presentation
+            export(project(":presentation:monitor"))
+
+            //ingredients
+            export(project(":data:ingredients"))
+            export(project(":domain:ingredients"))
+
+            //recipe
+            export(project(":data:recipe"))
+            export(project(":domain:recipe"))
         }
     }
 
@@ -28,10 +63,14 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 api(project(":components:presentation"))
+                //presentation
+                api(project(":presentation:monitor"))
 
+                //ingredients
                 api(project(":data:ingredients"))
                 api(project(":domain:ingredients"))
 
+                //recipe
                 api(project(":data:recipe"))
                 api(project(":domain:recipe"))
 
@@ -53,9 +92,8 @@ kotlin {
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
-            dependencies {
-                api(project(":components:datasource"))
-            }
+
+
         }
         val iosX64Test by getting
         val iosArm64Test by getting

@@ -1,6 +1,5 @@
 package com.ramen.recipe.data.model
 
-import com.ramen.ingredient.data.model.toDomain
 
 fun Recipe.toDomain() = com.ramen.recipe.domain.model.Recipe(
     id = this.id,
@@ -11,5 +10,18 @@ fun Recipe.toDomain() = com.ramen.recipe.domain.model.Recipe(
     title = this.title,
     unusedIngredients = this.unusedIngredients.map { it.toDomain() },
     usedIngredients = this.usedIngredients.map { it.toDomain() }
+)
+
+fun Recipe.Ingredient.toDomain() = com.ramen.recipe.domain.model.Recipe.Ingredient(
+    aisle = this.aisle,
+    amount = this.amount,
+    id = this.id,
+    image = this.image,
+    name = this.name,
+    original = this.original,
+    originalName = this.originalName,
+    unit = this.unit,
+    unitLong = this.unitLong,
+    unitShort = this.unitShort
 )
 

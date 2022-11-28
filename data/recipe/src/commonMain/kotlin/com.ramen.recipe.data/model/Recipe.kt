@@ -1,6 +1,5 @@
 package com.ramen.recipe.data.model
 
-import com.ramen.ingredient.data.model.Ingredient
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

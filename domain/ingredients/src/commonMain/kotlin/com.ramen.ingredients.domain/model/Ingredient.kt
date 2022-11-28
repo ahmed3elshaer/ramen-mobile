@@ -1,5 +1,7 @@
 package com.ramen.ingredients.domain.model
 
+import kotlinx.datetime.Clock
+import kotlinx.datetime.Instant
 import kotlin.time.Duration
 
 data class Ingredient(
@@ -68,9 +70,12 @@ data class Ingredient(
 
 }
 
+/**
+ * Extension function to present the progress of duration until expiry
+ */
 
-
-
+fun Ingredient.durationUntilExpiry() =
+    (Instant.fromEpochMilliseconds(expirationAt) - Clock.System.now())
 
 
 

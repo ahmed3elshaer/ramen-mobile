@@ -13,11 +13,18 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(libs.kotlinx.coroutines.core)
-                implementation(libs.koin.core)
-                implementation(libs.kotlinx.datetime)
+                implementation(project(":components:presentation"))
                 implementation(project(":domain:ingredients"))
+                //kotlinx
+                implementation(libs.kotlinx.coroutines.core)
+                implementation(libs.kotlinx.datetime)
+                //DI
+                implementation(libs.koin.core)
+                //Logger
+                implementation(libs.napier)
+
             }
+
         }
         val androidMain by getting
         val iosX64Main by getting
@@ -32,8 +39,9 @@ kotlin {
     }
 }
 
+// Ingredients
 android {
-    namespace = "com.ramen.recipe.domain"
+    namespace = "com.ramen.presentation.monitor"
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     compileSdk = (findProperty("android.compileSdk") as String).toInt()
 
