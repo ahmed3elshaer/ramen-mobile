@@ -12,10 +12,11 @@ import shared
 struct MonitorScreen: View {
     @StateObject var store: MonitorStoreWrapper = MonitorStoreWrapper()
 
-    let greet = "Hello"
-
     var body: some View {
         Text(store.state.progress.description)
+            .onAppear{
+                store.dispatch(action: MonitorAction)
+            }
     }
 }
 

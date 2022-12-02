@@ -19,26 +19,26 @@ struct NavigatorBottom : View {
             HStack(spacing: 0) {
                 return self.makeTabs(totalWidth: g.size.width)
             }
-        }.frame(height: 56)
+        }.frame(height: 76)
+            .background(Color.background)
     }
     
     func makeTabs(totalWidth: CGFloat) -> some View {
         HStack(spacing: 0) {
             ForEach(0..<icons.count) { i in
-                
                 Button(action: {self.index = i}, label: {
                     VStack {
-                        Rectangle().frame(height: 4).foregroundColor(self.index == i ? Color.defaultPrimary : Color.clear)
                         Image(systemName: self.icons[i])
                             .square(width: self.index == i ? 24 : 21)
                             .foregroundColor(self.index == i ? Color.defaultPrimary : Color.fontDisabled)
                             .padding(.bottom, 24)
                             .padding(.top, 10)
                     }
-                    .background(Color.background)
                     .frame(width: totalWidth / CGFloat(self.icons.count))
                     .animation(.easeOut(duration: 0.35))
                 })
+                .background(Color.background)
+                .background(VisualEffect(style: .systemThinMaterial))
             }
         }
     }

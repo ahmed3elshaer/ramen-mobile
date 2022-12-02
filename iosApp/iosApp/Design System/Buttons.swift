@@ -28,11 +28,11 @@ struct ThemeButtonStyle: ButtonStyle {
         var body: some View {
             configuration.label
                 .typography(.s1)
-                .foregroundColor(isEnabled ? .white : .fontDisabled)
+                .foregroundColor(isEnabled ? .fontStd : .fontDisabled)
                 .padding()
                 .frame(minHeight: 56)
                 .background(isEnabled ? color : Color.basic.opacity(0.2))
-                .cornerRadius(4)
+                .cornerRadius(40)
                 .opacity(configuration.isPressed ? 0.7 : 1)
         }
     }
@@ -48,9 +48,9 @@ struct ThemeButtonStyle: ButtonStyle {
                 .padding()
                 .frame(minHeight: 56)
                 .background(isEnabled ? color.opacity(0.2) : Color.basic.opacity(0.15))
-                .cornerRadius(4)
+                .cornerRadius(40)
                 .overlay(
-                    RoundedRectangle(cornerRadius: 4)
+                    RoundedRectangle(cornerRadius: 40)
                         .stroke(isEnabled ? color : Color.basic.opacity(0.5), lineWidth: 1)
                 )
                 .opacity(configuration.isPressed ? 0.7 : 1)
@@ -68,7 +68,7 @@ struct ThemeButtonStyle: ButtonStyle {
                 .padding()
                 .frame(minHeight: 56)
                 .background(Color.white)
-                .cornerRadius(4)
+                .cornerRadius(40)
                 .opacity(configuration.isPressed ? 0.7 : 1)
         }
     }

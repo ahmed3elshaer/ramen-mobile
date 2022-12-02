@@ -12,6 +12,7 @@ extension Color {
     // MARK: Basic Colors
     
     static let background = Color("background")
+    static let surface = Color("surface")
     static let basic = Color("basic")
     static let defaultPrimary = Color("primary")
     

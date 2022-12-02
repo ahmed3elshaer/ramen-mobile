@@ -29,32 +29,33 @@ public struct Typography: ViewModifier {
     public func body(content: Content) -> some View {
         switch style {
         case .h1: return content
-            .font(.system(size: 36, weight: .bold))
+                .font(.custom("EuclidCircularA-Bold", size: 36))
         case .h2: return content
-            .font(.system(size: 32, weight: .bold))
+                .font(.custom("EuclidCircularA-Bold", size: 32))
         case .h3: return content
-            .font(.system(size: 30, weight: .bold))
+                .font(.custom("EuclidCircularA-Bold", size: 30))
         case .h4: return content
-            .font(.system(size: 26, weight: .bold))
+                .font(.custom("EuclidCircularA-Bold", size: 26))
         case .h5: return content
-            .font(.system(size: 22, weight: .bold))
+                .font(.custom("EuclidCircularA-Bold", size: 22))
         case .h6: return content
-            .font(.system(size: 18, weight: .bold))
+                .font(.custom("EuclidCircularA-Bold", size: 18))
             
         case .s1: return content
-            .font(.system(size: 15, weight: .semibold))
+                .font(.custom("EuclidCircularA-SemiBold", size: 15))
         case .s2: return content
-            .font(.system(size: 13, weight: .semibold))
+                .font(.custom("EuclidCircularA-SemiBold", size: 13))
+        
             
         case .p1: return content
-            .font(.system(size: 15, weight: .regular))
+                .font(.custom("EuclidCircularA-Regular", size: 22))
         case .p2: return content
-            .font(.system(size: 13, weight: .regular))
-            
+                .font(.custom("EuclidCircularA-Regular", size: 18))
+
         case .c1: return content
-            .font(.system(size: 12, weight: .regular))
+                .font(.custom("EuclidCircularA-Regular", size: 12))
         case .c2: return content
-            .font(.system(size: 12, weight: .bold))
+                .font(.custom("EuclidCircularA-Bold", size: 12))
         }
     }
 }
@@ -80,7 +81,7 @@ struct Typography_Previews: PreviewProvider {
                 Text("Typography h1").typography(.h1, color: .defaultPrimary)
                 Text("Typography h1").typography(.h1, color: .success)
                 Text("Typography h1").typography(.h1, color: .danger)
-            
+                
                 Text("Typography h1").typography(.h1)
                 Text("Typography h2").typography(.h2)
                 Text("Typography h3").typography(.h3)
@@ -89,8 +90,8 @@ struct Typography_Previews: PreviewProvider {
                 Text("Typography h6").typography(.h6)
             }
             Group {
-                Text("Typography h1").typography(.s1)
-                Text("Typography h2").typography(.s2)
+                Text("Typography s1").typography(.s1)
+                Text("Typography s2").typography(.s2)
                 
                 Text("Typography p1").typography(.p1)
                 Text("Typography p2").typography(.p2)

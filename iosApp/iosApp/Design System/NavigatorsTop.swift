@@ -58,6 +58,7 @@ struct NavigatorTop: View {
         .padding(.horizontal, 16)
         .padding(.top, UIApplication.shared.windows.first?.safeAreaInsets.top)
         .background(Color.background)
+        .background(VisualEffect(style: .systemThinMaterial))
         .clipped()
         .shadow(color: Color.basic, radius: 3, x: 0, y: 0)
         .animation(.default)
