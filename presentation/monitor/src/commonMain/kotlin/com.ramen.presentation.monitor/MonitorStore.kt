@@ -21,6 +21,7 @@ class MonitorStore(
         val newState: MonitorState = when (action) {
             is MonitorAction.Error -> {
                 if (oldState.progress) {
+                    Napier.e { action.error.stackTraceToString() }
                     launch { sideEffect.emit(MonitorSideEffect.Error(action.error)) }
                     oldState.copy(progress = false)
                 } else {
@@ -69,6 +70,7 @@ class MonitorStore(
         try {
             dispatch(MonitorAction.Data(retrieveIngredients()))
         } catch (e: Exception) {
+            e.printStackTrace()
             dispatch(MonitorAction.Error(e))
         }
     }
@@ -78,6 +80,7 @@ class MonitorStore(
             storeIngredient(action.autocompleteIngredient, action.expiryDuration)
             dispatch(MonitorAction.Data(retrieveIngredients()))
         } catch (e: Exception) {
+            e.printStackTrace()
             dispatch(MonitorAction.Error(e))
 
         }

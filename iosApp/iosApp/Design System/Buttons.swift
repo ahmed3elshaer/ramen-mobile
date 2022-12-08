@@ -28,7 +28,7 @@ struct ThemeButtonStyle: ButtonStyle {
         var body: some View {
             configuration.label
                 .typography(.s1)
-                .foregroundColor(isEnabled ? .fontStd : .fontDisabled)
+                .foregroundColor(isEnabled ? .fontBtn : .fontDisabled)
                 .padding()
                 .frame(minHeight: 56)
                 .background(isEnabled ? color : Color.basic.opacity(0.2))

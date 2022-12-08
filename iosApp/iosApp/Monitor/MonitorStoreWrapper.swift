@@ -8,7 +8,7 @@
 
 import shared
 
-class MonitorStoreWrapper : ObservableObject{
+class MonitorStoreWrapper : ObservableObject {
     @Published public var state: MonitorState = MonitorState.companion.Initial
     @Published public var sideEffect: MonitorSideEffect?
     
@@ -26,7 +26,7 @@ class MonitorStoreWrapper : ObservableObject{
                 self?.sideEffect = state
             }
         }
-    
+     
     public func dispatch(_ action: MonitorAction) {
           store.dispatch(action: action)
       }

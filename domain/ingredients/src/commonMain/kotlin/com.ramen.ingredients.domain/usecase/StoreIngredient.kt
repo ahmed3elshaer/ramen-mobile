@@ -3,19 +3,21 @@ package com.ramen.ingredients.domain.usecase
 import com.ramen.ingredients.domain.IngredientsRepository
 import com.ramen.ingredients.domain.model.AutocompleteIngredient
 import kotlinx.datetime.Clock
-import kotlinx.datetime.Instant
 import kotlin.time.Duration
+import kotlin.time.ExperimentalTime
+import kotlin.time.days
 
 class StoreIngredient(private val ingredientsRepository: IngredientsRepository) {
+    @OptIn(ExperimentalTime::class)
     suspend operator fun invoke(
         autocompleteIngredient: AutocompleteIngredient, expiryDuration: Duration
     ) {
         val rawIngredient = ingredientsRepository.getIngredientInfo(autocompleteIngredient.id)
-        val now = Clock.System.now()
+        val now = Clock.System.now() - 2.days
         val timedIngredient = rawIngredient.copy(
-            storedAt = now.epochSeconds,
+            storedAt = now.toEpochMilliseconds(),
             expiryDuration = expiryDuration,
-            expirationAt = (now + expiryDuration).epochSeconds
+            expirationAt = (now + expiryDuration).toEpochMilliseconds()
         )
         ingredientsRepository.storeIngredient(timedIngredient)
     }

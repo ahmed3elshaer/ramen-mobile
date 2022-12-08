@@ -7,22 +7,30 @@
 //
 
 import SwiftUI
-struct CircularProgressView: View {
+
+struct  CapsuleProgressView{
     let progress: Double
     
     var body: some View {
         ZStack {
-            Circle()
+            RoundedRectangle(cornerRadius: 25, style: .continuous)
                 .stroke(
-                    Color.defaultPrimary.opacity(0.5),
-                    lineWidth: 10
+                    Color.activePrimary.opacity(0.2),
+                    style: StrokeStyle(
+                        lineWidth: 7,
+                        lineCap: .round
+                    )
                 )
-            Circle()
+                .rotationEffect(.degrees(-90))
+                // 1
+                .animation(.easeOut, value: progress)
+            
+            RoundedRectangle(cornerRadius: 25, style: .continuous)
                 .trim(from: 0, to: progress)
                 .stroke(
-                    Color.activePrimary,
+                    Color.activePrimary.opacity(0.6),
                     style: StrokeStyle(
-                        lineWidth: 10,
+                        lineWidth: 7,
                         lineCap: .round
                     )
                 )
@@ -30,13 +38,9 @@ struct CircularProgressView: View {
                 // 1
                 .animation(.easeOut, value: progress)
 
+
         }
     }
 }
 
- struct CircularProgress_Previews: PreviewProvider {
-    static var previews: some View {
-        CircularProgressView(progress: 0.25)
-            .frame(width: 64, height: 64)
-    }
-}
+ 

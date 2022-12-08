@@ -17,6 +17,8 @@ kotlin {
                 //Network
                 implementation(libs.ktor.core)
                 implementation(libs.ktor.logging)
+                implementation(libs.ktor.content.negotiation)
+                implementation(libs.ktor.json)
                 //Coroutines
                 implementation(libs.kotlinx.coroutines.core)
                 //Logger

@@ -8,10 +8,14 @@ import kotlinx.serialization.builtins.ListSerializer
 internal class IngredientsStorage(val settings: Settings) {
 
     fun storeIngredient(ingredient: com.ramen.ingredients.domain.model.Ingredient) {
-        val list = retrieveIngredients().toMutableList().add(ingredient.toData())
+        val mutableList = retrieveIngredients()
+            .toMutableList().apply {
+                add(ingredient.toData())
+            }
+
         settings.putSetting(
             INGREDIENTS,
-            list,
+            mutableList,
             ListSerializer(Ingredient.serializer())
         )
     }

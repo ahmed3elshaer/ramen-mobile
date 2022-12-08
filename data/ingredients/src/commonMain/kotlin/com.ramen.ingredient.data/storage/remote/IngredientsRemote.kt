@@ -2,6 +2,7 @@ package com.ramen.ingredient.data.storage.remote
 
 import com.ramen.ingredient.data.model.AutocompleteIngredient
 import com.ramen.ingredient.data.model.Ingredient
+import io.github.aakira.napier.Napier
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
@@ -18,9 +19,13 @@ internal class IngredientsRemote(private val httpClient: HttpClient) {
     }
 
     suspend fun getIngredientInfo(id: Int): Ingredient {
-        return httpClient.get(urlString = getIngredientInfoPath(id))
-            .body()
-
+        return try {
+            return httpClient.get(urlString = getIngredientInfoPath(id))
+                .body()
+        } catch (e: Exception) {
+            Napier.e { e.stackTraceToString() }
+            Ingredient()
+        }
     }
 
     companion object {

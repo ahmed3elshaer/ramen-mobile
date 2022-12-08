@@ -2,6 +2,8 @@ package com.ramen.shared
 
 import com.ramen.data.dataComponentModule
 import com.ramen.presentation.monitor.MonitorStore
+import io.github.aakira.napier.DebugAntilog
+import io.github.aakira.napier.Napier
 import org.koin.core.Koin
 import org.koin.core.KoinApplication
 import org.koin.core.component.KoinComponent
@@ -16,6 +18,10 @@ object DependencyContainer {
                 includes(dependencyGraph)
             })
         }
+    }
+
+    fun initLogger(){
+        Napier.base(DebugAntilog())
     }
 
     @Suppress("unused") // Called from Swift

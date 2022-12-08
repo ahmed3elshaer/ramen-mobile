@@ -61,4 +61,6 @@ dependencies {
     implementation(libs.koin.compose)
     //Navigation
     implementation(libs.voyager.navigator)
+    //logger
+    implementation(libs.napier)
 }

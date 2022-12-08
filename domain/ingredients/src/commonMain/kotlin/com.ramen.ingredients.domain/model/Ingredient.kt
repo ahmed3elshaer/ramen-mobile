@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package com.ramen.ingredients.domain.model
 
 import kotlinx.datetime.Clock
@@ -25,6 +27,27 @@ data class Ingredient(
     val expirationAt: Long,
     val expiryDuration: Duration
 ) {
+    fun durationUntilExpiry(): String {
+        val inWholeDays =
+            (Instant.fromEpochMilliseconds(expirationAt) - Clock.System.now())
+        println(inWholeDays)
+        return inWholeDays.inWholeDays.toString()
+    }
+
+    fun totalDurationInDays(): String {
+        println(expiryDuration)
+        println(expiryDuration.inWholeDays.toString())
+        return expiryDuration.inWholeDays.toString()
+    }
+
+    fun expiryProgress(): Double {
+        val totalDaysDuration = expiryDuration.inWholeDays
+        val durationUntilExpiry =
+            (Instant.fromEpochMilliseconds(expirationAt) - Clock.System.now()).inWholeDays
+        return durationUntilExpiry.toDouble() / totalDaysDuration.toDouble()
+    }
+
+
     data class EstimatedCost(
         val unit: String,
         val value: Double
@@ -70,12 +93,6 @@ data class Ingredient(
 
 }
 
-/**
- * Extension function to present the progress of duration until expiry
- */
-
-fun Ingredient.durationUntilExpiry() =
-    (Instant.fromEpochMilliseconds(expirationAt) - Clock.System.now())
 
 
 

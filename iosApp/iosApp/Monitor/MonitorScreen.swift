@@ -15,7 +15,7 @@ struct MonitorScreen: View {
     var body: some View {
         Text(store.state.progress.description)
             .onAppear{
-                store.dispatch(action: MonitorAction)
+                store.dispatch(MonitorAction.StoreIngredient(autocompleteIngredient: AutocompleteIngredient_(id: 34532, image: "https://pngimg.com/uploads/carrot/carrot_PNG99134.png", name: "Carrots"), expiryDuration: 76699))
             }
     }
 }

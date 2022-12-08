@@ -62,6 +62,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                api(project(":components:datasource"))
                 api(project(":components:presentation"))
                 //presentation
                 api(project(":presentation:monitor"))

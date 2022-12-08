@@ -19,6 +19,7 @@ func startKoin() {
     // let doOnStartup = { NSLog("Hello from iOS/Swift!") }
 
     let koinApplication = DependencyContainer.shared.doInitKoin()
+    DependencyContainer.shared.doInitLogger()
     _koin = koinApplication.koin
 }
 
