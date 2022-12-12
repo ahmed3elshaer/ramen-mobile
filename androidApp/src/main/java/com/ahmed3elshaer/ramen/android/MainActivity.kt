@@ -13,8 +13,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import com.ramen.ingredients.domain.model.AutocompleteIngredient
+import com.ramen.presentation.Store
 import com.ramen.presentation.monitor.MonitorAction
 import com.ramen.presentation.monitor.MonitorStore
+import com.ramen.presentation.store.StoreAction
+import com.ramen.presentation.store.StoreIngredientStore
 import org.koin.androidx.compose.get
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
@@ -39,36 +42,21 @@ class MainActivity : ComponentActivity() {
 
 @OptIn(ExperimentalTime::class)
 @Composable
-fun GreetingView(monitorStore: MonitorStore = get()) {
-    val state = monitorStore.observeState().collectAsState()
+fun GreetingView(storeIngredient: StoreIngredientStore = get()) {
     Column() {
         Button(onClick = {
-            storeIngredient(monitorStore)
+            storeIngredient(storeIngredient)
         }) {
             Text(text = "Add New One")
-        }
-        LazyColumn(){
-           items(state.value.ingredients){ item->
-            Column() {
-               Text(text = " ${item.expirationAt}")
-               Text(text = "progress  ${item.expiryProgress()}")
-               Text(text = "total  ${item.totalDurationInDays()}")
-               Text(text = "remaining  ${item.durationUntilExpiry()}")
-            }
-
-            }
         }
     }
 
 }
 
-private fun storeIngredient(monitorStore: MonitorStore) {
+private fun storeIngredient(monitorStore: StoreIngredientStore) {
     monitorStore.dispatch(
-        MonitorAction.StoreIngredient(
-            autocompleteIngredient = AutocompleteIngredient(
-                id = 9266,
-                image = "https://loremflickr.com/640/480", name = "Carrot"
-            ), expiryDuration = 7.days
+        StoreAction.RecommendIngredient(
+           name = "apple"
         )
     )
 }

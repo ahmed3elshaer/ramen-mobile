@@ -48,6 +48,7 @@ kotlin {
             export(project(":components:presentation"))
             //presentation
             export(project(":presentation:monitor"))
+            export(project(":presentation:store"))
 
             //ingredients
             export(project(":data:ingredients"))
@@ -66,6 +67,7 @@ kotlin {
                 api(project(":components:presentation"))
                 //presentation
                 api(project(":presentation:monitor"))
+                api(project(":presentation:store"))
 
                 //ingredients
                 api(project(":data:ingredients"))

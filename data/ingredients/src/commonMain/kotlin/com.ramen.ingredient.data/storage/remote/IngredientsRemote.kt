@@ -1,6 +1,7 @@
 package com.ramen.ingredient.data.storage.remote
 
 import com.ramen.ingredient.data.model.AutocompleteIngredient
+import com.ramen.ingredient.data.model.AutocompleteIngredientsWrapper
 import com.ramen.ingredient.data.model.Ingredient
 import io.github.aakira.napier.Napier
 import io.ktor.client.HttpClient
@@ -14,7 +15,9 @@ internal class IngredientsRemote(private val httpClient: HttpClient) {
     suspend fun searchIngredients(query: String): List<AutocompleteIngredient> {
         return httpClient.get(urlString = SEARCH_INGREDIENT_PATH) {
             parameter(QUERY_PARAM, query)
-        }.body()
+            parameter("language", "en")
+            parameter("number", 10)
+        }.body<AutocompleteIngredientsWrapper>().results
 
     }
 
@@ -29,7 +32,7 @@ internal class IngredientsRemote(private val httpClient: HttpClient) {
     }
 
     companion object {
-        private const val SEARCH_INGREDIENT_PATH = "food/ingredients/autocomplete"
+        private const val SEARCH_INGREDIENT_PATH = "food/ingredients/search"
         fun getIngredientInfoPath(id: Int) = "food/ingredients/${id}/information"
         private const val QUERY_PARAM = "query"
     }

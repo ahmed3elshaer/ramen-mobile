@@ -30,7 +30,7 @@ struct HomeScreen: View {
                         GridItem(.flexible()),
                         GridItem(.flexible())
                     ]
-                    LazyVGrid(columns: columns, spacing: 10) {
+                    LazyVStack {
                         ForEach(ingredients,id: \.self.hashValue){ ingredient in
                             StoredIngredientCard(imageUrl: ingredient.image, name: ingredient.name,
                                                  totalDays: ingredient.totalDurationInDays(),
@@ -39,18 +39,10 @@ struct HomeScreen: View {
                                                  progress: ingredient.expiryProgress())
                         }}
                     
-                    
-                    
-                    
-                    NavigatorBottom(index: 0, icons: ["",""])
                 }
                 .padding(16)
             }
-            .background(Color.background)
-            
-            NavigatorBottom(index: 0, icons: ["house.fill", "magnifyingglass", "heart.fill", "person.fill"])
         }
-        .edgesIgnoringSafeArea(.all)
         .onAppear{
             store.dispatch(MonitorAction.Refresh())
         }

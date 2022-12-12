@@ -28,5 +28,7 @@ include(":data:ingredients")
 include(":data:recipe")
 //store
 include(":presentation:monitor")
+include(":presentation:store")
+include(":presentation:recipe")
 
 enableFeaturePreview("VERSION_CATALOGS")

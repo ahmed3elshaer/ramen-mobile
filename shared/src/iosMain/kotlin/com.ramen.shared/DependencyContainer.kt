@@ -2,6 +2,7 @@ package com.ramen.shared
 
 import com.ramen.data.dataComponentModule
 import com.ramen.presentation.monitor.MonitorStore
+import com.ramen.presentation.store.StoreIngredientStore
 import io.github.aakira.napier.DebugAntilog
 import io.github.aakira.napier.Napier
 import org.koin.core.Koin
@@ -24,8 +25,8 @@ object DependencyContainer {
         Napier.base(DebugAntilog())
     }
 
-    @Suppress("unused") // Called from Swift
     object KotlinDependencies : KoinComponent {
         fun getMonitorStore(): MonitorStore = getKoin().get<MonitorStore>()
+        fun getStoreIngredient(): StoreIngredientStore = getKoin().get<StoreIngredientStore>()
     }
 }

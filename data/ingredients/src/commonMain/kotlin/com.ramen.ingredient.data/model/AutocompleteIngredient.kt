@@ -12,3 +12,9 @@ data class AutocompleteIngredient(
     @SerialName("name")
     val name: String = ""
 )
+
+@Serializable
+data class AutocompleteIngredientsWrapper(
+    @SerialName("results")
+    val results: List<AutocompleteIngredient> = listOf()
+)

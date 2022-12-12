@@ -42,9 +42,9 @@ public struct Typography: ViewModifier {
                 .font(.custom("EuclidCircularA-Bold", size: 18))
             
         case .s1: return content
-                .font(.custom("EuclidCircularA-SemiBold", size: 15))
+                .font(.custom("EuclidCircularA-SemiBold", size: 18))
         case .s2: return content
-                .font(.custom("EuclidCircularA-SemiBold", size: 13))
+                .font(.custom("EuclidCircularA-SemiBold", size: 15))
         
             
         case .p1: return content

@@ -16,7 +16,6 @@ class MonitorStore(
     CoroutineScope by CoroutineScope(Dispatchers.Main) {
 
     override fun dispatch(action: MonitorAction) {
-        Napier.d(tag = "MonitorStore", message = "Action: $action")
         val oldState = state.value
         val newState: MonitorState = when (action) {
             is MonitorAction.Error -> {
@@ -61,7 +60,6 @@ class MonitorStore(
         }
 
         if (newState != oldState) {
-            Napier.d(tag = "FeedStore", message = "NewState: $newState")
             state.value = newState
         }
     }

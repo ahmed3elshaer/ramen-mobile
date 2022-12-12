@@ -63,9 +63,9 @@ public struct ThemeTextField: View {
             else { icon.imageScale(.large).foregroundColor(.basic) }
         }
         .padding()
-        .background(RoundedRectangle(cornerRadius: 5)
+        .background(RoundedRectangle(cornerRadius: 45)
         .foregroundColor(Color.basic.opacity(self.focused ? 0 : 0.1)))
-        .overlay(RoundedRectangle(cornerRadius: 5)
+        .overlay(RoundedRectangle(cornerRadius: 45)
         .stroke(self.focused ? Color.defaultPrimary : Color.basic.opacity(0.4), lineWidth: 1))
     }
     
@@ -81,9 +81,9 @@ public struct ThemeTextField: View {
              icon.imageScale(.large).foregroundColor(.defaultPrimary)
         }
         .padding()
-        .background(RoundedRectangle(cornerRadius: 5)
+        .background(RoundedRectangle(cornerRadius: 45)
         .foregroundColor(Color.basic.opacity(self.focused ? 0 : 0.1)))
-        .overlay(RoundedRectangle(cornerRadius: 5)
+        .overlay(RoundedRectangle(cornerRadius: 45)
         .stroke(Color.defaultPrimary, lineWidth: 1))
     }
     
@@ -99,9 +99,9 @@ public struct ThemeTextField: View {
             icon.imageScale(.large).foregroundColor(.success)
         }
         .padding()
-        .background(RoundedRectangle(cornerRadius: 5)
+        .background(RoundedRectangle(cornerRadius: 45)
         .foregroundColor(Color.basic.opacity(self.focused ? 0 : 0.1)))
-        .overlay(RoundedRectangle(cornerRadius: 5)
+        .overlay(RoundedRectangle(cornerRadius: 45)
         .stroke(Color.success, lineWidth: 1))
     }
     
@@ -117,9 +117,9 @@ public struct ThemeTextField: View {
             icon.imageScale(.large).foregroundColor(.warning)
         }
         .padding()
-        .background(RoundedRectangle(cornerRadius: 5)
+        .background(RoundedRectangle(cornerRadius: 45)
         .foregroundColor(Color.basic.opacity(self.focused ? 0 : 0.1)))
-        .overlay(RoundedRectangle(cornerRadius: 5)
+        .overlay(RoundedRectangle(cornerRadius: 45)
         .stroke(Color.warning, lineWidth: 1))
     }
     
@@ -135,9 +135,9 @@ public struct ThemeTextField: View {
             icon.imageScale(.large).foregroundColor(.danger)
         }
         .padding()
-        .background(RoundedRectangle(cornerRadius: 5)
+        .background(RoundedRectangle(cornerRadius: 45)
         .foregroundColor(Color.basic.opacity(self.focused ? 0 : 0.1)))
-        .overlay(RoundedRectangle(cornerRadius: 5)
+        .overlay(RoundedRectangle(cornerRadius: 45)
         .stroke(Color.danger, lineWidth: 1))
     }
     
@@ -153,9 +153,9 @@ public struct ThemeTextField: View {
             icon.imageScale(.large).foregroundColor(.info)
         }
         .padding()
-        .background(RoundedRectangle(cornerRadius: 5)
+        .background(RoundedRectangle(cornerRadius: 45)
         .foregroundColor(Color.basic.opacity(self.focused ? 0 : 0.1)))
-        .overlay(RoundedRectangle(cornerRadius: 5)
+        .overlay(RoundedRectangle(cornerRadius: 45)
         .stroke(Color.info, lineWidth: 1))
     }
     
@@ -170,6 +170,19 @@ public struct ThemeTextField: View {
         case .info: return AnyView(info())
         default: return AnyView(defaultStyle())
         }
+    }
+}
+
+extension TextField {
+    func outlinedStyle() -> some View {
+        self
+            .padding(.horizontal, 16)
+            .frame(height: 48)
+            .overlay(
+                RoundedRectangle(cornerRadius: 54)
+                    .stroke(Color.gray, lineWidth: 1)
+            )
+            .padding(8)
     }
 }
 
@@ -189,3 +202,5 @@ struct TextField_Previews: PreviewProvider {
         .padding()
     }
 }
+
+

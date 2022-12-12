@@ -15,7 +15,7 @@ extension Image {
     func avatarCircle() -> some View {
         self
             .resizable()
-            .aspectRatio(contentMode: .fill)
+            .aspectRatio(contentMode: .fit)
             .frame(width: 40, height: 40)
             .clipShape(Circle())
             .padding(.all, 16)
@@ -26,7 +26,7 @@ extension Image {
     func avatarSquare() -> some View {
         self
             .resizable()
-            .aspectRatio(contentMode: .fill)
+            .aspectRatio(contentMode: .fit)
             .frame(width: 40, height: 40)
             .clipShape(Rectangle())
             .padding(.all, 16)
@@ -36,7 +36,7 @@ extension Image {
     func avatarRounded() -> some View {
         self
             .resizable()
-            .aspectRatio(contentMode: .fill)
+            .aspectRatio(contentMode: .fit)
             .frame(width: 40, height: 40)
             .clipShape(RoundedRectangle(cornerRadius: 5))
             .padding(.all, 16)
@@ -49,7 +49,7 @@ extension Image {
     func circle(width: CGFloat) -> some View {
         self
             .resizable()
-            .aspectRatio(contentMode: .fill)
+            .aspectRatio(contentMode: .fit)
             .frame(width: width, height: width)
             .clipShape(Circle())
     }
@@ -58,7 +58,7 @@ extension Image {
     func square(width: CGFloat) -> some View {
         self
             .resizable()
-            .aspectRatio(contentMode: .fill)
+            .aspectRatio(contentMode: .fit)
             .frame(width: width, height: width)
     }
     
@@ -66,7 +66,7 @@ extension Image {
     func rounded(width: CGFloat) -> some View {
         self
             .resizable()
-            .aspectRatio(contentMode: .fill)
+            .aspectRatio(contentMode: .fit)
             .frame(width: width, height: width)
             .clipShape(RoundedRectangle(cornerRadius: width/10.0))
     }
@@ -74,7 +74,7 @@ extension Image {
     func topRounded(width: CGFloat) -> some View {
         self
             .resizable()
-            .aspectRatio(contentMode: .fill)
+            .aspectRatio(contentMode: .fit)
             .frame(width: width, height: width)
             .clipShape(RoundedCorner(radius: width/10.0, corners: [.topLeft, .topRight]))
     }
@@ -83,7 +83,7 @@ extension Image {
     func bottomRounded(width: CGFloat) -> some View {
         self
             .resizable()
-            .aspectRatio(contentMode: .fill)
+            .aspectRatio(contentMode: .fit)
             .frame(width: width, height: width)
             .clipShape(RoundedCorner(radius: width/10.0, corners: [.bottomLeft, .bottomRight]))
     }
@@ -92,7 +92,7 @@ extension Image {
     func leftRounded(width: CGFloat) -> some View {
         self
             .resizable()
-            .aspectRatio(contentMode: .fill)
+            .aspectRatio(contentMode: .fit)
             .frame(width: width, height: width)
             .clipShape(RoundedCorner(radius: width/10.0, corners: [.bottomLeft, .topLeft]))
         
@@ -103,7 +103,7 @@ extension Image {
     func rightRounded(width: CGFloat) -> some View {
         self
             .resizable()
-            .aspectRatio(contentMode: .fill)
+            .aspectRatio(contentMode: .fit)
             .frame(width: width, height: width)
             .clipShape(RoundedCorner(radius: width/10.0, corners: [.bottomRight, .topRight]))
     }
@@ -152,14 +152,15 @@ struct Images_Previews_Previews: PreviewProvider {
 }
 
 
-extension UrlImage {
+@available(iOS 15.0, *)
+extension AsyncImage {
     
     //MARK: Avatars
     
     ///Turn image into a circular avatar
     func avatarCircle() -> some View {
         self
-            .aspectRatio(contentMode: .fill)
+            .aspectRatio(contentMode: .fit)
             .frame(width: 40, height: 40)
             .clipShape(Circle())
             .padding(.all, 16)
@@ -169,7 +170,7 @@ extension UrlImage {
     ///Turn image into a rectangular avatar
     func avatarSquare() -> some View {
         self
-            .aspectRatio(contentMode: .fill)
+            .aspectRatio(contentMode: .fit)
             .frame(width: 40, height: 40)
             .clipShape(Rectangle())
             .padding(.all, 16)
@@ -178,7 +179,7 @@ extension UrlImage {
     ///Turn image into a rounded rectangle avatar
     func avatarRounded() -> some View {
         self
-            .aspectRatio(contentMode: .fill)
+            .aspectRatio(contentMode: .fit)
             .frame(width: 40, height: 40)
             .clipShape(RoundedRectangle(cornerRadius: 5))
             .padding(.all, 16)
@@ -190,7 +191,7 @@ extension UrlImage {
     ///Modify image to fit a circular format
     func circle(width: CGFloat) -> some View {
         self
-            .aspectRatio(contentMode: .fill)
+            .aspectRatio( contentMode: .fit)
             .frame(width: width, height: width)
             .clipShape(Circle())
     }
@@ -198,7 +199,7 @@ extension UrlImage {
     ///Modify image to fit a square format
     func square(width: CGFloat) -> some View {
         self
-            .aspectRatio(contentMode: .fill)
+            .aspectRatio(contentMode: .fit)
             .frame(width: width, height: width)
     }
     
@@ -212,7 +213,7 @@ extension UrlImage {
     ///Modify image to have upper rounded corners in a square format
     func topRounded(width: CGFloat) -> some View {
         self
-            .aspectRatio(contentMode: .fill)
+            .aspectRatio(contentMode: .fit)
             .frame(width: width, height: width)
             .clipShape(RoundedCorner(radius: width/10.0, corners: [.topLeft, .topRight]))
     }
@@ -220,7 +221,7 @@ extension UrlImage {
     ///Modify image to have lower rounded corners in a square format
     func bottomRounded(width: CGFloat) -> some View {
         self
-            .aspectRatio(contentMode: .fill)
+            .aspectRatio(contentMode: .fit)
             .frame(width: width, height: width)
             .clipShape(RoundedCorner(radius: width/10.0, corners: [.bottomLeft, .bottomRight]))
     }
@@ -228,7 +229,7 @@ extension UrlImage {
     ///Modify image to have left-side rounded corners in a square format
     func leftRounded(width: CGFloat) -> some View {
         self
-            .aspectRatio(contentMode: .fill)
+            .aspectRatio(contentMode: .fit)
             .frame(width: width, height: width)
             .clipShape(RoundedCorner(radius: width/10.0, corners: [.bottomLeft, .topLeft]))
         
@@ -238,7 +239,7 @@ extension UrlImage {
     ///Modify image to have right-side rounded corners in a square format
     func rightRounded(width: CGFloat) -> some View {
         self
-            .aspectRatio(contentMode: .fill)
+            .aspectRatio(contentMode: .fit)
             .frame(width: width, height: width)
             .clipShape(RoundedCorner(radius: width/10.0, corners: [.bottomRight, .topRight]))
     }
@@ -325,7 +326,8 @@ class ImageLoader: ObservableObject {
         }
         
         cancellable = URLSession.shared.dataTaskPublisher(for: url)
-            .map { UIImage(data: $0.data) }
+            .map { UIImage(data: $0.data)
+            }
             .replaceError(with: nil)
             .handleEvents(receiveSubscription: { [weak self] _ in self?.onStart() },
                           receiveOutput: { [weak self] in self?.cache($0) },
