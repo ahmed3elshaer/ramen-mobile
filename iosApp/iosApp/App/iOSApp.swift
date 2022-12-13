@@ -17,7 +17,7 @@ struct iOSApp: App {
                                Image(systemName: "plus.circle")
                                Text("Store")
                        }
-                       Text("Recipes from your fridge")
+                       RecipeScreen()
                            .tabItem {
                                Image(systemName: "fork.knife.circle")
                                Text("Recipes")

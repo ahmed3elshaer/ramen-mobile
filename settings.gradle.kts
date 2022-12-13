@@ -21,14 +21,10 @@ include(":shared")
 include(":components:presentation")
 include(":components:datasource")
 //domain
-include(":domain:recipe")
-include(":domain:ingredients")
-//data
-include(":data:ingredients")
-include(":data:recipe")
+include(":domain:recipe", ":data:recipe", ":presentation:recipe")
+include(":domain:ingredients", ":data:ingredients")
 //store
 include(":presentation:monitor")
 include(":presentation:store")
-include(":presentation:recipe")
 
 enableFeaturePreview("VERSION_CATALOGS")

@@ -1,8 +1,7 @@
-package com.ramen.presentation.store
+package com.ramen.presentation.recipe
 
-import com.ramen.ingredients.domain.usecase.RecommendIngredientSearch
-import com.ramen.ingredients.domain.usecase.StoreIngredient
 import com.ramen.presentation.Store
+import com.ramen.recipe.domain.usecase.RecommendRecipeByIngredients
 import io.github.aakira.napier.Napier
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -10,58 +9,45 @@ import kotlinx.coroutines.launch
 
 
 class RecipeStore(
-    private val recommendIngredientSearch: RecommendIngredientSearch,
-    private val storeIngredient: StoreIngredient
-) : Store<StoreState, StoreAction, StoreSideEffect>(StoreState.Initial),
+    private val recommendRecipeByIngredients: RecommendRecipeByIngredients
+) : Store<RecipeState, RecipeAction, RecipeSideEffect>(RecipeState.Initial),
     CoroutineScope by CoroutineScope(Dispatchers.Main) {
 
-    override fun dispatch(action: StoreAction) {
+    override fun dispatch(action: RecipeAction) {
         val oldState = state.value
-        val newState: StoreState = when (action) {
+        val newState: RecipeState = when (action) {
 
-            is StoreAction.Data -> {
+            is RecipeAction.Data -> {
                 if (oldState.progress) {
-                    StoreState(
+                    RecipeState(
                         progress = false,
-                        ingredients = action.ingredients,
-                        ingredientAdded = false
+                        recipes = action.recipe
                     )
                 } else {
-                    launch { sideEffect.emit(StoreSideEffect.Error(Exception("In progress"))) }
+                    launch { sideEffect.emit(RecipeSideEffect.Error(Exception("In progress"))) }
                     oldState
                 }
             }
 
-            is StoreAction.Error -> {
+            is RecipeAction.Error -> {
                 if (oldState.progress) {
                     Napier.e { action.error.stackTraceToString() }
-                    launch { sideEffect.emit(StoreSideEffect.Error(action.error)) }
+                    launch { sideEffect.emit(RecipeSideEffect.Error(action.error)) }
                     oldState.copy(progress = false)
                 } else {
-                    launch { sideEffect.emit(StoreSideEffect.Error(Exception("In progress"))) }
+                    launch { sideEffect.emit(RecipeSideEffect.Error(Exception("In progress"))) }
                     oldState
                 }
             }
 
-            is StoreAction.RecommendIngredient -> {
+            is RecipeAction.RecommendRecipes -> {
                 if (oldState.progress) {
-                    launch { sideEffect.emit(StoreSideEffect.Error(Exception("In progress"))) }
+                    launch { sideEffect.emit(RecipeSideEffect.Error(Exception("In progress"))) }
                     oldState
                 } else {
-                    launch { recommendIngredient(action) }
+                    launch { recommendIngredient() }
                     oldState.copy(progress = true)
                 }
-            }
-
-            is StoreAction.StoreIngredient -> {
-                if (oldState.progress) {
-                    launch { sideEffect.emit(StoreSideEffect.Error(Exception("In progress"))) }
-                    oldState.copy(ingredientAdded = true)
-                } else {
-                    launch { storeIngredient(action) }
-                    oldState.copy(progress = false, ingredientAdded = true)
-                }
-
             }
         }
 
@@ -70,22 +56,12 @@ class RecipeStore(
         }
     }
 
-    private suspend fun recommendIngredient(recommendIngredient: StoreAction.RecommendIngredient) {
+    private suspend fun recommendIngredient() {
         try {
-            dispatch(StoreAction.Data(recommendIngredientSearch(recommendIngredient.name)))
+            dispatch(RecipeAction.Data(recommendRecipeByIngredients()))
         } catch (e: Exception) {
             e.printStackTrace()
-            dispatch(StoreAction.Error(e))
-        }
-    }
-
-    private suspend fun storeIngredient(action: StoreAction.StoreIngredient) {
-        try {
-            storeIngredient(action.autocompleteIngredient, action.expiryDuration)
-        } catch (e: Exception) {
-            e.printStackTrace()
-            dispatch(StoreAction.Error(e))
-
+            dispatch(RecipeAction.Error(e))
         }
     }
 }

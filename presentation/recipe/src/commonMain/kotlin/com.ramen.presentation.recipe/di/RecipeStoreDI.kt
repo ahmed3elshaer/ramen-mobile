@@ -1,15 +1,12 @@
-package com.ramen.presentation.store.di
+package com.ramen.presentation.recipe.di
 
-import com.ramen.presentation.store.StoreIngredientStore
+import com.ramen.presentation.recipe.RecipeStore
 import org.koin.dsl.module
 
-object StoreIngredientDI {
+object RecipeStoreDI {
     val module = module {
         factory {
-            StoreIngredientStore(
-                recommendIngredientSearch = get(),
-                storeIngredient = get()
-            )
+            RecipeStore(recommendRecipeByIngredients = get())
         }
     }
 }

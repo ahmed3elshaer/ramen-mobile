@@ -13,7 +13,7 @@ class StoreIngredient(private val ingredientsRepository: IngredientsRepository) 
         autocompleteIngredient: AutocompleteIngredient, expiryDuration: Duration
     ) {
         val rawIngredient = ingredientsRepository.getIngredientInfo(autocompleteIngredient.id)
-        val now = Clock.System.now() - 2.days
+        val now = Clock.System.now()
         val timedIngredient = rawIngredient.copy(
             storedAt = now.toEpochMilliseconds(),
             expiryDuration = expiryDuration,

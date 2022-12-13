@@ -14,7 +14,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":components:presentation"))
-                implementation(project(":domain:ingredients"))
+                implementation(project(":domain:recipe"))
                 //kotlinx
                 implementation(libs.kotlinx.coroutines.core)
                 implementation(libs.kotlinx.datetime)

@@ -20,18 +20,8 @@ kotlin {
     ).forEach {
         it.binaries.framework {
             baseName = "shared"
-            export(project(":components:datasource"))
-            export(project(":components:presentation"))
-            //presentation
-            export(project(":presentation:monitor"))
+            export(project(":presentation:recipe"))
 
-            //ingredients
-            export(project(":data:ingredients"))
-            export(project(":domain:ingredients"))
-
-            //recipe
-            export(project(":data:recipe"))
-            export(project(":domain:recipe"))
         }
     }
 
@@ -39,7 +29,7 @@ kotlin {
         summary = "Some description for the Shared Module"
         homepage = "Link to the Shared Module homepage"
         version = "1.0"
-        ios.deploymentTarget = "14.1"
+        ios.deploymentTarget = "16.0"
         podfile = project.file("../iosApp/Podfile")
         framework {
             baseName = "shared"
@@ -49,7 +39,6 @@ kotlin {
             //presentation
             export(project(":presentation:monitor"))
             export(project(":presentation:store"))
-
             //ingredients
             export(project(":data:ingredients"))
             export(project(":domain:ingredients"))
@@ -57,6 +46,7 @@ kotlin {
             //recipe
             export(project(":data:recipe"))
             export(project(":domain:recipe"))
+            export(project(":presentation:recipe"))
         }
     }
 
@@ -68,7 +58,6 @@ kotlin {
                 //presentation
                 api(project(":presentation:monitor"))
                 api(project(":presentation:store"))
-
                 //ingredients
                 api(project(":data:ingredients"))
                 api(project(":domain:ingredients"))
@@ -76,6 +65,8 @@ kotlin {
                 //recipe
                 api(project(":data:recipe"))
                 api(project(":domain:recipe"))
+                api(project(":presentation:recipe"))
+
 
 
             }

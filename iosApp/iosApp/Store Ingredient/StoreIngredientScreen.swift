@@ -79,10 +79,10 @@ struct StoreIngredientsScreen: View {
                 }
                 .frame(maxHeight: .infinity)
                 .onChange(of: input, perform: { _ in
-                   
+                    if(!input.isEmpty && input.count > 2){
                         store.dispatch(StoreAction.RecommendIngredient(name: input))
-                        o
-                    
+                        
+                    }
                 })
             }
             

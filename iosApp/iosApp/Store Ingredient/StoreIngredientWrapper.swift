@@ -29,7 +29,8 @@ class StoreIngredientWrapper : ObservableObject {
         }
     }
     
-    public func dispatch(_ action: StoreAction) {     store.dispatch(action: action)
+    public func dispatch(_ action: StoreAction) {
+     store.dispatch(action: action)
     }
     
     deinit {

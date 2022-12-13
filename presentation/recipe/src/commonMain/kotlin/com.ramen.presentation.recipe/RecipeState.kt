@@ -1,41 +1,30 @@
-package com.ramen.presentation.store
+package com.ramen.presentation.recipe
 
-import com.ramen.ingredients.domain.model.AutocompleteIngredient
-import com.ramen.ingredients.domain.model.Ingredient
 import com.ramen.presentation.Action
 import com.ramen.presentation.Effect
 import com.ramen.presentation.State
-import kotlin.time.Duration
+import com.ramen.recipe.domain.model.Recipe
 
-data class StoreState(
+data class RecipeState(
     val progress: Boolean,
-    val ingredientAdded: Boolean,
-    val ingredients: List<AutocompleteIngredient>
+    val recipes: List<Recipe>
 ) : State {
     companion object {
-        val Initial = StoreState(
+        val Initial = RecipeState(
             progress = false,
-            ingredientAdded = false,
-            ingredients = emptyList()
+            recipes = emptyList()
         )
     }
 }
 
 
-sealed class StoreAction : Action {
-    data class RecommendIngredient(
-        val name: String
-    ) : StoreAction()
+sealed class RecipeAction : Action {
+    object RecommendRecipes : RecipeAction()
 
-    data class StoreIngredient(
-        val autocompleteIngredient: AutocompleteIngredient,
-        val expiryDuration: Duration
-    ) : StoreAction()
-
-    data class Data(val ingredients: List<AutocompleteIngredient>) : StoreAction()
-    data class Error(val error: Exception) : StoreAction()
+    data class Data(val recipe: List<Recipe>) : RecipeAction()
+    data class Error(val error: Exception) : RecipeAction()
 }
 
-sealed class StoreSideEffect : Effect {
-    data class Error(val error: Exception) : StoreSideEffect()
+sealed class RecipeSideEffect : Effect {
+    data class Error(val error: Exception) : RecipeSideEffect()
 }

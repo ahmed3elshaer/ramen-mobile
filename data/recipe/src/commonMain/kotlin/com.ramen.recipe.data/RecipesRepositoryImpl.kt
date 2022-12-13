@@ -9,7 +9,9 @@ internal class RecipesRepositoryImpl(
     private val remote: RecipesRemote
 ) : RecipesRepository {
     override suspend fun searchByIngredients(ingredients: List<String>): List<Recipe> {
-        return remote.searchRecipesByIngredients(ingredients = ingredients.joinToString { "," })
+        println("raw $ingredients")
+        println("joined ${ingredients.joinToString { "$it," }}")
+        return remote.searchRecipesByIngredients(ingredients = ingredients.joinToString { "$it," })
             .map { it.toDomain() }
     }
 

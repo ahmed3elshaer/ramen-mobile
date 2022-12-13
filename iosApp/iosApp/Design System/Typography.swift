@@ -18,7 +18,7 @@ public struct Typography: ViewModifier {
         case s1, s2
         
         /// Paragraphs
-        case p1, p2
+        case p1, p2, p3
         
         /// Captions
         case c1, c2
@@ -51,6 +51,8 @@ public struct Typography: ViewModifier {
                 .font(.custom("EuclidCircularA-Regular", size: 22))
         case .p2: return content
                 .font(.custom("EuclidCircularA-Regular", size: 18))
+        case .p3: return content
+                .font(.custom("EuclidCircularA-Regular", size: 15))
 
         case .c1: return content
                 .font(.custom("EuclidCircularA-Regular", size: 12))
