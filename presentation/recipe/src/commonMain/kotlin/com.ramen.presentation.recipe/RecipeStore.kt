@@ -21,7 +21,7 @@ class RecipeStore(
                 if (oldState.progress) {
                     RecipeState(
                         progress = false,
-                        recipes = action.recipe
+                        searchRecipes = action.searchRecipe
                     )
                 } else {
                     launch { sideEffect.emit(RecipeSideEffect.Error(Exception("In progress"))) }

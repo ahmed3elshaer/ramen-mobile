@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class AutocompleteIngredient(
+data class AutocompleteIngredientApi(
     @SerialName("id")
     val id: Int = 0,
     @SerialName("image")
@@ -16,5 +16,5 @@ data class AutocompleteIngredient(
 @Serializable
 data class AutocompleteIngredientsWrapper(
     @SerialName("results")
-    val results: List<AutocompleteIngredient> = listOf()
+    val results: List<AutocompleteIngredientApi> = listOf()
 )

@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 import kotlin.time.Duration
 
 @Serializable
-data class Ingredient(
+data class IngredientApi(
     @SerialName("aisle")
     val aisle: String = "",
     @SerialName("amount")

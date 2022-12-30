@@ -15,7 +15,7 @@ struct RecipeView: View {
     let missingIngredients : [Recipe_.Ingredient]
     
     var body: some View {
-        ZStack{
+        VStack{
             GeometryReader{geomerty in
                 AsyncImage(url: URL(string: image)!)
                 { imageView in
@@ -26,47 +26,46 @@ struct RecipeView: View {
                     ProgressView()
                 }
                 .frame(maxWidth: .infinity, alignment: .center)
+                .frame(height: 200)
                 .clipShape(RoundedRectangle(cornerRadius: 25,style: .continuous))
-                
-                VStack(spacing: 0){
-                    Spacer()
-                        .frame(height: 8)
-                    Text(title)
-                        .typography(.h5)
-                        .padding(.horizontal,16)
-                        .frame(maxWidth: .infinity,alignment: .leading)
-                    Spacer()
-                        .frame(height: 8)
-                    if(missingIngredients.count > 0 ){
-                        HStack(){
-                            Text("Missing (\(missingIngredients.count)) : \(missingIngredients.map{ ingredient in ingredient.name}.joined(separator: ", "))")
-                                .typography(.p3)
-                                .lineLimit(1)
-                                .padding(.horizontal,16)
-                        }  .frame(maxWidth: .infinity,alignment: .leading)
-                        
-                    } else{
-                        Text("All ingredients included")
-                            .typography(.p3)
-                            .foregroundColor(.fontBtn)
-                            .frame(width: geomerty.size.width , alignment: .leading)
+                ZStack{
+                    VStack(spacing: 0){
+                        Spacer()
+                            .frame(height: 8)
+                        Text(title)
+                            .typography(.h5)
                             .padding(.horizontal,16)
+                            .frame(maxWidth: .infinity,alignment: .leading)
+                        Spacer()
+                            .frame(height: 8)
+                        if(missingIngredients.count > 0 ){
+                            HStack(){
+                                Text("Missing (\(missingIngredients.count)) : \(missingIngredients.map{ ingredient in ingredient.name}.joined(separator: ", "))")
+                                    .typography(.p3)
+                                    .lineLimit(1)
+                                    .padding(.horizontal,16)
+                            }  .frame(maxWidth: .infinity,alignment: .leading)
+                            
+                        } else{
+                            Text("All ingredients included")
+                                .typography(.p3)
+                                .foregroundColor(.fontBtn)
+                                .frame(width: geomerty.size.width , alignment: .leading)
+                                .padding(.horizontal,16)
+                        }
+                        
+                        
+                        Spacer()
+                            .frame(height: 8)
                     }
-                    
-                    
-                    Spacer()
-                        .frame(height: 8)
-                    
-                    
-                    
+                    .background(.ultraThickMaterial)
+                    .frame(maxHeight: .infinity ,alignment: .bottom)
                 }
-                .background(.ultraThickMaterial)
-                .frame(maxHeight: .infinity ,alignment: .bottom)
             }
         }
-        .frame(height: 200)
         .clipShape(RoundedRectangle(cornerRadius: 25))
-        .padding(.horizontal,16)
+        .padding(.horizontal , 16)
+        .padding(.vertical , 4)
     }
 }
 

@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Recipe(
+data class SearchRecipeApi(
     @SerialName("id")
     val id: Int = 0,
     @SerialName("image")

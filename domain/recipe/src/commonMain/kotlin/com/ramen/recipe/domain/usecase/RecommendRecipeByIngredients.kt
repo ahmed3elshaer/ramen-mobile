@@ -2,14 +2,13 @@ package com.ramen.recipe.domain.usecase
 
 import com.ramen.ingredients.domain.usecase.RetrieveIngredients
 import com.ramen.recipe.domain.RecipesRepository
-import com.ramen.recipe.domain.model.Recipe
-import org.koin.core.logger.Logger
+import com.ramen.recipe.domain.model.SearchRecipe
 
 class RecommendRecipeByIngredients(
     private val recipesRepository: RecipesRepository,
     private val retrieveIngredients: RetrieveIngredients
 ) {
-    suspend operator fun invoke(): List<Recipe> {
+    suspend operator fun invoke(): List<SearchRecipe> {
         val ingredients = retrieveIngredients()
             println(ingredients)
         return recipesRepository.searchByIngredients(ingredients

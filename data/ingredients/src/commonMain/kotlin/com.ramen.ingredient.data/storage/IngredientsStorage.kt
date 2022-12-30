@@ -1,7 +1,7 @@
 package com.ramen.ingredient.data.storage
 
 import com.ramen.data.Settings
-import com.ramen.ingredient.data.model.Ingredient
+import com.ramen.ingredient.data.model.IngredientApi
 import com.ramen.ingredient.data.model.toData
 import kotlinx.serialization.builtins.ListSerializer
 
@@ -16,14 +16,14 @@ internal class IngredientsStorage(val settings: Settings) {
         settings.putSetting(
             INGREDIENTS,
             mutableList,
-            ListSerializer(Ingredient.serializer())
+            ListSerializer(IngredientApi.serializer())
         )
     }
 
-    fun retrieveIngredients(): List<Ingredient> {
+    fun retrieveIngredients(): List<IngredientApi> {
         return settings.getSetting(
             INGREDIENTS,
-            ListSerializer(Ingredient.serializer())
+            ListSerializer(IngredientApi.serializer())
         ) ?: emptyList()
     }
 
