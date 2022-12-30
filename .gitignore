@@ -13,3 +13,12 @@ Pods/
 /androidApp/key
 *.jks
 *yarn.lock
+**/build/
+xcuserdata
+!src/**/build/
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcodeproj/project.xcworkspace/
+!*.xcworkspace/contents.xcworkspacedata
+**/xcshareddata/WorkspaceSettings.xcsettings

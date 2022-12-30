@@ -1,28 +1,35 @@
 [versions]
-plugin-android = "8.1.4"
-plugin-kotlin = "1.9.21"
-plugin-gver = "0.42.0"
-androidx-compose-compiler = "1.5.3"
-androidx-compose-ui = "1.5.3"
-kotlinx-serialization = "1.4.0"
-kotlinx-coroutines = "1.6.4"
+kamelImage = "0.9.3"
+plugin-android = "8.2.2"
+plugin-kotlin = "2.0.0-Beta5"
+compose-plugin = "1.6.10-dev1551"
+androidx-compose-ui = "1.6.4"
+kotlinx-serialization = "1.6.3"
+kotlinx-coroutines = "1.8.0"
 kotlinx-datetime = "0.4.0"
 ktor = "2.1.0"
 napier = "2.6.1"
 multiplatform-settings = "0.9"
+precompose = "1.6.0-rc05"
 voyager = "1.0.0-rc02"
-koin = "3.2.0"
+koin = "3.4.3"
+koin-compose = "1.0.4"
 accompanist = "0.25.1"
 coil = "2.2.0"
-activity-compose = "1.5.1"
-work-runtime-ktx = "2.7.1"
-desugar-jdk-libs = "1.1.5"
+activity-compose = "1.8.2"
+work-runtime-ktx = "2.9.0"
+desugar-jdk-libs = "2.0.4"
+android-compileSdk = "34"
+android-minSdk = "24"
+android-targetSdk = "34"
 
 [libraries]
-androidx-compose-ui = { module = "androidx.compose.ui:ui", version.ref = "androidx-compose-ui" }
-androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "androidx-compose-ui" }
-androidx-compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "androidx-compose-ui" }
-androidx-compose-material = { module = "androidx.compose.material:material", version.ref = "androidx-compose-ui" }
+compose-ui = { module = "androidx.compose.ui:ui", version.ref = "androidx-compose-ui" }
+compose-ui-tooling-core = { module = "androidx.compose.ui:ui-tooling", version.ref = "androidx-compose-ui" }
+compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "androidx-compose-ui" }
+compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "androidx-compose-ui" }
+compose-material = { module = "androidx.compose.material:material", version.ref = "androidx-compose-ui" }
+kamel-image = { module = "media.kamel:kamel-image", version.ref = "kamelImage" }
 ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
@@ -36,10 +43,13 @@ ktor-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation",
 ktor-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
 ktor-client-ios = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
 ktor-client-js = { module = "io.ktor:ktor-client-js", version.ref = "ktor" }
+precompose-core = { module = "moe.tlaster:precompose", version.ref = "precompose" }
+precompose-viewmodel = { module = "moe.tlaster:precompose-viewmodel", version.ref = "precompose" }
+precompose-koin = { module = "moe.tlaster:precompose-koin", version.ref = "precompose" }
 voyager-navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyager" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
-koin-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
+koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koin-compose" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity-compose" }
 accompanist-swiperefresh = { module = "com.google.accompanist:accompanist-swiperefresh", version.ref = "accompanist" }
@@ -52,3 +62,4 @@ androidLibrary = { id = "com.android.library", version.ref = "plugin-android" }
 pluginKotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "plugin-kotlin" }
 kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "plugin-kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "plugin-kotlin" }
+jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }

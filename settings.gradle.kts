@@ -3,28 +3,31 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
 	repositories {
+		maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
+		mavenCentral()
 		google()
 		gradlePluginPortal()
-		mavenCentral()
 	}
 }
 
 dependencyResolutionManagement {
 	repositories {
+		mavenCentral()
 		google()
 		gradlePluginPortal()
-		mavenCentral()
+		maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
+
 	}
 }
 
 
-include(":androidApp")
+include(":composeApp")
 
 include(":shared")
 include(":components:presentation")
 include(":components:datasource")
 
-include(":domain:recipe", ":data:recipe")
+include(":domain", ":data")
 
-include(":presentation:recipe")
+include(":presentation")
 

@@ -51,10 +51,9 @@ kotlin {
 android {
     namespace = "com.ramen.datasource"
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-    compileSdk = (findProperty("android.compileSdk") as String).toInt()
-
+    compileSdk = libs.versions.android.targetSdk.get().toInt()
     defaultConfig {
-        minSdk = (findProperty("android.minSdk") as String).toInt()
+        minSdk = libs.versions.android.minSdk.get().toInt()
     }
     compileOptions {
         // Flag to enable support for the new language APIs

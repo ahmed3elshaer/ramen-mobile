@@ -7,14 +7,7 @@ version = "1.1.0"
 
 
 kotlin {
-	androidTarget {
-		compilations.all {
-			kotlinOptions {
-				jvmTarget = "17"
-			}
-		}
-	}
-
+	androidTarget()
 	listOf(
 			iosX64(),
 			iosArm64(),
@@ -26,9 +19,9 @@ kotlin {
 			export(project(":components:datasource"))
 			export(project(":components:presentation"))
 			//recipe
-			export(project(":data:recipe"))
-			export(project(":domain:recipe"))
-			export(project(":presentation:recipe"))
+			export(project(":data"))
+			export(project(":domain"))
+			export(project(":presentation"))
 		}
 	}
 
@@ -39,9 +32,9 @@ kotlin {
 				api(project(":components:presentation"))
 
 				//recipe
-				api(project(":data:recipe"))
-				api(project(":domain:recipe"))
-				api(project(":presentation:recipe"))
+				api(project(":data"))
+				api(project(":domain"))
+				api(project(":presentation"))
 
 
 			}
@@ -52,10 +45,9 @@ kotlin {
 android {
 	namespace = "com.ramen.shared"
 	sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-	compileSdk = (findProperty("android.compileSdk") as String).toInt()
-
+	compileSdk = libs.versions.android.targetSdk.get().toInt()
 	defaultConfig {
-		minSdk = (findProperty("android.minSdk") as String).toInt()
+		minSdk = libs.versions.android.minSdk.get().toInt()
 	}
 	compileOptions {
 		// Flag to enable support for the new language APIs

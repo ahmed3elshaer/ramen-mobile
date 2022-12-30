@@ -1,6 +1,5 @@
 {
 	"configurations": [
-
 		{
 			"name": "androidApp",
 			"type": "android-app",
@@ -8,6 +7,6 @@
 			"allowParallelRun": true,
 			"module": "ramen.androidApp.main",
 			"destination": "Pixel 3 API 32"
-		}
+		},
 	]
 }

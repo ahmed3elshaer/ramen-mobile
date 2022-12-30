@@ -1,6 +1,7 @@
 package com.ramen.shared
 
 
+import com.ramen.data.dataComponentModule
 import com.ramen.ingredients.domain.di.IngredientsDomainDI
 import com.ramen.presentation.monitor.MonitorStoreDI
 import com.ramen.presentation.recipe.di.RecipeStoreDI
@@ -12,6 +13,7 @@ import com.ramen.recipe.domain.di.RecipeDomainDI
 import org.koin.dsl.module
 
 internal val dataGraph = module {
+	includes(dataComponentModule(true))
 	includes(IngredientsDataDI.module)
 	includes(RecipeDataDI.module)
 }

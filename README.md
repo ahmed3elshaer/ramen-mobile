@@ -21,7 +21,7 @@ Ramen project aimes to showcases the capabilities of Kotlin Multiplatform by dev
 ## Building the project.
 ### Requirements
 - Latest version of Android Studio, with KMM plugin.
-- macOS Machince.
+- macOS Machine.
 - Xcode.
 ### Building
 - Open project in Android Studio.
