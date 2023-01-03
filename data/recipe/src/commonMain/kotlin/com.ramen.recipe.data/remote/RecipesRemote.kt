@@ -15,7 +15,7 @@ internal class RecipesRemote(private val httpClient: HttpClient) {
             .get(urlString = SEARCH_INGREDIENT_PATH) {
                 parameter("ingredients", ingredients)
                 parameter("ranking", 2)
-                parameter("number", 100)
+                parameter("number", 40)
                 parameter("limitLicense", false)
                 parameter("ignorePantry", true)
             }

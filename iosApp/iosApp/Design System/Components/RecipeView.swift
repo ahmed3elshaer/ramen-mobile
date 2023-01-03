@@ -12,7 +12,7 @@ import shared
 struct RecipeView: View {
     let image :String
     let title :String
-    let missingIngredients : [Recipe_.Ingredient]
+    let missingIngredients : [SearchRecipe.Ingredient]
     
     var body: some View {
         VStack{
@@ -73,6 +73,6 @@ struct RecipeView_Previews: PreviewProvider {
     static var previews: some View {
         RecipeView(image: "https://spoonacular.com/recipeImages/716429-556x370.jpg",
                    title: "Apple Or Peach Strudel",
-                   missingIngredients: [Recipe_.Ingredient]())
+                   missingIngredients: [SearchRecipe.Ingredient]())
     }
 }

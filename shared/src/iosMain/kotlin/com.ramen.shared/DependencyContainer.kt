@@ -3,6 +3,7 @@ package com.ramen.shared
 import com.ramen.data.dataComponentModule
 import com.ramen.presentation.monitor.MonitorStore
 import com.ramen.presentation.recipe.RecipeStore
+import com.ramen.presentation.recipeinfo.RecipeInfoStore
 import com.ramen.presentation.store.StoreIngredientStore
 import io.github.aakira.napier.DebugAntilog
 import io.github.aakira.napier.Napier
@@ -29,5 +30,6 @@ object DependencyContainer {
         fun getMonitorStore(): MonitorStore = getKoin().get<MonitorStore>()
         fun getStoreIngredient(): StoreIngredientStore = getKoin().get<StoreIngredientStore>()
         fun getRecipeStore(): RecipeStore = getKoin().get<RecipeStore>()
+        fun getRecipeInfoStore(): RecipeInfoStore = getKoin().get<RecipeInfoStore>()
     }
 }

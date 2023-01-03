@@ -39,6 +39,52 @@ data class Recipe(
     val whole30: Boolean,
     val winePairing: WinePairing
 ) {
+    companion object {
+        val Initial = Recipe(
+            aggregateLikes = 0,
+            analyzedInstructions = listOf(),
+            cheap = false,
+            creditsText = "",
+            cuisines = listOf(),
+            dairyFree = false,
+            diets = listOf(),
+            dishTypes = listOf(),
+            extendedIngredients = listOf(),
+            gaps = "",
+            glutenFree = false,
+            healthScore = 0.0,
+            id = 0,
+            image = "",
+            imageType = "",
+            instructions = "",
+            ketogenic = false,
+            license = "",
+            lowFodmap = false,
+            occasions = listOf(),
+            pricePerServing = 0.0,
+            readyInMinutes = 0,
+            servings = 0,
+            sourceName = "",
+            sourceUrl = "",
+            spoonacularScore = 0.0,
+            spoonacularSourceUrl = "",
+            summary = "",
+            sustainable = false,
+            title = "",
+            vegan = false,
+            vegetarian = false,
+            veryHealthy = false,
+            veryPopular = false,
+            weightWatcherSmartPoints = 0,
+            whole30 = false,
+            winePairing = WinePairing(
+                pairedWines = listOf(),
+                pairingText = "",
+                productMatches = listOf()
+            )
+        )
+    }
+
     data class ExtendedIngredient(
         val aisle: String,
         val amount: Double,

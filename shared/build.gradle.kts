@@ -20,7 +20,6 @@ kotlin {
     ).forEach {
         it.binaries.framework {
             baseName = "shared"
-            export(project(":presentation:recipe"))
 
         }
     }
@@ -47,6 +46,7 @@ kotlin {
             export(project(":data:recipe"))
             export(project(":domain:recipe"))
             export(project(":presentation:recipe"))
+            export(project(":presentation:recipeinfo"))
         }
     }
 
@@ -66,6 +66,7 @@ kotlin {
                 api(project(":data:recipe"))
                 api(project(":domain:recipe"))
                 api(project(":presentation:recipe"))
+                api(project(":presentation:recipeinfo"))
 
 
 

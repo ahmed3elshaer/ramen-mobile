@@ -5,7 +5,7 @@ struct MonitorScreen: View {
     @StateObject var store: MonitorStoreWrapper = MonitorStoreWrapper()
     
     var body: some View {
-        let ingredients : [Ingredient_] = store.state.ingredients
+        let ingredients : [Ingredient] = store.state.ingredients
         ScrollView{
             VStack{
                 Text("Fridge Storage")

@@ -5,7 +5,7 @@ struct RecipeScreen: View {
     @StateObject var store: RecipeStoreWrapper = RecipeStoreWrapper()
     
     var body: some View {
-        let recipes = store.state.recipes.sorted {first , second in
+        let recipes = store.state.searchRecipes.sorted {first , second in
             first.missedIngredients.count < second.missedIngredients.count
         }
         ScrollView{
