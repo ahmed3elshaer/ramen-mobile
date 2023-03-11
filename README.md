@@ -1,7 +1,8 @@
 # Ramen
 
-[ 🚧 Work in progress 👷‍♀️⛏👷🔧️👷🔧 🚧 ] Ramen iOS Beta
+### [ 🚧 Work in progress 👷‍♀️⛏👷🔧️👷🔧 🚧 ] Ramen iOS Beta
 
+<img src="art/fridge.png" width="320" alt="Fridge"> <img src="art/recipes.png" width="320" alt="recipes"> <img src="art/search.png" width="320" alt="search">
 
 ## Background
 Ramen project aimes to showcases the capabilities of Kotlin Multiplatform by developing an iOS application that enables users to monitor the contents of their refrigerator and receive suggestions for recipes. The project is open source and under development.
