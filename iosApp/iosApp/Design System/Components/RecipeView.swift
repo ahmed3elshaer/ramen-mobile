@@ -13,22 +13,22 @@ struct RecipeView: View {
     let image :String
     let title :String
     let missingIngredients : [SearchRecipe.Ingredient]
-    
+
     var body: some View {
         VStack{
-            GeometryReader{geomerty in
-                AsyncImage(url: URL(string: image)!)
-                { imageView in
-                    imageView
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                } placeholder: {
-                    ProgressView()
-                }
-                .frame(maxWidth: .infinity, alignment: .center)
-                .frame(height: 200)
-                .clipShape(RoundedRectangle(cornerRadius: 25,style: .continuous))
-                ZStack{
+            
+            ZStack{
+                    AsyncImage(url: URL(string: image)!)
+                    { imageView in
+                        imageView
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                    } placeholder: {
+                        ProgressView()
+                    }
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .clipShape(RoundedRectangle(cornerRadius: 25,style: .continuous))
+                    
                     VStack(spacing: 0){
                         Spacer()
                             .frame(height: 8)
@@ -42,7 +42,6 @@ struct RecipeView: View {
                             HStack(){
                                 Text("Missing (\(missingIngredients.count)) : \(missingIngredients.map{ ingredient in ingredient.name}.joined(separator: ", "))")
                                     .typography(.p3)
-                                    .lineLimit(1)
                                     .padding(.horizontal,16)
                             }  .frame(maxWidth: .infinity,alignment: .leading)
                             
@@ -50,22 +49,23 @@ struct RecipeView: View {
                             Text("All ingredients included")
                                 .typography(.p3)
                                 .foregroundColor(.fontBtn)
-                                .frame(width: geomerty.size.width , alignment: .leading)
+                                .frame(width: .infinity, alignment: .leading)
                                 .padding(.horizontal,16)
                         }
                         
                         
                         Spacer()
                             .frame(height: 8)
+                        
+                        
+                        
                     }
                     .background(.ultraThickMaterial)
-                    .frame(maxHeight: .infinity ,alignment: .bottom)
+                    .frame(maxHeight:.infinity ,alignment: .bottom)
                 }
-            }
+            .clipShape(RoundedRectangle(cornerRadius: 25))
+            .padding(.horizontal,16)
         }
-        .clipShape(RoundedRectangle(cornerRadius: 25))
-        .padding(.horizontal , 16)
-        .padding(.vertical , 4)
     }
 }
 
