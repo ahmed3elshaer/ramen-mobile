@@ -8,8 +8,6 @@ import io.ktor.client.request.get
 import io.ktor.client.request.parameter
 
 internal class RecipesRemote(private val httpClient: HttpClient) {
-
-
     suspend fun searchRecipesByIngredients(ingredients: String): List<SearchRecipeApi> {
         return httpClient
             .get(urlString = SEARCH_INGREDIENT_PATH) {

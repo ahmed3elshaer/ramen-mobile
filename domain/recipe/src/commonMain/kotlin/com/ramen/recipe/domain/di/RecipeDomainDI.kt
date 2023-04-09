@@ -1,5 +1,6 @@
 package com.ramen.recipe.domain.di
 
+import com.ramen.recipe.domain.usecase.GetRecipeInfo
 import com.ramen.recipe.domain.usecase.RecommendRecipeByIngredients
 import org.koin.dsl.module
 
@@ -9,6 +10,11 @@ object RecipeDomainDI {
             RecommendRecipeByIngredients(
                 recipesRepository = get(),
                 retrieveIngredients = get()
+            )
+        }
+        factory {
+            GetRecipeInfo(
+                recipesRepository = get()
             )
         }
     }
