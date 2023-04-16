@@ -5,17 +5,17 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class RecipeApi(
+internal data class RecipeApi(
     @SerialName("aggregateLikes")
     val aggregateLikes: Int = 0,
     @SerialName("analyzedInstructions")
-    val analyzedInstructions: List<String> = listOf(),
+    val analyzedInstructions: List<AnalyzedInstructionApi> = listOf(),
     @SerialName("cheap")
     val cheap: Boolean = false,
+    @SerialName("cookingMinutes")
+    val cookingMinutes: Int = 0,
     @SerialName("creditsText")
     val creditsText: String = "",
-    @SerialName("cuisines")
-    val cuisines: List<String> = listOf(),
     @SerialName("dairyFree")
     val dairyFree: Boolean = false,
     @SerialName("diets")
@@ -29,7 +29,7 @@ data class RecipeApi(
     @SerialName("glutenFree")
     val glutenFree: Boolean = false,
     @SerialName("healthScore")
-    val healthScore: Double = 0.0,
+    val healthScore: Int = 0,
     @SerialName("id")
     val id: Int = 0,
     @SerialName("image")
@@ -38,14 +38,10 @@ data class RecipeApi(
     val imageType: String = "",
     @SerialName("instructions")
     val instructions: String = "",
-    @SerialName("ketogenic")
-    val ketogenic: Boolean = false,
-    @SerialName("license")
-    val license: String = "",
     @SerialName("lowFodmap")
     val lowFodmap: Boolean = false,
-    @SerialName("occasions")
-    val occasions: List<String> = listOf(),
+    @SerialName("preparationMinutes")
+    val preparationMinutes: Int = 0,
     @SerialName("pricePerServing")
     val pricePerServing: Double = 0.0,
     @SerialName("readyInMinutes")
@@ -56,8 +52,6 @@ data class RecipeApi(
     val sourceName: String = "",
     @SerialName("sourceUrl")
     val sourceUrl: String = "",
-    @SerialName("spoonacularScore")
-    val spoonacularScore: Double = 0.0,
     @SerialName("spoonacularSourceUrl")
     val spoonacularSourceUrl: String = "",
     @SerialName("summary")
@@ -76,19 +70,71 @@ data class RecipeApi(
     val veryPopular: Boolean = false,
     @SerialName("weightWatcherSmartPoints")
     val weightWatcherSmartPoints: Int = 0,
-    @SerialName("whole30")
-    val whole30: Boolean = false,
     @SerialName("winePairing")
     val winePairing: WinePairingApi = WinePairingApi()
 ) {
     @Serializable
-    data class ExtendedIngredientApi(
+    internal data class AnalyzedInstructionApi(
+        @SerialName("name")
+        val name: String = "",
+        @SerialName("steps")
+        val steps: List<StepApi> = listOf()
+    ) {
+        @Serializable
+        internal data class StepApi(
+            @SerialName("equipment")
+            val equipment: List<EquipmentApi> = listOf(),
+            @SerialName("ingredients")
+            val ingredients: List<IngredientApi> = listOf(),
+            @SerialName("length")
+            val length: LengthApi = LengthApi(),
+            @SerialName("number")
+            val number: Int = 0,
+            @SerialName("step")
+            val step: String = ""
+        ) {
+            @Serializable
+            internal data class EquipmentApi(
+                @SerialName("id")
+                val id: Int = 0,
+                @SerialName("image")
+                val image: String = "",
+                @SerialName("localizedName")
+                val localizedName: String = "",
+                @SerialName("name")
+                val name: String = ""
+            )
+
+            @Serializable
+            internal data class IngredientApi(
+                @SerialName("id")
+                val id: Int = 0,
+                @SerialName("image")
+                val image: String = "",
+                @SerialName("localizedName")
+                val localizedName: String = "",
+                @SerialName("name")
+                val name: String = ""
+            )
+
+            @Serializable
+            internal data class LengthApi(
+                @SerialName("number")
+                val number: Int = 0,
+                @SerialName("unit")
+                val unit: String = ""
+            )
+        }
+    }
+
+    @Serializable
+    internal data class ExtendedIngredientApi(
         @SerialName("aisle")
         val aisle: String = "",
         @SerialName("amount")
         val amount: Double = 0.0,
-        @SerialName("consitency")
-        val consitency: String = "",
+        @SerialName("consistency")
+        val consistency: String = "",
         @SerialName("id")
         val id: Int = 0,
         @SerialName("image")
@@ -99,6 +145,8 @@ data class RecipeApi(
         val meta: List<String> = listOf(),
         @SerialName("name")
         val name: String = "",
+        @SerialName("nameClean")
+        val nameClean: String = "",
         @SerialName("original")
         val original: String = "",
         @SerialName("originalName")
@@ -107,14 +155,14 @@ data class RecipeApi(
         val unit: String = ""
     ) {
         @Serializable
-        data class MeasuresApi(
+        internal data class MeasuresApi(
             @SerialName("metric")
             val metric: MetricApi = MetricApi(),
             @SerialName("us")
             val us: UsApi = UsApi()
         ) {
             @Serializable
-            data class MetricApi(
+            internal data class MetricApi(
                 @SerialName("amount")
                 val amount: Double = 0.0,
                 @SerialName("unitLong")
@@ -124,7 +172,7 @@ data class RecipeApi(
             )
 
             @Serializable
-            data class UsApi(
+            internal data class UsApi(
                 @SerialName("amount")
                 val amount: Double = 0.0,
                 @SerialName("unitLong")
@@ -136,34 +184,7 @@ data class RecipeApi(
     }
 
     @Serializable
-    data class WinePairingApi(
-        @SerialName("pairedWines")
-        val pairedWines: List<String> = listOf(),
-        @SerialName("pairingText")
-        val pairingText: String = "",
-        @SerialName("productMatches")
-        val productMatches: List<ProductMatcheApi> = listOf()
-    ) {
-        @Serializable
-        data class ProductMatcheApi(
-            @SerialName("averageRating")
-            val averageRating: Double = 0.0,
-            @SerialName("description")
-            val description: String = "",
-            @SerialName("id")
-            val id: Int = 0,
-            @SerialName("imageUrl")
-            val imageUrl: String = "",
-            @SerialName("link")
-            val link: String = "",
-            @SerialName("price")
-            val price: String = "",
-            @SerialName("ratingCount")
-            val ratingCount: Double = 0.0,
-            @SerialName("score")
-            val score: Double = 0.0,
-            @SerialName("title")
-            val title: String = ""
-        )
-    }
+    internal data class WinePairingApi(
+        val pairingText: String = ""
+    )
 }

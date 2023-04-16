@@ -16,7 +16,7 @@ struct RecipeDetail: View {
     var body: some View {
         let recipe = store.state.recipe
         ScrollView {
-            VStack(alignment: .leading) {
+            VStack() {
                 // Show the photo of the recipe
                 Image(recipe.image)
                     .resizable()
@@ -29,7 +29,7 @@ struct RecipeDetail: View {
                     .padding()
                 
                 // Show some basic info about the recipe
-                HStack {
+                VStack {
                     // Show the preparation time
                     Label("\(recipe.readyInMinutes) min", systemImage: "clock")
                         .font(.headline)
@@ -42,22 +42,20 @@ struct RecipeDetail: View {
                         .font(.headline)
                         .foregroundColor(.secondary)
                     
-                    Spacer()
+                    Spacer()a
                     
                     // Show the number of steps
-                    Label("\(recipe.servings) steps", systemImage: "number")
+                    Label("\(recipe.analyzedInstructions.first?.steps.count ?? 0) steps", systemImage: "number")
                         .font(.headline)
                         .foregroundColor(.secondary)
                     
                     Spacer()
                     
                     // Show the rating
-                    Label("\(String(repeating: "★", count: Int(recipe.healthScore)))", systemImage: "star.fill")
+                    Label("\(recipe.healthScore)", systemImage: "star.fill")
                         .font(.headline)
-                        .foregroundColor(.yellow)
                     
                 }
-                .padding([.leading, .trailing])
                 
                 Divider()
                 
@@ -93,13 +91,21 @@ struct RecipeDetail: View {
                 //Show a separate section for step by step preparation
                 VStack(alignment:.leading){
                     Text("Steps")
+                        .font(.title2)
                         .fontWeight(.semibold)
                         .padding([.top,.leading])
                     Spacer()
-                    Text(recipe.instructions)//Step description
-                        .font(.subheadline)
-                    
-                    
+                    ForEach(recipe.analyzedInstructions.indices,id: \.self.hashValue){ index in
+                        let instruction = recipe.analyzedInstructions[index]
+                        VStack(alignment: .leading){
+                            Spacer()
+                            ForEach(instruction.steps.indices, id: \.self.hashValue){ stepIndex in
+                                Text((stepIndex+1).description+") "+instruction.steps[stepIndex].step.description)
+                                    .font(.body)
+                                Spacer()
+                            }
+                        }
+                    }
                 }
             }
         }.navigationTitle(recipe.title)
