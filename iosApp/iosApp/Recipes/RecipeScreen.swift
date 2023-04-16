@@ -4,7 +4,6 @@ import shared
 struct RecipeScreen: View {
     @SwiftUI.State private var selection :String? = nil
     @StateObject var store: RecipeStoreWrapper = RecipeStoreWrapper()
-    @State var selectedRecipe : String? = nil
     
     var body: some View {
         let recipes = store.state.searchRecipes.sorted {first , second in
@@ -31,7 +30,9 @@ struct RecipeScreen: View {
                     .frame(maxWidth: .infinity,alignment: .leading)
                 }
             }
-            
+        }
+        .onAppear{
+            store.dispatch(RecipeAction.RecommendRecipes())
         }
     }
     
