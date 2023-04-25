@@ -27,15 +27,19 @@ struct RecipeView: View {
                             ProgressView()
                         }
                         .frame(maxWidth: .infinity, alignment: .center)
+                        .frame(minHeight: 250, maxHeight: 250)
                         .clipShape(RoundedRectangle(cornerRadius: 25,style: .continuous))
                         
                         VStack(spacing: 0){
                             Spacer()
                                 .frame(height: 8)
-                            Text(title)
+                            Text(title.capitalized)
+                                .foregroundStyle(.primary)
                                 .typography(.h5)
+                                .lineLimit(1)
                                 .padding(.horizontal,16)
                                 .frame(maxWidth: .infinity,alignment: .leading)
+                            
                             Spacer()
                                 .frame(height: 8)
                             if(missingIngredients.count > 0 ){
