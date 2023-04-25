@@ -12,6 +12,7 @@
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		27AF00B929E230A1005B9633 /* RecipeDetailsStoreWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27AF00B829E230A1005B9633 /* RecipeDetailsStoreWrapper.swift */; };
 		27DF311029C0802600395DBC /* RecipeDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DF310F29C0802600395DBC /* RecipeDetail.swift */; };
+		27E1DD2C29F86DC2009CCEED /* StepsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E1DD2B29F86DC2009CCEED /* StepsView.swift */; };
 		523B5906293478F100A5F74C /* MonitorStoreWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523B5905293478F100A5F74C /* MonitorStoreWrapper.swift */; };
 		523B590C2934849B00A5F74C /* AppDelgate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523B590B2934849B00A5F74C /* AppDelgate.swift */; };
 		523B59112935091F00A5F74C /* MonitorScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523B59102935091F00A5F74C /* MonitorScreen.swift */; };
@@ -55,6 +56,7 @@
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		27AF00B829E230A1005B9633 /* RecipeDetailsStoreWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailsStoreWrapper.swift; sourceTree = "<group>"; };
 		27DF310F29C0802600395DBC /* RecipeDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetail.swift; sourceTree = "<group>"; };
+		27E1DD2B29F86DC2009CCEED /* StepsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepsView.swift; sourceTree = "<group>"; };
 		523B5905293478F100A5F74C /* MonitorStoreWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorStoreWrapper.swift; sourceTree = "<group>"; };
 		523B590B2934849B00A5F74C /* AppDelgate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelgate.swift; sourceTree = "<group>"; };
 		523B59102935091F00A5F74C /* MonitorScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorScreen.swift; sourceTree = "<group>"; };
@@ -119,6 +121,14 @@
 				27AF00B829E230A1005B9633 /* RecipeDetailsStoreWrapper.swift */,
 			);
 			path = Details;
+			sourceTree = "<group>";
+		};
+		27E1DD2A29F86DA2009CCEED /* Steps */ = {
+			isa = PBXGroup;
+			children = (
+				27E1DD2B29F86DC2009CCEED /* StepsView.swift */,
+			);
+			path = Steps;
 			sourceTree = "<group>";
 		};
 		39E3EA702F12E154A6E2D38F /* Frameworks */ = {
@@ -240,6 +250,7 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				27E1DD2A29F86DA2009CCEED /* Steps */,
 				27AF00B729E23082005B9633 /* Details */,
 				52F564252946F35100CA5571 /* Recipes */,
 				52F5641E2944D88300CA5571 /* Store Ingredient */,
@@ -393,6 +404,7 @@
 				523B593929350AA600A5F74C /* Colors.swift in Sources */,
 				52F564202944D89D00CA5571 /* StoreIngredientScreen.swift in Sources */,
 				523B593D29350AA600A5F74C /* Toggles.swift in Sources */,
+				27E1DD2C29F86DC2009CCEED /* StepsView.swift in Sources */,
 				523B593029350AA600A5F74C /* Checkboxes.swift in Sources */,
 				523B592D29350AA600A5F74C /* GroupButtonStyle+Extensions.swift in Sources */,
 				27AF00B929E230A1005B9633 /* RecipeDetailsStoreWrapper.swift in Sources */,
