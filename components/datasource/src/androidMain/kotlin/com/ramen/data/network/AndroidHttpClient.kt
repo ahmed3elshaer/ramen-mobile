@@ -35,7 +35,7 @@ fun httpClient(withLog: Boolean) = HttpClient(OkHttp) {
         logger = object : Logger {
             override fun log(message: String) {
                 Napier.v(tag = "AndroidHttpClient", message = message)
-                Log.v("AndroidHttpClient",message)
+                Log.v("AndroidHttpClient", message)
             }
         }
     }
@@ -44,7 +44,7 @@ fun httpClient(withLog: Boolean) = HttpClient(OkHttp) {
             prettyPrint = true
             isLenient = true
             ignoreUnknownKeys = true
-            encodeDefaults = true
+            explicitNulls = false
         })
     }
 }

@@ -26,12 +26,11 @@ fun SearchRecipeApi.Ingredient.toDomain() = SearchRecipe.Ingredient(
     unitShort = this.unitShort
 )
 
-fun RecipeApi.toDomain() = Recipe(
+internal fun RecipeApi.toDomain() = Recipe(
     aggregateLikes = this.aggregateLikes,
-    analyzedInstructions = this.analyzedInstructions,
+    analyzedInstructions = this.analyzedInstructions.map { it.toDomain() },
     cheap = this.cheap,
     creditsText = this.creditsText,
-    cuisines = this.cuisines,
     dairyFree = this.dairyFree,
     diets = this.diets,
     dishTypes = this.dishTypes,
@@ -43,16 +42,12 @@ fun RecipeApi.toDomain() = Recipe(
     image = this.image,
     imageType = this.imageType,
     instructions = this.instructions,
-    ketogenic = this.ketogenic,
-    license = this.license,
     lowFodmap = this.lowFodmap,
-    occasions = this.occasions,
     pricePerServing = this.pricePerServing,
     readyInMinutes = this.readyInMinutes,
     servings = this.servings,
     sourceName = this.sourceName,
     sourceUrl = this.sourceUrl,
-    spoonacularScore = this.spoonacularScore,
     spoonacularSourceUrl = this.spoonacularSourceUrl,
     summary = this.summary,
     sustainable = this.sustainable,
@@ -62,36 +57,55 @@ fun RecipeApi.toDomain() = Recipe(
     veryHealthy = this.veryHealthy,
     veryPopular = this.veryPopular,
     weightWatcherSmartPoints = this.weightWatcherSmartPoints,
-    whole30 = this.whole30,
     winePairing = this.winePairing.toDomain()
 
 )
 
-fun RecipeApi.WinePairingApi.toDomain() = Recipe.WinePairing(pairedWines = this.pairedWines,
+internal fun RecipeApi.AnalyzedInstructionApi.toDomain() = Recipe.AnalyzedInstruction(
+    name = this.name,
+    steps = this.steps.map { it.toDomain() }
+)
+
+internal fun RecipeApi.AnalyzedInstructionApi.StepApi.toDomain() = Recipe.AnalyzedInstruction.Step(
+    equipment = this.equipment.map { it.toDomain() },
+    ingredients = this.ingredients.map { it.toDomain() },
+    length = this.length.toDomain(),
+    number = this.number,
+    step = this.step
+)
+
+internal fun RecipeApi.AnalyzedInstructionApi.StepApi.EquipmentApi.toDomain() =
+    Recipe.AnalyzedInstruction.Step.Equipment(
+        id = this.id,
+        image = this.image,
+        name = this.name,
+        localizedName = this.localizedName,
+    )
+
+internal fun RecipeApi.AnalyzedInstructionApi.StepApi.IngredientApi.toDomain() =
+    Recipe.AnalyzedInstruction.Step.Ingredient(
+        id = this.id,
+        image = this.image,
+        name = this.name,
+        localizedName = this.localizedName
+    )
+
+internal fun RecipeApi.AnalyzedInstructionApi.StepApi.LengthApi.toDomain() =
+    Recipe.AnalyzedInstruction.Step.Length(
+        number = this.number,
+        unit = this.unit
+    )
+
+internal fun RecipeApi.WinePairingApi.toDomain() = Recipe.WinePairing(
     pairingText = this.pairingText,
-    productMatches = this.productMatches.map { it.toDomain() }
-
 )
 
-fun RecipeApi.WinePairingApi.ProductMatcheApi.toDomain() = Recipe.WinePairing.ProductMatch(
-    averageRating = this.averageRating,
-    description = description,
-    id = id,
-    imageUrl = imageUrl,
-    link = link,
-    price = price,
-    ratingCount = ratingCount,
-    score = score,
-    title = title
+internal fun List<RecipeApi.ExtendedIngredientApi>.toDomain() = map { it.toDomain() }
 
-)
-
-fun List<RecipeApi.ExtendedIngredientApi>.toDomain() = map { it.toDomain() }
-
-fun RecipeApi.ExtendedIngredientApi.toDomain() = Recipe.ExtendedIngredient(
+internal fun RecipeApi.ExtendedIngredientApi.toDomain() = Recipe.ExtendedIngredient(
     aisle = aisle,
     amount = amount,
-    consistency = consitency,
+    consistency = consistency,
     id = id,
     image = image,
     measures = measures.toDomain(),
@@ -103,17 +117,18 @@ fun RecipeApi.ExtendedIngredientApi.toDomain() = Recipe.ExtendedIngredient(
 
 )
 
-fun RecipeApi.ExtendedIngredientApi.MeasuresApi.toDomain() = Recipe.ExtendedIngredient.Measures(
-    metric = this.metric.toDomain(), us = this.us.toDomain()
-)
+internal fun RecipeApi.ExtendedIngredientApi.MeasuresApi.toDomain() =
+    Recipe.ExtendedIngredient.Measures(
+        metric = this.metric.toDomain(), us = this.us.toDomain()
+    )
 
-fun RecipeApi.ExtendedIngredientApi.MeasuresApi.MetricApi.toDomain() =
+internal fun RecipeApi.ExtendedIngredientApi.MeasuresApi.MetricApi.toDomain() =
     Recipe.ExtendedIngredient.Measures.Metric(
         amount = amount, unitLong = unitLong, unitShort = unitShort
 
     )
 
-fun RecipeApi.ExtendedIngredientApi.MeasuresApi.UsApi.toDomain() =
+internal fun RecipeApi.ExtendedIngredientApi.MeasuresApi.UsApi.toDomain() =
     Recipe.ExtendedIngredient.Measures.Us(
         amount = amount, unitLong = unitLong, unitShort = unitShort
     )

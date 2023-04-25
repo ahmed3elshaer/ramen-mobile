@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WebKit
 
 public struct ThemeTextField: View {
     
@@ -204,3 +205,15 @@ struct TextField_Previews: PreviewProvider {
 }
 
 
+
+@available(iOS 15, *)
+struct HtmlText: UIViewRepresentable {
+    let html : String
+    func makeUIView(context: Context) -> WKWebView {
+        return WKWebView()
+      }
+       
+      func updateUIView(_ uiView: WKWebView, context: Context) {
+        uiView.loadHTMLString(html, baseURL: nil)
+      }
+}

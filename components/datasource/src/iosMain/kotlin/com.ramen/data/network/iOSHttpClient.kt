@@ -9,9 +9,11 @@ import io.ktor.client.plugins.logging.*
 import io.ktor.client.request.*
 import io.ktor.http.URLProtocol
 import io.ktor.serialization.kotlinx.json.json
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 
 
+@OptIn(ExperimentalSerializationApi::class)
 fun httpClient(withLog: Boolean) = HttpClient(Darwin) {
     defaultRequest {
         host = "api.spoonacular.com"
@@ -41,7 +43,7 @@ fun httpClient(withLog: Boolean) = HttpClient(Darwin) {
             prettyPrint = true
             isLenient = true
             ignoreUnknownKeys = true
-            encodeDefaults = true
+            explicitNulls = false
         })
     }
 
