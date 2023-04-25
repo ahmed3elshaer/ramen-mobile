@@ -50,6 +50,7 @@ struct StoredIngredient: View {
                                 .scaledToFill()
                         } placeholder: {
                             ProgressView()
+                                .foregroundColor(Color.surface)
                         }
                         .frame(width: 54, height: 54)
                         .background(Color.gray)

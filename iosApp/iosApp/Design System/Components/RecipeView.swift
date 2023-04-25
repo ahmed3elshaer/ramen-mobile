@@ -25,6 +25,7 @@ struct RecipeView: View {
                                 .aspectRatio(contentMode: .fill)
                         } placeholder: {
                             ProgressView()
+                                .foregroundColor(Color.surface)
                         }
                         .frame(maxWidth: .infinity, alignment: .center)
                         .frame(minHeight: 250, maxHeight: 250)
