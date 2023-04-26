@@ -85,12 +85,10 @@ struct InstructionStep : View {
                 Text(step.step)
                     .typography(.p1)
                     .padding([.bottom])
-                    .animation(.default)
                 
                 if(!step.ingredients.isEmpty){
                     Text("Ingredients")
                         .typography(.s2)
-                        .animation(.default)
                     
                     LazyHStack{
                         ForEach(step.ingredients,id: \.self.hashValue) { ingredient in
@@ -109,14 +107,12 @@ struct InstructionStep : View {
                             .background(Color.white)
                             .clipShape(RoundedRectangle(cornerRadius: 18 , style: .continuous))
                             .padding([.trailing])
-                            .animation(.default)
                         }
                     }
                 }
                 if(!step.equipment.isEmpty){
                     Text("Equipments")
                         .typography(.s2)
-                        .animation(.default)
                     LazyHStack{
                         ForEach(step.equipment,id: \.self.hashValue) { equipment in
                             AsyncImage(url: URL(string: "https://spoonacular.com/cdn/equipment_100x100/" + equipment.image))
@@ -134,7 +130,6 @@ struct InstructionStep : View {
                             .background(Color.white)
                             .clipShape(RoundedRectangle(cornerRadius: 18 , style: .continuous))
                             .padding([.trailing])
-                            .animation(.default)
                         }
                     }
                 }
