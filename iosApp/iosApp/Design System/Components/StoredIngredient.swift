@@ -29,61 +29,14 @@ struct StoredIngredient: View {
 	}
 
 	var body: some View {
-		GeometryReader { geometry in
-			ZStack {
-				Rectangle()
-						.fill(Color.surface)
-						.cornerRadius(54)
-						.frame(maxWidth: .infinity, alignment: .leading)
-
-				Rectangle()
-						.fill(
-							LinearGradient(
-								colors: [Color.defaultPrimary.opacity(0.2),
-										 Color.defaultPrimary.opacity(0.7)],
-								startPoint: .leading,
-								endPoint: .trailing)
-						)
-						.frame(width: min(progress * geometry.size.width, geometry.size.width), height: 54)
-						.cornerRadius(54)
-						.frame(maxWidth: .infinity, alignment: .leading)
-
-
-				HStack() {
-					if #available(iOS 15.0, *) {
-						AsyncImage(
-							url: URL(string: "https://spoonacular.com/cdn/ingredients_100x100/\(imageUrl)")!
-						) { image in
-							image
-									.resizable()
-									.scaledToFill()
-						} placeholder: {
-							ProgressView()
-									.foregroundColor(Color.surface)
-						}
-								.frame(width: 54, height: 54)
-								.background(Color.gray)
-								.clipShape(Circle())
-					} else {
-						// Fallback on earlier versions
-					}
-
-
-					Text(name)
-							.typography(.p2)
-							.lineLimit(2)
-
-					Text("\(remaingDays.description) of \(totalDays)")
-							.typography(.s2)
-							.frame(maxWidth: .infinity, alignment: .trailing)
-							.padding()
-
-				}
-			}
-
+		VStack(alignment: .center) {
+			CapsuleProgressView(progress: progress * 10, image: "https://spoonacular.com/cdn/ingredients_100x100/\(imageUrl)")
+			Text(name)
+					.typography(.p2)
+					.lineLimit(2)
+			Text("\(remaingDays.description) of \(totalDays) days")
+					.typography(.s2)
 		}
-				.frame(height: 54)
-				.padding(8)
 	}
 
 }
@@ -95,7 +48,7 @@ struct StoredIngredientCard_Previews: PreviewProvider {
 				name: "Durgan",
 				totalDays: "7",
 				remaingDays: "3",
-				progress: 0.55)
+				progress: 1)
 			StoredIngredient(imageUrl: "https://loremflickr.com/640/480/food",
 				name: "Mosciski",
 				totalDays: "20",

@@ -7,77 +7,122 @@
 //
 
 import SwiftUI
+
+import SDWebImageSwiftUI
 import Shared
 
 struct RecipeView: View {
-	let id: String
-	let image: String
-	let title: String
+	var id: String
+	var image: String
+	var title: String
 	let missingIngredients: [SearchRecipe.Ingredient]
 
 	var body: some View {
 		VStack {
-			ZStack {
-				AsyncImage(url: URL(string: image)!) { imageView in
-					imageView
-							.resizable()
-							.aspectRatio(contentMode: .fill)
-				} placeholder: {
-					ProgressView()
-							.foregroundColor(Color.surface)
-				}
-						.frame(maxWidth: .infinity, alignment: .center)
-						.frame(minHeight: 250, maxHeight: 250)
-						.clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous))
+			WebImage(url: URL(string: image))
+					.resizable()
+					.aspectRatio(contentMode: .fill)
+					.frame(height: 200)
+					.clipped()
+					.overlay(createOverlay())
+		}
+				.cornerRadius(10)
+				.padding(.horizontal, 8)
+	}
 
-				VStack(spacing: 0) {
-					Spacer()
-							.frame(height: 8)
-					Text(title.capitalized)
-							.foregroundStyle(.primary)
-							.typography(.h5)
-							.lineLimit(1)
-							.padding(.horizontal, 16)
-							.frame(maxWidth: .infinity, alignment: .leading)
+	private func createOverlay() -> some View {
+		VStack {
+			Spacer()
+			Rectangle()
+					.frame(height: 50)
+					.opacity(0.25)
+					.overlay(createInnerOverlay())
+					.blurBackground(style: .systemUltraThinMaterial)
+		}
+	}
 
-					Spacer()
-							.frame(height: 8)
-					if (missingIngredients.count > 0) {
-						HStack() {
-							Text("Missing (\(missingIngredients.count)) : \(missingIngredients.map { ingredient in ingredient.name}.joined(separator: ", "))")
-									.typography(.p3)
-									.padding(.horizontal, 16)
-						}
-								.frame(maxWidth: .infinity, alignment: .leading)
+	private func createInnerOverlay() -> some View {
+		VStack(alignment: .leading) {
+			Text(title)
+					.font(.headline)
+					.fontWeight(.bold)
+			createHStackContent()
+		}
+				.padding()
+				.foregroundColor(.white)
+	}
 
-					} else {
-						Text("All ingredients included")
-								.typography(.p3)
-								.foregroundColor(.fontBtn)
-								.frame(width: .infinity, alignment: .leading)
-								.padding(.horizontal, 16)
-					}
-
-
-					Spacer()
-							.frame(height: 8)
-
-
-				}
-						.background(.ultraThickMaterial)
-						.frame(maxHeight: .infinity, alignment: .bottom)
+	private func createHStackContent() -> some View {
+		HStack {
+			Text("Missing Items: ")
+					.font(.subheadline)
+			ForEach(missingIngredients, id: \.self) { item in
+				Text(item.name)
+						.font(.subheadline)
 			}
-					.clipShape(RoundedRectangle(cornerRadius: 25))
-					.padding(.horizontal, 16)
 		}
 	}
 }
 
-struct RecipeView_Previews: PreviewProvider {
+@available(iOS 15, macOS 12, tvOS 15, watchOS 8, *)
+extension View {
+	public func blurBackground(style: UIBlurEffect.Style) -> some View {
+		self.background(BlurView(style: style))
+	}
+}
+
+@available(iOS 15, macOS 12, tvOS 15, watchOS 8, *)
+struct BlurView: UIViewRepresentable {
+	var style: UIBlurEffect.Style
+
+	func makeUIView(context: Context) -> some UIView {
+		UIView()
+	}
+
+	func updateUIView(_ uiView: UIViewType, context: Context) {
+		setupBlurViewFor(uiView)
+	}
+
+	private func setupBlurViewFor(_ uiView: UIViewType) {
+		uiView.backgroundColor = .clear
+		let blurEffect = UIBlurEffect(style: style)
+		let blurView = UIVisualEffectView(effect: blurEffect)
+		uiView.insertSubview(blurView, at: 0)
+		blurView.translatesAutoresizingMaskIntoConstraints = false
+		NSLayoutConstraint.activate([
+			uiView.topAnchor.constraint(equalTo: blurView.topAnchor),
+			uiView.leftAnchor.constraint(equalTo: blurView.leftAnchor),
+			uiView.rightAnchor.constraint(equalTo: blurView.rightAnchor),
+			uiView.bottomAnchor.constraint(equalTo: blurView.bottomAnchor),
+		])
+	}
+}
+
+struct ContentView_Previews: PreviewProvider {
 	static var previews: some View {
-		RecipeView(id: "id",
-			image: "https://spoonacular.com/recipeImages/716429-556x370.jpg",
-			title: "Apple Or Peach Strudel",
-			missingIngredients: [SearchRecipe.Ingredient]())
+		RecipeView(id: "id1",
+			image: "https://loremflickr.com/640/480/fashion",
+			title: "Sample Title",
+			missingIngredients: generateMissingIngredients())
+	}
+
+	private static func createIngredient(name: String) -> SearchRecipe.Ingredient {
+		return SearchRecipe.Ingredient(
+			aisle: "",
+			amount: 2.0,
+			id: 1,
+			image: "",
+			name: name,
+			original: "",
+			originalName: "",
+			unit: "",
+			unitLong: "",
+			unitShort: "")
+	}
+
+	private static func generateMissingIngredients() -> [SearchRecipe.Ingredient] {
+		return ["Item 1", "Item 2", "Item 3"].map {
+			createIngredient(name: $0)
+		}
 	}
 }

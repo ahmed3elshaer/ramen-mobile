@@ -14,7 +14,7 @@ struct MonitorScreen: View {
 						.frame(maxWidth: .infinity, alignment: .leading)
 
 
-				LazyVStack {
+				LazyVGrid(columns: Array(repeating: .init(.flexible()), count: 2), spacing: 10) {
 					ForEach(ingredients, id: \.self.hashValue) { ingredient in
 						StoredIngredient(imageUrl: ingredient.image,
 							name: ingredient.name,

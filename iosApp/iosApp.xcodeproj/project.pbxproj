@@ -3,12 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557BA273AAA24004C7B11 /* Assets.xcassets */; };
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
+		1B18D06CCB937C00331FDD00 /*  CapsuleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B18DF9CCC2EA922F8BE8450 /*  CapsuleProgressView.swift */; };
 		1B18D1D177DD2E44FA853AE7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B18D7024AE807CA4D546173 /* ContentView.swift */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		276BB7AC2B3666C2000A22C5 /* Shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 276BB7AB2B3666C2000A22C5 /* Shared.framework */; };
@@ -16,6 +17,7 @@
 		27AF00B929E230A1005B9633 /* RecipeDetailsStoreWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27AF00B829E230A1005B9633 /* RecipeDetailsStoreWrapper.swift */; };
 		27DF311029C0802600395DBC /* RecipeDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DF310F29C0802600395DBC /* RecipeDetail.swift */; };
 		27E1DD2C29F86DC2009CCEED /* StepsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E1DD2B29F86DC2009CCEED /* StepsView.swift */; };
+		27E7249A2B36760700BBAA10 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 27E724992B36760700BBAA10 /* SDWebImageSwiftUI */; };
 		523B5906293478F100A5F74C /* MonitorStoreWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523B5905293478F100A5F74C /* MonitorStoreWrapper.swift */; };
 		523B590C2934849B00A5F74C /* AppDelgate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523B590B2934849B00A5F74C /* AppDelgate.swift */; };
 		523B59112935091F00A5F74C /* MonitorScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523B59102935091F00A5F74C /* MonitorScreen.swift */; };
@@ -68,6 +70,7 @@
 		058557BA273AAA24004C7B11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1B18D7024AE807CA4D546173 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		1B18DF9CCC2EA922F8BE8450 /*  CapsuleProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = " CapsuleProgressView.swift"; sourceTree = "<group>"; };
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		276BB7AB2B3666C2000A22C5 /* Shared.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Shared.framework; path = "../shared/build/xcode-frameworks/Debug/iphonesimulator17.2/Shared.framework"; sourceTree = "<group>"; };
 		276BB7B02B3668F9000A22C5 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
@@ -115,6 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27E7249A2B36760700BBAA10 /* SDWebImageSwiftUI in Frameworks */,
 				276BB7AC2B3666C2000A22C5 /* Shared.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -230,6 +234,7 @@
 				523B597D29361AA000A5F74C /* StoredIngredient.swift */,
 				52F564232946C05900CA5571 /* AutocompleteIngredient.swift */,
 				52C339E32947581400C29312 /* RecipeView.swift */,
+				1B18DF9CCC2EA922F8BE8450 /*  CapsuleProgressView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -318,6 +323,9 @@
 			dependencies = (
 			);
 			name = iosApp;
+			packageProductDependencies = (
+				27E724992B36760700BBAA10 /* SDWebImageSwiftUI */,
+			);
 			productName = iosApp;
 			productReference = 7555FF7B242A565900829871 /* Ramen.app */;
 			productType = "com.apple.product-type.application";
@@ -346,6 +354,9 @@
 				Base,
 			);
 			mainGroup = 7555FF72242A565900829871;
+			packageReferences = (
+				27E724982B36760700BBAA10 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+			);
 			productRefGroup = 7555FF7C242A565900829871 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -430,6 +441,7 @@
 				523B593E29350AA600A5F74C /* RoundedCorner.swift in Sources */,
 				523B5906293478F100A5F74C /* MonitorStoreWrapper.swift in Sources */,
 				1B18D1D177DD2E44FA853AE7 /* ContentView.swift in Sources */,
+				1B18D06CCB937C00331FDD00 /*  CapsuleProgressView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -642,6 +654,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		27E724982B36760700BBAA10 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.6;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		27E724992B36760700BBAA10 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 27E724982B36760700BBAA10 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7555FF73242A565900829871 /* Project object */;
 }
