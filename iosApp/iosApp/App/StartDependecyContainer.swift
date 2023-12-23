@@ -6,7 +6,7 @@
 //  Copyright © 2022 orgName. All rights reserved.
 //
 
-import shared
+import Shared
 
 func startKoin() {
     // You could just as easily define all these dependencies in Kotlin,

@@ -6,7 +6,8 @@
 //  Copyright © 2022 orgName. All rights reserved.
 //
 
-import shared
+import Foundation
+import Shared
 
 class MonitorStoreWrapper : ObservableObject {
     @Published public var state: MonitorState = MonitorState.companion.Initial

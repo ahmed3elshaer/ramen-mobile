@@ -3,13 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557BA273AAA24004C7B11 /* Assets.xcassets */; };
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
+		1B18D1D177DD2E44FA853AE7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B18D7024AE807CA4D546173 /* ContentView.swift */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
+		276BB7AC2B3666C2000A22C5 /* Shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 276BB7AB2B3666C2000A22C5 /* Shared.framework */; };
+		276BB7AD2B3666C2000A22C5 /* Shared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 276BB7AB2B3666C2000A22C5 /* Shared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		27AF00B929E230A1005B9633 /* RecipeDetailsStoreWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27AF00B829E230A1005B9633 /* RecipeDetailsStoreWrapper.swift */; };
 		27DF311029C0802600395DBC /* RecipeDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DF310F29C0802600395DBC /* RecipeDetail.swift */; };
 		27E1DD2C29F86DC2009CCEED /* StepsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E1DD2B29F86DC2009CCEED /* StepsView.swift */; };
@@ -45,15 +48,29 @@
 		52F564222944D8F200CA5571 /* StoreIngredientWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F564212944D8F200CA5571 /* StoreIngredientWrapper.swift */; };
 		52F564242946C05900CA5571 /* AutocompleteIngredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F564232946C05900CA5571 /* AutocompleteIngredient.swift */; };
 		52F564272946F36400CA5571 /* RecipeStoreWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F564262946F36400CA5571 /* RecipeStoreWrapper.swift */; };
-		6D6DDCF5533AB89CAA5CF53D /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA73178F5D67CCE710A7B84E /* Pods_iosApp.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		276BB7AE2B3666C2000A22C5 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				276BB7AD2B3666C2000A22C5 /* Shared.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		033B4CE89DB6851988B381AB /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
 		058557BA273AAA24004C7B11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		121FAD9E9C59D01C011835F9 /* Pods-iosApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.release.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.release.xcconfig"; sourceTree = "<group>"; };
+		1B18D7024AE807CA4D546173 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
+		276BB7AB2B3666C2000A22C5 /* Shared.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Shared.framework; path = "../shared/build/xcode-frameworks/Debug/iphonesimulator17.2/Shared.framework"; sourceTree = "<group>"; };
+		276BB7B02B3668F9000A22C5 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		27AF00B829E230A1005B9633 /* RecipeDetailsStoreWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailsStoreWrapper.swift; sourceTree = "<group>"; };
 		27DF310F29C0802600395DBC /* RecipeDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetail.swift; sourceTree = "<group>"; };
 		27E1DD2B29F86DC2009CCEED /* StepsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepsView.swift; sourceTree = "<group>"; };
@@ -91,7 +108,6 @@
 		52F564262946F36400CA5571 /* RecipeStoreWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeStoreWrapper.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* Ramen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ramen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FA73178F5D67CCE710A7B84E /* Pods_iosApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,7 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D6DDCF5533AB89CAA5CF53D /* Pods_iosApp.framework in Frameworks */,
+				276BB7AC2B3666C2000A22C5 /* Shared.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +128,30 @@
 				058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		1B18D6A9E4917611F5D489FF /* xcschemes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = xcschemes;
+			path = iosApp.xcodeproj/project.xcworkspace/xcuserdata/ahmedelshaer.xcuserdatad/xcschemes;
+			sourceTree = "<group>";
+		};
+		276BB7AA2B3666C2000A22C5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				276BB7AB2B3666C2000A22C5 /* Shared.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		276BB7AF2B3668F9000A22C5 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				276BB7B02B3668F9000A22C5 /* Config.xcconfig */,
+			);
+			path = Configuration;
 			sourceTree = "<group>";
 		};
 		27AF00B729E23082005B9633 /* Details */ = {
@@ -129,14 +169,6 @@
 				27E1DD2B29F86DC2009CCEED /* StepsView.swift */,
 			);
 			path = Steps;
-			sourceTree = "<group>";
-		};
-		39E3EA702F12E154A6E2D38F /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				FA73178F5D67CCE710A7B84E /* Pods_iosApp.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		5217E64F29417020004D7F1C /* Extensions */ = {
@@ -161,6 +193,7 @@
 				523B591529350A4400A5F74C /* StartDependecyContainer.swift */,
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
 				523B590B2934849B00A5F74C /* AppDelgate.swift */,
+				1B18D7024AE807CA4D546173 /* ContentView.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -232,10 +265,11 @@
 		7555FF72242A565900829871 = {
 			isa = PBXGroup;
 			children = (
+				276BB7AF2B3668F9000A22C5 /* Configuration */,
 				7555FF7D242A565900829871 /* iosApp */,
 				7555FF7C242A565900829871 /* Products */,
-				9DFFFF1F325719625D4CE04E /* Pods */,
-				39E3EA702F12E154A6E2D38F /* Frameworks */,
+				1B18D6A9E4917611F5D489FF /* xcschemes */,
+				276BB7AA2B3666C2000A22C5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -266,15 +300,6 @@
 			path = iosApp;
 			sourceTree = "<group>";
 		};
-		9DFFFF1F325719625D4CE04E /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				033B4CE89DB6851988B381AB /* Pods-iosApp.debug.xcconfig */,
-				121FAD9E9C59D01C011835F9 /* Pods-iosApp.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -282,19 +307,17 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7555FFA5242A565B00829871 /* Build configuration list for PBXNativeTarget "iosApp" */;
 			buildPhases = (
-				2E8F09CFCDB5BD8DD1B478C6 /* [CP] Check Pods Manifest.lock */,
+				2711BE292B23EA24005B0F1D /* Compile Kotlin */,
 				7555FF77242A565900829871 /* Sources */,
 				7555FF79242A565900829871 /* Resources */,
 				52E308F9373AC53D1C67BEDA /* Frameworks */,
-				0CEAE90B628A034F0F611BD0 /* [CP] Embed Pods Frameworks */,
+				276BB7AE2B3666C2000A22C5 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = iosApp;
-			packageProductDependencies = (
-			);
 			productName = iosApp;
 			productReference = 7555FF7B242A565900829871 /* Ramen.app */;
 			productType = "com.apple.product-type.application";
@@ -306,7 +329,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1130;
-				LastUpgradeCheck = 1130;
+				LastUpgradeCheck = 1510;
 				ORGANIZATIONNAME = orgName;
 				TargetAttributes = {
 					7555FF7A242A565900829871 = {
@@ -323,8 +346,6 @@
 				Base,
 			);
 			mainGroup = 7555FF72242A565900829871;
-			packageReferences = (
-			);
 			productRefGroup = 7555FF7C242A565900829871 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -352,24 +373,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0CEAE90B628A034F0F611BD0 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-iosApp/Pods-iosApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-iosApp/Pods-iosApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iosApp/Pods-iosApp-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2E8F09CFCDB5BD8DD1B478C6 /* [CP] Check Pods Manifest.lock */ = {
+		2711BE292B23EA24005B0F1D /* Compile Kotlin */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -377,19 +381,15 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "[CP] Check Pods Manifest.lock";
+			name = "Compile Kotlin";
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-iosApp-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "if [ \"YES\" = \"$OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED\" ]; then\n  echo \"Skipping Gradle build task invocation due to OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED environment variable set to \\\"YES\\\"\"\n  exit 0\nfi\ncd \"$SRCROOT/..\"\n./gradlew :shared:embedAndSignAppleFrameworkForXcode\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -429,6 +429,7 @@
 				523B591629350A4400A5F74C /* StartDependecyContainer.swift in Sources */,
 				523B593E29350AA600A5F74C /* RoundedCorner.swift in Sources */,
 				523B5906293478F100A5F74C /* MonitorStoreWrapper.swift in Sources */,
+				1B18D1D177DD2E44FA853AE7 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +438,7 @@
 /* Begin XCBuildConfiguration section */
 		7555FFA3242A565B00829871 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 276BB7B02B3668F9000A22C5 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -472,6 +474,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -486,7 +489,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -498,6 +501,7 @@
 		};
 		7555FFA4242A565B00829871 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 276BB7B02B3668F9000A22C5 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -533,6 +537,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -541,7 +546,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -553,19 +558,28 @@
 		};
 		7555FFA6242A565B00829871 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 033B4CE89DB6851988B381AB /* Pods-iosApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
 				DEVELOPMENT_TEAM = 47FHNQ93RP;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)",
+					"$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)",
+					"$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)",
+				);
 				INFOPLIST_FILE = iosApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Ramen;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					shared,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ramen.ios;
 				PRODUCT_NAME = Ramen;
@@ -576,19 +590,28 @@
 		};
 		7555FFA7242A565B00829871 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 121FAD9E9C59D01C011835F9 /* Pods-iosApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
 				DEVELOPMENT_TEAM = 47FHNQ93RP;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)",
+					"$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)",
+					"$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)",
+				);
 				INFOPLIST_FILE = iosApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Ramen;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					shared,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ramen.ios;
 				PRODUCT_NAME = Ramen;

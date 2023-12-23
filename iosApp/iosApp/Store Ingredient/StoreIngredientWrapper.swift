@@ -6,9 +6,9 @@
 //  Copyright © 2022 orgName. All rights reserved.
 //
 
-import shared
 import Foundation
 import Combine
+import Shared
 
 class StoreIngredientWrapper : ObservableObject {
     @Published public var state: StoreState = StoreState.companion.Initial

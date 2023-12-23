@@ -7,78 +7,77 @@
 //
 
 import SwiftUI
-import shared
+import Shared
 
 struct RecipeView: View {
-    let id :String
-    let image : String
-    let title : String
-    let missingIngredients : [SearchRecipe.Ingredient]
-    
-    var body: some View {
-                VStack{
-                    ZStack{
-                        AsyncImage(url: URL(string: image)!)
-                        { imageView in
-                            imageView
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                        } placeholder: {
-                            ProgressView()
-                                .foregroundColor(Color.surface)
-                        }
-                        .frame(maxWidth: .infinity, alignment: .center)
-                        .frame(minHeight: 250, maxHeight: 250)
-                        .clipShape(RoundedRectangle(cornerRadius: 25,style: .continuous))
-                        
-                        VStack(spacing: 0){
-                            Spacer()
-                                .frame(height: 8)
-                            Text(title.capitalized)
-                                .foregroundStyle(.primary)
-                                .typography(.h5)
-                                .lineLimit(1)
-                                .padding(.horizontal,16)
-                                .frame(maxWidth: .infinity,alignment: .leading)
-                            
-                            Spacer()
-                                .frame(height: 8)
-                            if(missingIngredients.count > 0 ){
-                                HStack(){
-                                    Text("Missing (\(missingIngredients.count)) : \(missingIngredients.map{ ingredient in ingredient.name}.joined(separator: ", "))")
-                                        .typography(.p3)
-                                        .padding(.horizontal,16)
-                                }  .frame(maxWidth: .infinity,alignment: .leading)
-                                
-                            } else{
-                                Text("All ingredients included")
-                                    .typography(.p3)
-                                    .foregroundColor(.fontBtn)
-                                    .frame(width: .infinity, alignment: .leading)
-                                    .padding(.horizontal,16)
-                            }
-                            
-                            
-                            Spacer()
-                                .frame(height: 8)
-                            
-                            
-                            
-                        }
-                        .background(.ultraThickMaterial)
-                        .frame(maxHeight:.infinity ,alignment: .bottom)
-                    }
-                    .clipShape(RoundedRectangle(cornerRadius: 25))
-                    .padding(.horizontal,16)
-                }
-            }
+	let id: String
+	let image: String
+	let title: String
+	let missingIngredients: [SearchRecipe.Ingredient]
+
+	var body: some View {
+		VStack {
+			ZStack {
+				AsyncImage(url: URL(string: image)!) { imageView in
+					imageView
+							.resizable()
+							.aspectRatio(contentMode: .fill)
+				} placeholder: {
+					ProgressView()
+							.foregroundColor(Color.surface)
+				}
+						.frame(maxWidth: .infinity, alignment: .center)
+						.frame(minHeight: 250, maxHeight: 250)
+						.clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous))
+
+				VStack(spacing: 0) {
+					Spacer()
+							.frame(height: 8)
+					Text(title.capitalized)
+							.foregroundStyle(.primary)
+							.typography(.h5)
+							.lineLimit(1)
+							.padding(.horizontal, 16)
+							.frame(maxWidth: .infinity, alignment: .leading)
+
+					Spacer()
+							.frame(height: 8)
+					if (missingIngredients.count > 0) {
+						HStack() {
+							Text("Missing (\(missingIngredients.count)) : \(missingIngredients.map { ingredient in ingredient.name}.joined(separator: ", "))")
+									.typography(.p3)
+									.padding(.horizontal, 16)
+						}
+								.frame(maxWidth: .infinity, alignment: .leading)
+
+					} else {
+						Text("All ingredients included")
+								.typography(.p3)
+								.foregroundColor(.fontBtn)
+								.frame(width: .infinity, alignment: .leading)
+								.padding(.horizontal, 16)
+					}
+
+
+					Spacer()
+							.frame(height: 8)
+
+
+				}
+						.background(.ultraThickMaterial)
+						.frame(maxHeight: .infinity, alignment: .bottom)
+			}
+					.clipShape(RoundedRectangle(cornerRadius: 25))
+					.padding(.horizontal, 16)
+		}
+	}
 }
 
 struct RecipeView_Previews: PreviewProvider {
-    static var previews: some View {
-        RecipeView(id:"id",
-                   image:"https://spoonacular.com/recipeImages/716429-556x370.jpg",
-                   title: "Apple Or Peach Strudel",
-                   missingIngredients: [SearchRecipe.Ingredient]())
-    }
+	static var previews: some View {
+		RecipeView(id: "id",
+			image: "https://spoonacular.com/recipeImages/716429-556x370.jpg",
+			title: "Apple Or Peach Strudel",
+			missingIngredients: [SearchRecipe.Ingredient]())
+	}
 }

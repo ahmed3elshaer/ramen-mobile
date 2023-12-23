@@ -18,7 +18,7 @@ class App : Application() {
     }
 
     private val appModule = module {
-        includes(dataComponentModule(BuildConfig.DEBUG))
+        includes(dataComponentModule(true))
         includes(dependencyGraph)
     }
 

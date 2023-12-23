@@ -1,10 +1,13 @@
 {
-    "configurations": [
-        {
-            "type": "gradle",
-            "name": "Build",
-            "tasks": ["build"],
-        },
+	"configurations": [
 
-    ]
+		{
+			"name": "androidApp",
+			"type": "android-app",
+			"workingDir": "/Users/ahmedelshaer/Developer/personal/ramen-mobile",
+			"allowParallelRun": true,
+			"module": "ramen.androidApp.main",
+			"destination": "Pixel 3 API 32"
+		}
+	]
 }
