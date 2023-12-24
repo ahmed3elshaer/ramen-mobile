@@ -34,7 +34,7 @@ struct CapsuleProgressView: View {
                                                 endPoint: .trailing),
                                                 style: StrokeStyle(lineWidth: 20, lineCap: .round))
                                             .rotationEffect(.degrees(-90))
-                                            .animation(.easeOut)
+                                            .animation(.linear)
                                             ,
                                     alignment: .center
                                 ),

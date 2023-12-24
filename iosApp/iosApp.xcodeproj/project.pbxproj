@@ -10,8 +10,8 @@
 		058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557BA273AAA24004C7B11 /* Assets.xcassets */; };
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
 		1B18D06CCB937C00331FDD00 /*  CapsuleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B18DF9CCC2EA922F8BE8450 /*  CapsuleProgressView.swift */; };
+		1B18D0ACFECEB4CE012E3173 /* Donations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B18D5FBE025C6FC87F9B9E7 /* Donations.swift */; };
 		1B18D1D177DD2E44FA853AE7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B18D7024AE807CA4D546173 /* ContentView.swift */; };
-		1B18DC273CB4D8083683E902 /* Donations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B18D1B83AE385924FC3C758 /* Donations.swift */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		276BB7AC2B3666C2000A22C5 /* Shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 276BB7AB2B3666C2000A22C5 /* Shared.framework */; };
 		276BB7AD2B3666C2000A22C5 /* Shared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 276BB7AB2B3666C2000A22C5 /* Shared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -70,7 +70,7 @@
 /* Begin PBXFileReference section */
 		058557BA273AAA24004C7B11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		1B18D1B83AE385924FC3C758 /* Donations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Donations.swift; sourceTree = "<group>"; };
+		1B18D5FBE025C6FC87F9B9E7 /* Donations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Donations.swift; sourceTree = "<group>"; };
 		1B18D7024AE807CA4D546173 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1B18DF9CCC2EA922F8BE8450 /*  CapsuleProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = " CapsuleProgressView.swift"; sourceTree = "<group>"; };
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
@@ -147,7 +147,7 @@
 		1B18DF584BCBBC14C757C29A /* Donation */ = {
 			isa = PBXGroup;
 			children = (
-				1B18D1B83AE385924FC3C758 /* Donations.swift */,
+				1B18D5FBE025C6FC87F9B9E7 /* Donations.swift */,
 			);
 			path = Donation;
 			sourceTree = "<group>";
@@ -453,7 +453,7 @@
 				523B5906293478F100A5F74C /* MonitorStoreWrapper.swift in Sources */,
 				1B18D1D177DD2E44FA853AE7 /* ContentView.swift in Sources */,
 				1B18D06CCB937C00331FDD00 /*  CapsuleProgressView.swift in Sources */,
-				1B18DC273CB4D8083683E902 /* Donations.swift in Sources */,
+				1B18D0ACFECEB4CE012E3173 /* Donations.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
