@@ -32,3 +32,7 @@ cd IosApp && pod install
 ```
 - Open the IosApp using the `workspace` in Xcode.
 - Run the project, a Simulator should open with the app running.
+
+## Support
+- If you like this project, consider buying me a coffee!
+- [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://buymeacoffee.com/ahmed3elshaer)
