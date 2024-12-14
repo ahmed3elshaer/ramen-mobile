@@ -31,18 +31,18 @@ struct RecipeDetail: View {
 						.clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous))
 
 //                    // Show the title of the recipe
-//                    Text(recipe.title)
-//                        .typography(.h4)
-//                        .font(.largeTitle)
-//                        .foregroundStyle(
-//                            LinearGradient(colors: [Color(hex: "D3F36B"),Color(hex: "7BD880"), Color(hex: "28B691"),Color(hex: "009191"),Color(hex: "176C7D"),Color(hex: "2F4858")],
-//                                           startPoint: .leading,
-//                                           endPoint: .trailing)
-//                        )
-//                        .fontWeight(.bold)
-//                        .padding()
-//                        .frame(maxWidth: .infinity, alignment: .leading)
-//
+                    Text(recipe.title)
+                        .typography(.h4)
+                        .font(.largeTitle)
+                        .foregroundStyle(
+                            LinearGradient(colors: [Color(hex: "D3F36B"),Color(hex: "7BD880"), Color(hex: "28B691"),Color(hex: "009191"),Color(hex: "176C7D"),Color(hex: "2F4858")],
+                                           startPoint: .leading,
+                                           endPoint: .trailing)
+                        )
+                        .fontWeight(.bold)
+                        .padding()
+                        .frame(maxWidth: .infinity, alignment: .leading)
+
 				Spacer()
 
 				Text(recipe.summary)
