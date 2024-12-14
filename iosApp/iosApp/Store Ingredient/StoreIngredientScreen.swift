@@ -16,7 +16,7 @@ struct StoreIngredientsScreen: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
-                SearchBar(text: $searchText, placeholder: "Search ingredients")
+                CustomSearchBar(text: $searchText)
                     .onChange(of: searchText) { query in
                         if !query.isEmpty && query.count > 2 {
                             store.dispatch(StoreAction.RecommendIngredient(name: query))
@@ -27,18 +27,14 @@ struct StoreIngredientsScreen: View {
                     Button(action: {
                         selectedIngredient = ingredient
                     }) {
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text(ingredient.ingredient.name)
-                                .font(.system(size: 17, weight: .semibold))
-                                .foregroundColor(.primary)
-                            Text("Tap to add to your fridge")
-                                .font(.system(size: 13))
-                                .foregroundColor(.secondary)
-                        }
-                        .padding(.vertical, 8)
+                        Text(ingredient.ingredient.name)
+                            .typography(.p1)
+                            .foregroundColor(.primary)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.vertical, 12)
                     }
                 }
-                .listStyle(PlainListStyle())
+                .listStyle(.plain)
             }
             .navigationTitle("Add Ingredient")
         }
@@ -51,6 +47,33 @@ struct StoreIngredientsScreen: View {
             }
             .presentationDetents([.medium])
         }
+    }
+}
+
+struct CustomSearchBar: View {
+    @Binding var text: String
+    
+    var body: some View {
+        HStack {
+            Image(systemName: "magnifyingglass")
+                .foregroundColor(.primary)
+            TextField("Search ingredients", text: $text)
+                .typography(.p2)
+                .foregroundColor(.secondary)
+                .autocapitalization(.none)
+                .disableAutocorrection(true)
+            if !text.isEmpty {
+                ThemeButton(
+                    image: Image(systemName: "xmark.circle.fill"),
+                    style: .ghost,
+                    action: { text = "" }
+                )
+            }
+        }
+        .padding(12)
+        .background(Color.basic.opacity(0.1))
+        .cornerRadius(45)
+        .padding(.horizontal)
     }
 }
 
@@ -67,31 +90,33 @@ struct ExpiryPickerView: View {
     
     var durationInNanos: Int64 {
         let daysInMonth = 30
-        let secondsInDay: Int64 = 24 * 60 * 60
-        let nanosInSecond: Int64 = 1_000_000_000
-        
-        let days: Int
-        switch units[selectedUnit] {
-            case "Days": days = numbers[selectedNumber]
-            case "Weeks": days = numbers[selectedNumber] * 7
-            case "Months": days = numbers[selectedNumber] * daysInMonth
-            default: days = numbers[selectedNumber]
-        }
-        
-        return Int64(days) * secondsInDay * nanosInSecond * 2
+                let secondsInDay: Int64 = 24 * 60 * 60
+                let nanosInSecond: Int64 = 1_000_000_000
+                
+                let days: Int
+                switch units[selectedUnit] {
+                    case "Days": days = numbers[selectedNumber]
+                    case "Weeks": days = numbers[selectedNumber] * 7
+                    case "Months": days = numbers[selectedNumber] * daysInMonth
+                    default: days = numbers[selectedNumber]
+                }
+                
+                return Int64(days) * secondsInDay * nanosInSecond * 2
     }
     
     var body: some View {
         NavigationView {
             VStack {
                 Text("How long will it stay fresh?")
-                    .font(.headline)
+                    .typography(.h2)
                     .padding(.top)
                 
                 HStack {
                     Picker("Number", selection: $selectedNumber) {
                         ForEach(0..<numbers.count, id: \.self) { index in
-                            Text("\(numbers[index])").tag(index)
+                            Text("\(numbers[index])")
+                                .typography(.p1)
+                                .tag(index)
                         }
                     }
                     .pickerStyle(.wheel)
@@ -99,7 +124,9 @@ struct ExpiryPickerView: View {
                     
                     Picker("Unit", selection: $selectedUnit) {
                         ForEach(0..<units.count, id: \.self) { index in
-                            Text(units[index]).tag(index)
+                            Text(units[index])
+                                .typography(.p1)
+                                .tag(index)
                         }
                     }
                     .pickerStyle(.wheel)
@@ -110,9 +137,8 @@ struct ExpiryPickerView: View {
                 ThemeButton(
                     text: "Add to Fridge",
                     style: .fill,
-                    color: .accentColor,
+                    color: .activePrimary,
                     action: {
-                        print(durationInNanos)
                         onSave(durationInNanos)
                         dismiss()
                     }
@@ -124,39 +150,10 @@ struct ExpiryPickerView: View {
                 ThemeButton(
                     text: "Cancel",
                     style: .ghost,
-                    color: .primary,
                     action: { dismiss() }
                 )
             )
         }
-    }
-}
-
-struct SearchBar: View {
-    @Binding var text: String
-    var placeholder: String
-
-    var body: some View {
-        HStack {
-            Image(systemName: "magnifyingglass")
-                .foregroundColor(.secondary)
-            TextField(placeholder, text: $text)
-                .foregroundColor(.primary)
-                .autocapitalization(.none)
-                .disableAutocorrection(true)
-            if !text.isEmpty {
-                Button(action: {
-                    text = ""
-                }) {
-                    Image(systemName: "xmark.circle.fill")
-                        .foregroundColor(.secondary)
-                }
-            }
-        }
-        .padding(8)
-        .background(Color(.systemGray6))
-        .cornerRadius(8)
-        .padding(.horizontal)
     }
 }
 
