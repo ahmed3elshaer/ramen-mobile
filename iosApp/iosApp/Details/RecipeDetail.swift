@@ -60,7 +60,7 @@ struct RecipeDetail: View {
 
 				Spacer()
 				if (!recipe.analyzedInstructions.isEmpty) {
-					NavigationLink(destination: StepsView(recipe: recipe), tag: recipe.id.description, selection: $selection) {
+					NavigationLink(destination: RecipeStepView(recipe: recipe), tag: recipe.id.description, selection: $selection) {
 						ThemeButton(text: "Start Cooking") {
 							selection = recipe.id.description
 						}

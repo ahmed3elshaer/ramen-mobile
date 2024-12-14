@@ -7,7 +7,7 @@
 //
 import SwiftUI
 
-struct AutocompleteIngredient: View {
+struct AutocompleteIngredientView: View {
     let name:String
     
     var body: some View {
@@ -24,20 +24,20 @@ struct AutocompleteIngredient: View {
 struct AutocompleteIngredient_Previews: PreviewProvider {
     static var previews: some View {
         VStack{
-            AutocompleteIngredient(
+            AutocompleteIngredientView(
                              name: "Durgan"
             )
-            AutocompleteIngredient(
+            AutocompleteIngredientView(
                              name: "Durgan"
             )
-            AutocompleteIngredient(
+            AutocompleteIngredientView(
                              name: "Durgan"
             )
             
-            AutocompleteIngredient(
+            AutocompleteIngredientView(
                              name: "Durgan"
             )
-            AutocompleteIngredient(
+            AutocompleteIngredientView(
                              name: "Durgan"
             )
         }

@@ -13,7 +13,7 @@ internal data class RecipeApi(
     @SerialName("cheap")
     val cheap: Boolean = false,
     @SerialName("cookingMinutes")
-    val cookingMinutes: Int = 0,
+    val cookingMinutes: Int? = null,  // Changed to nullable
     @SerialName("creditsText")
     val creditsText: String = "",
     @SerialName("dairyFree")
@@ -37,11 +37,11 @@ internal data class RecipeApi(
     @SerialName("imageType")
     val imageType: String = "",
     @SerialName("instructions")
-    val instructions: String = "",
+    val instructions: String = "",  // This might be derived from analyzedInstructions
     @SerialName("lowFodmap")
     val lowFodmap: Boolean = false,
     @SerialName("preparationMinutes")
-    val preparationMinutes: Int = 0,
+    val preparationMinutes: Int? = null,  // Changed to nullable
     @SerialName("pricePerServing")
     val pricePerServing: Double = 0.0,
     @SerialName("readyInMinutes")
@@ -71,7 +71,7 @@ internal data class RecipeApi(
     @SerialName("weightWatcherSmartPoints")
     val weightWatcherSmartPoints: Int = 0,
     @SerialName("winePairing")
-    val winePairing: WinePairingApi = WinePairingApi()
+    val winePairing: WinePairingApi? = null  // Changed to nullable or remove entirely if not used
 ) {
     @Serializable
     internal data class AnalyzedInstructionApi(
@@ -87,7 +87,7 @@ internal data class RecipeApi(
             @SerialName("ingredients")
             val ingredients: List<IngredientApi> = listOf(),
             @SerialName("length")
-            val length: LengthApi = LengthApi(),
+            val length: LengthApi? = null,  // Allow nullable length
             @SerialName("number")
             val number: Int = 0,
             @SerialName("step")

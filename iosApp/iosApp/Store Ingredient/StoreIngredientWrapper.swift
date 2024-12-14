@@ -38,3 +38,8 @@ class StoreIngredientWrapper : ObservableObject {
         sideEffectWatcher?.close()
     }
 }
+
+struct IdentifiableIngredient: Identifiable {
+    let id = UUID()
+    let ingredient: Shared.AutocompleteIngredient
+}

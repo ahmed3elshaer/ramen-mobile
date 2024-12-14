@@ -59,7 +59,7 @@ internal fun RecipeApi.toDomain() = Recipe(
 		veryHealthy = this.veryHealthy,
 		veryPopular = this.veryPopular,
 		weightWatcherSmartPoints = this.weightWatcherSmartPoints,
-		winePairing = this.winePairing.toDomain()
+		winePairing = this.winePairing?.toDomain() ?: Recipe.WinePairing()
 
 )
 
@@ -71,7 +71,7 @@ internal fun RecipeApi.AnalyzedInstructionApi.toDomain() = Recipe.AnalyzedInstru
 internal fun RecipeApi.AnalyzedInstructionApi.StepApi.toDomain() = Recipe.AnalyzedInstruction.Step(
 		equipment = this.equipment.map { it.toDomain() },
 		ingredients = this.ingredients.map { it.toDomain() },
-		length = this.length.toDomain(),
+		length = this.length?.toDomain() ?: Recipe.AnalyzedInstruction.Step.Length(),
 		number = this.number,
 		step = this.step
 )

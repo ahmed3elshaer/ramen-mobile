@@ -1,199 +1,136 @@
-//  StepsView.swift
-//  iosApp
-//
-//  Created by Ahmed Elshaer on 4/25/23.
-//  Copyright © 2023 orgName. All rights reserved.
-//
-
 import SwiftUI
 import Shared
-import SDWebImageSwiftUI
 
-struct StepsView: View {
+struct RecipeStepView: View {
+    let recipe: Recipe
+    let steps: [Recipe.AnalyzedInstructionStep]
+    @SwiftUI.State private var currentStepIndex: Int = 0
 
-	let recipe: Recipe
-	let steps: [Recipe.AnalyzedInstructionStep]
-	@SwiftUI.State private var progress: Double = 0
+    init(recipe: Recipe) {
+        self.recipe = recipe
+        self.steps = recipe.analyzedInstructions[recipe.analyzedInstructions.startIndex].steps
+    }
 
-	init(recipe: Recipe) {
-		self.recipe = recipe
-		self.steps = recipe.analyzedInstructions[recipe.analyzedInstructions.startIndex].steps
-	}
+    var body: some View {
+        ZStack {
+            VStack {
+                // Progress Indicator
+                stepsProgressBar()
 
-	var body: some View {
-		GeometryReader { geometry in
-			ZStack(alignment: CGFloat(geometry.size.width) < CGFloat(geometry.size.height) ? .topLeading : .center) {
-				WebImage(url: URL(string: recipe.image))
-						.resizable()
-						.indicator(.activity)
-						.transition(.fade(duration: 0.5))
-						.scaledToFill()
-						.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-						.overlay(content: {
-							VStack {
-								stepsProgressBar()
-								instructionStepView()
-							}
-									.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-									.background(.ultraThinMaterial)
-						})
-			}
-				.gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
-					.onEnded({ value in
-						if value.location.x < geometry.size.width / 2 {
-							advanceBy(num: -1)
-						} else {
-							advanceBy(num: 1)
-						}
-					})
-				)
-		}
-	}
+                // Current Step Content in Full Screen
+                instructionStepView()
 
-	@ViewBuilder
-	private func stepsProgressBar() -> some View {
-		HStack(alignment: .center, spacing: 4) {
-			ForEach(self.steps.indices) { x in
-				LoadingRectangle(progress: min(max((CGFloat(progress) - CGFloat(x)), 0.0), 1.0))
-						.frame(width: nil, height: 2, alignment: .leading)
-						.animation(.linear)
-			}
-		}
-				.padding()
-	}
+                Spacer()
+            }
+            .padding()
+            .gesture(
+                DragGesture()
+                    .onEnded { value in
+                        if value.translation.width < 0 && currentStepIndex < steps.count - 1 {
+                            currentStepIndex += 1
+                        } else if value.translation.width > 0 && currentStepIndex > 0 {
+                            currentStepIndex -= 1
+                        }
+                    }
+            )
+        }
+    }
 
+    // 1. Dynamic Gradient Background
+    var gradientBackground: some View {
+        LinearGradient(
+            gradient: Gradient(colors: [.blue, .purple, .pink]),
+            startPoint: .top,
+            endPoint: .bottom
+        )
+        .ignoresSafeArea()
+        .opacity(0.8)
+        .animation(.easeInOut(duration: 3).repeatForever(autoreverses: true))
+    }
 
-	@ViewBuilder
-	private func instructionStepView() -> some View {
-		InstructionStep(step: steps[Int(self.progress)])
-	}
+    // 2. Noise Layer
+    var noiseLayer: some View {
+        Color.black
+            .opacity(0.05)
+            .blendMode(.overlay)
+            .ignoresSafeArea()
+    }
 
+    // 3. Material Effect Layer
+    var materialLayer: some View {
+        Color.clear
+            .background(.ultraThinMaterial)
+            .ignoresSafeArea()
+    }
 
-	@ViewBuilder
-	private func progressNavigationGestures() -> some View {
-		GeometryReader { geometry in
-			HStack {
-				Spacer()
-				Rectangle()
-						.foregroundColor(.clear)
-						.contentShape(Rectangle())
-						.frame(maxWidth: geometry.size.width / 2, minHeight: geometry.size.height)
-						.onTapGesture {
-							advanceBy(num: -1)
-						}
+    // 4. Progress Bar
+    @ViewBuilder
+    private func stepsProgressBar() -> some View {
+        ProgressView(value: Double(currentStepIndex) / Double(steps.count - 1))
+            .progressViewStyle(LinearProgressViewStyle())
+            .padding(.vertical, 10)
+    }
 
-				Rectangle()
-						.foregroundColor(.clear)
-						.contentShape(Rectangle())
-						.frame(maxWidth: geometry.size.width / 2, minHeight: geometry.size.height)
-						.onTapGesture {
-							advanceBy(num: 1)
-						}
-				Spacer()
-			}
-					.frame(maxWidth: geometry.size.width, maxHeight: geometry.size.height, alignment: .center)
-		}
-	}
-
-	private func advanceBy(num: Int) {
-		let newProgress = max((Int(self.progress) + num) % steps.endIndex, 0)
-		self.progress = Double(newProgress)
-	}
+    // 5. Instruction Step View with Full-Screen Content
+    @ViewBuilder
+    private func instructionStepView() -> some View {
+        InstructionStepView(step: steps[currentStepIndex])
+            .transition(.slide)
+            .animation(.easeInOut)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
 }
 
-struct InstructionStep: View {
+// Updated InstructionStepView with Full-Screen Content and Text Instead of Images
+struct InstructionStepView: View {
+    let step: Recipe.AnalyzedInstructionStep
 
-	let step: Recipe.AnalyzedInstructionStep
+    var body: some View {
+        VStack(alignment: .leading, spacing: 20) {
+            Text(step.step)
+                .font(.title)
+                .bold()
+                .padding(.bottom)
 
-	var body: some View {
-		ScrollView {
-			mainInstructionView()
-		}
-				.padding()
-	}
+            if !step.ingredients.isEmpty {
+                ingredientsListView()
+            }
 
-	@ViewBuilder
-	private func mainInstructionView() -> some View {
+            if !step.equipment.isEmpty {
+                equipmentsListView()
+            }
 
-		LazyVStack(alignment: .leading) {
-			Text(step.step)
-					.typography(.p1)
-					.padding([.bottom])
+            Spacer()
+        }
+        .padding()
+    }
 
-			if (!step.ingredients.isEmpty) {
-				ingredientsListView()
-			}
+    @ViewBuilder
+    private func ingredientsListView() -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("Ingredients")
+                .font(.headline)
+                .bold()
 
-			if (!step.equipment.isEmpty) {
-				equipmentsListView()
-			}
-		}
-	}
+            ForEach(step.ingredients, id: \.self.hashValue) { ingredient in
+                Text("\(ingredient.name)")
+                    .font(.body)
+            }
+        }
+    }
 
-	@ViewBuilder
-	private func ingredientsListView() -> some View {
-		Text("Ingredients").typography(.s2)
-		ingredientsStack()
-	}
+    @ViewBuilder
+    private func equipmentsListView() -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("Equipments")
+                .font(.headline)
+                .bold()
 
-	@ViewBuilder
-	private func equipmentsListView() -> some View {
-		Text("Equipments").typography(.s2)
-		equipmentsStack()
-	}
-
-	@ViewBuilder
-	private func ingredientsStack() -> some View {
-
-		LazyHStack {
-			ForEach(step.ingredients, id: \.self.hashValue) { ingredient in
-				AsyncImageWithFrame(url: "https://spoonacular.com/cdn/ingredients_100x100/" + ingredient.image)
-			}
-		}
-	}
-
-	@ViewBuilder
-	private func equipmentsStack() -> some View {
-
-		LazyHStack {
-			ForEach(step.equipment, id: \.self.hashValue) { equipment in
-				AsyncImageWithFrame(url: "https://spoonacular.com/cdn/equipment_100x100/" + equipment.image)
-			}
-		}
-	}
-
-	@ViewBuilder
-	private func AsyncImageWithFrame(url: String) -> some View {
-		AsyncImage(url: URL(string: url)) { imageView in
-			imageView
-					.resizable()
-					.aspectRatio(contentMode: .fit)
-					.padding(4)
-		} placeholder: {
-			ProgressView().foregroundColor(Color.surface)
-		}
-				.frame(width: 70, height: 70)
-				.background(Color.white)
-				.clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
-				.padding([.trailing])
-	}
+            ForEach(step.equipment, id: \.self.hashValue) { equipment in
+                Text("\(equipment.name)")
+                    .font(.body)
+            }
+        }
+    }
 }
 
-struct LoadingRectangle: View {
-
-	var progress: CGFloat
-
-	var body: some View {
-		GeometryReader { geometry in
-			ZStack(alignment: .leading) {
-				Rectangle()
-						.foregroundColor(Color.white.opacity(0.3))
-						.cornerRadius(5)
-				Rectangle()
-						.frame(width: geometry.size.width * self.progress, height: nil, alignment: .leading)
-						.foregroundColor(Color.white.opacity(0.9))
-						.cornerRadius(5)
-			}
-		}
-	}
-}

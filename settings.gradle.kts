@@ -24,7 +24,8 @@ include(":shared")
 include(":components:presentation")
 include(":components:datasource")
 
-include(":domain:recipe", ":data:recipe")
+include(":domain-recipe")
+include(":data-recipe")
 
-include(":presentation:recipe")
+include(":presentation-recipe")
 

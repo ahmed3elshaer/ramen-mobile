@@ -1,22 +1,22 @@
 [versions]
 plugin-android = "8.1.4"
-plugin-kotlin = "1.9.21"
+plugin-kotlin = "2.0.10"
 plugin-gver = "0.42.0"
 androidx-compose-compiler = "1.5.3"
 androidx-compose-ui = "1.5.3"
-kotlinx-serialization = "1.4.0"
-kotlinx-coroutines = "1.6.4"
+kotlinx-serialization = "1.6.0"
+kotlinx-coroutines = "1.7.3"
 kotlinx-datetime = "0.4.0"
-ktor = "2.1.0"
+ktor = "2.3.0"
 napier = "2.6.1"
-multiplatform-settings = "0.9"
-voyager = "1.0.0-rc02"
-koin = "3.2.0"
-accompanist = "0.25.1"
-coil = "2.2.0"
-activity-compose = "1.5.1"
-work-runtime-ktx = "2.7.1"
-desugar-jdk-libs = "1.1.5"
+multiplatform-settings = "1.0.0"
+voyager = "1.0.0"
+koin = "3.4.0"
+accompanist = "0.31.1-alpha"
+coil = "2.4.0"
+activity-compose = "1.8.0"
+work-runtime-ktx = "2.8.0"
+desugar-jdk-libs = "2.0.3"
 
 [libraries]
 androidx-compose-ui = { module = "androidx.compose.ui:ui", version.ref = "androidx-compose-ui" }
@@ -52,3 +52,4 @@ androidLibrary = { id = "com.android.library", version.ref = "plugin-android" }
 pluginKotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "plugin-kotlin" }
 kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "plugin-kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "plugin-kotlin" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "plugin-kotlin" }

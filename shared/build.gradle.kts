@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+
 plugins {
 	alias(libs.plugins.kotlinMultiplatform)
 	alias(libs.plugins.androidLibrary)
@@ -7,14 +9,7 @@ version = "1.1.0"
 
 
 kotlin {
-	androidTarget {
-		compilations.all {
-			kotlinOptions {
-				jvmTarget = "17"
-			}
-		}
-	}
-
+	androidTarget()
 	listOf(
 			iosX64(),
 			iosArm64(),
@@ -26,9 +21,9 @@ kotlin {
 			export(project(":components:datasource"))
 			export(project(":components:presentation"))
 			//recipe
-			export(project(":data:recipe"))
-			export(project(":domain:recipe"))
-			export(project(":presentation:recipe"))
+			export(project(":data-recipe"))
+			export(project(":domain-recipe"))
+			export(project(":presentation-recipe"))
 		}
 	}
 
@@ -39,9 +34,9 @@ kotlin {
 				api(project(":components:presentation"))
 
 				//recipe
-				api(project(":data:recipe"))
-				api(project(":domain:recipe"))
-				api(project(":presentation:recipe"))
+				api(project(":data-recipe"))
+				api(project(":domain-recipe"))
+				api(project(":presentation-recipe"))
 
 
 			}
