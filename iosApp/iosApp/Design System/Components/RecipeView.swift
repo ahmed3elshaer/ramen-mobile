@@ -34,12 +34,13 @@ struct RecipeView: View {
                       .clipShape(Circle())
                       .overlay(
                           Circle()
-                              .stroke(Color.white, lineWidth: 3)
+                              .stroke(Color.pastelBlue, lineWidth: 3)
                       )
                   
                   Text(title)
                       .font(.headline)
                       .fontWeight(.bold)
+                      .foregroundColor(.fontStd)
                       .multilineTextAlignment(.center)
                       .padding(.top, 8)
                       .lineLimit(2)
@@ -49,17 +50,20 @@ struct RecipeView: View {
                       HStack(spacing: 4) {
                           Image(systemName: "heart.fill")
                               .font(.subheadline)
-                              .foregroundColor(.red)
+                              .foregroundColor(.copper)
                           Text("\(likes)")
                               .font(.subheadline)
+                              .foregroundColor(.fontStd)
                       }
                       
                       // Number of missing ingredients
                       HStack(spacing: 4) {
                           Image(systemName: "cart.badge.minus")
                               .font(.subheadline)
+                              .foregroundColor(.pastelPink)
                           Text("\(missingIngredients.count)")
                               .font(.subheadline)
+                              .foregroundColor(.fontStd)
                       }
                   }
                   .padding(.top, 4)

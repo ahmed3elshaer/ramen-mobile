@@ -13,10 +13,13 @@ struct AutocompleteIngredientView: View {
     var body: some View {
             Text(name)
                 .typography(.s1)
+                .foregroundColor(.pastelBlue)
                 .lineLimit(1)
                 .padding(.horizontal, 16)
                 .padding(.vertical, 8)
-                .frame(maxWidth: .infinity,alignment: .leading)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(Color.lemonMeringue.opacity(0.1))
+                .cornerRadius(8)
     }
     
 }

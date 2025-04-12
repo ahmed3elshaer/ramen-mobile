@@ -60,32 +60,32 @@ public struct ThemeTextField: View {
                     print(editingChanged ? "TextField focused" : "TextField focus removed")
                 }, onCommit: commit).foregroundColor(.fontStd)
             }
-            if focused { icon.imageScale(.large).foregroundColor(.defaultPrimary) }
+            if focused { icon.imageScale(.large).foregroundColor(.pastelBlue) }
             else { icon.imageScale(.large).foregroundColor(.basic) }
         }
         .padding()
         .background(RoundedRectangle(cornerRadius: 45)
         .foregroundColor(Color.basic.opacity(self.focused ? 0 : 0.1)))
         .overlay(RoundedRectangle(cornerRadius: 45)
-        .stroke(self.focused ? Color.defaultPrimary : Color.basic.opacity(0.4), lineWidth: 1))
+        .stroke(self.focused ? Color.pastelBlue : Color.basic.opacity(0.4), lineWidth: 1))
     }
     
     fileprivate func primary() -> some View {
         HStack {
             ZStack(alignment: .leading) {
-                if input.isEmpty { Text(placeholder).foregroundColor(.defaultPrimary) }
+                if input.isEmpty { Text(placeholder).foregroundColor(.pastelBlue) }
                 TextField("", text: $input, onEditingChanged: { editingChanged in
                     self.focused = editingChanged
                     print(editingChanged ? "TextField focused" : "TextField focus removed")
                 }, onCommit: commit).foregroundColor(.fontStd)
             }
-             icon.imageScale(.large).foregroundColor(.defaultPrimary)
+             icon.imageScale(.large).foregroundColor(.pastelBlue)
         }
         .padding()
         .background(RoundedRectangle(cornerRadius: 45)
         .foregroundColor(Color.basic.opacity(self.focused ? 0 : 0.1)))
         .overlay(RoundedRectangle(cornerRadius: 45)
-        .stroke(Color.defaultPrimary, lineWidth: 1))
+        .stroke(Color.pastelBlue, lineWidth: 1))
     }
     
     fileprivate func success() -> some View {

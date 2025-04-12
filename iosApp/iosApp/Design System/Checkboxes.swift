@@ -18,7 +18,7 @@ public struct ThemeCheckbox: View {
     var style: Style
     
     struct ColoredCheckboxStyle: ToggleStyle {
-        var onColor = Color.defaultPrimary
+        var onColor = Color.pastelBlue
         var offColor = Color.fontDisabled
         
         func makeBody(configuration: Self.Configuration) -> some View {
@@ -54,29 +54,29 @@ public struct ThemeCheckbox: View {
     
     fileprivate func primary() -> some View {
         Toggle("", isOn: $checkboxState)
-            .toggleStyle(ColoredCheckboxStyle(onColor: .defaultPrimary, offColor: .fontDisabled))
+            .toggleStyle(ColoredCheckboxStyle(onColor: .pastelBlue, offColor: .fontDisabled))
     }
     
     fileprivate func success() -> some View {
             Toggle("", isOn: $checkboxState)
-            .toggleStyle(ColoredCheckboxStyle(onColor: .success, offColor: .fontDisabled))
+            .toggleStyle(ColoredCheckboxStyle(onColor: .laurelGreen, offColor: .fontDisabled))
     }
     
     fileprivate func info() -> some View {
         Toggle("", isOn: $checkboxState)
-        .toggleStyle(ColoredCheckboxStyle(onColor: .info, offColor: .fontDisabled))
+        .toggleStyle(ColoredCheckboxStyle(onColor: .pastelBlue, offColor: .fontDisabled))
     }
     
     
     fileprivate func warning() -> some View {
         Toggle("", isOn: $checkboxState)
-        .toggleStyle(ColoredCheckboxStyle(onColor: .warning, offColor: .fontDisabled))
+        .toggleStyle(ColoredCheckboxStyle(onColor: .lemonMeringue, offColor: .fontDisabled))
     }
     
     
     fileprivate func danger() -> some View {
         Toggle("", isOn: $checkboxState)
-        .toggleStyle(ColoredCheckboxStyle(onColor: .danger, offColor: .fontDisabled))
+        .toggleStyle(ColoredCheckboxStyle(onColor: .copper, offColor: .fontDisabled))
     }
 }
 

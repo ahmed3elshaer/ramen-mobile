@@ -17,8 +17,8 @@ public struct ThemeToggle: View {
     var style: Style
     
     struct ColoredToggleStyle: ToggleStyle {
-        var onColor = Color.defaultPrimary
-        var offColor = Color.danger
+        var onColor = Color.pastelBlue
+        var offColor = Color.copper
         var thumbColor = Color.white
         
         func makeBody(configuration: Self.Configuration) -> some View {
@@ -73,8 +73,8 @@ public struct ThemeToggle: View {
         Toggle("", isOn: $toggleState)
             .toggleStyle(
                 ColoredToggleStyle(
-                    onColor: .defaultPrimary,
-                    offColor: Color.defaultPrimary.opacity(0.1),
+                    onColor: .pastelBlue,
+                    offColor: Color.pastelBlue.opacity(0.1),
                     thumbColor: .white))
     }
     
@@ -82,8 +82,8 @@ public struct ThemeToggle: View {
         Toggle("", isOn: $toggleState)
             .toggleStyle(
                 ColoredToggleStyle(
-                    onColor: .success,
-                    offColor: Color.success.opacity(0.1),
+                    onColor: .laurelGreen,
+                    offColor: Color.laurelGreen.opacity(0.1),
                     thumbColor: .white))
     }
     
@@ -91,8 +91,8 @@ public struct ThemeToggle: View {
         Toggle("", isOn: $toggleState)
             .toggleStyle(
                 ColoredToggleStyle(
-                    onColor: .info,
-                    offColor: Color.info.opacity(0.1),
+                    onColor: .pastelBlue,
+                    offColor: Color.pastelBlue.opacity(0.1),
                     thumbColor: .white))
     }
     
@@ -101,8 +101,8 @@ public struct ThemeToggle: View {
         Toggle("", isOn: $toggleState)
             .toggleStyle(
                 ColoredToggleStyle(
-                    onColor: .warning,
-                    offColor: Color.warning.opacity(0.1),
+                    onColor: .lemonMeringue,
+                    offColor: Color.lemonMeringue.opacity(0.1),
                     thumbColor: .white))
     }
     
@@ -111,8 +111,8 @@ public struct ThemeToggle: View {
         Toggle("", isOn: $toggleState)
             .toggleStyle(
                 ColoredToggleStyle(
-                    onColor: .danger,
-                    offColor: Color.danger.opacity(0.1),
+                    onColor: .copper,
+                    offColor: Color.copper.opacity(0.1),
                     thumbColor: .white))
     }
 }

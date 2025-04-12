@@ -24,7 +24,7 @@ public struct RadioButton: View {
 }
 
 private struct CheckedButton: View {
-    var color: Color = .defaultPrimary
+    var color: Color = .pastelBlue
     
     var body: some View {
         ZStack {

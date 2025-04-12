@@ -89,7 +89,7 @@ struct ThemeButton: View {
     var text: String?
     var image: Image?
     var style: Style = .fill
-    var color: Color = .defaultPrimary
+    var color: Color = .pastelBlue
     var action: () -> Void
     var textAndImage: Bool { text != nil && image != nil }
     

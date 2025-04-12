@@ -9,37 +9,50 @@ import SwiftUI
 
 extension Color {
     
+    // MARK: New Color Palette
+    
+    /// Pastel Blue (#ADD6CF)
+    static let pastelBlue = Color(hex: "ADD6CF")
+    /// Laurel Green (#9FB693)
+    static let laurelGreen = Color(hex: "9FB693")
+    /// Lemon Meringue (#F8E8C4)
+    static let lemonMeringue = Color(hex: "F8E8C4")
+    /// Pastel Pink (#F0AF9E)
+    static let pastelPink = Color(hex: "F0AF9E")
+    /// Copper (#E48364)
+    static let copper = Color(hex: "E48364")
+    
     // MARK: Basic Colors
     
-    static let background = Color("background")
-    static let surface = Color("surface")
-    static let basic = Color("basic")
-    static let defaultPrimary = Color("primary")
+    static let background = Color.white
+    static let surface = Color.white
+    static let basic = Color.gray.opacity(0.5)
+    static let defaultPrimary = pastelBlue
     
     // MARK: Font Colors
     
     /// Standard Font Color
-    static let fontStd = Color("font_std")
+    static let fontStd = Color.black
     /// Hint Font Color
-    static let fontHint = Color("font_hint")
+    static let fontHint = Color.gray
     /// Disabled Font Color
-    static let fontDisabled = Color("font_disabled")
+    static let fontDisabled = Color.gray.opacity(0.5)
     /// Button Font Color
-    static let fontBtn = Color("font_button")
+    static let fontBtn = Color.white
     
     // MARK: Semantic Colors
     
-    static let danger = Color("danger")
-    static let info = Color("info")
-    static let success = Color("success")
-    static let warning = Color("warning")
+    static let danger = copper
+    static let info = pastelBlue
+    static let success = laurelGreen
+    static let warning = lemonMeringue
     
     // MARK: State Colors
     
     /// Active State Color - Primary Style
-    static let activePrimary = Color("activePrimary")
+    static let activePrimary = pastelBlue
     /// Active State Color - Basic Style
-    static let activeBasic = Color("activeBasic")
+    static let activeBasic = pastelPink
 }
 
 struct Color_Previews: PreviewProvider {

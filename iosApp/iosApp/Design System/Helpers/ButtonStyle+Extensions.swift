@@ -48,17 +48,17 @@ extension ButtonGroupStyle {
         
         var defaultBackground: Color {
             switch self {
-            case .primary: return .brPrimary
-            case .basic: return .brBasic
+            case .primary: return .pastelBlue
+            case .basic: return .basic
             case .outline: return .white
             }
         }
         
         var activeBackground: Color {
             switch self {
-            case .primary: return .brActivePrimary
-            case .basic: return .brActiveBasic
-            case .outline: return .brPrimary
+            case .primary: return .pastelBlue
+            case .basic: return .pastelPink
+            case .outline: return .pastelBlue
             }
         }
         
@@ -66,7 +66,7 @@ extension ButtonGroupStyle {
             switch self {
             case .primary: return .white
             case .basic: return .black
-            case .outline: return .brActiveBasic
+            case .outline: return .pastelPink
             }
         }
         

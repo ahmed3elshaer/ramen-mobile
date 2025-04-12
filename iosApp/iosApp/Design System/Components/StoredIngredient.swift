@@ -80,8 +80,8 @@ struct StoredIngredient: View {
                             .fill(
                                 LinearGradient(
                                     colors: [
-                                        Color.accentColor,
-                                        Color.activePrimary
+                                        Color.pastelBlue,
+                                        Color.pastelPink
                                     ],
                                     startPoint: .leading,
                                     endPoint: .trailing
@@ -93,7 +93,7 @@ struct StoredIngredient: View {
                     VStack(spacing: 4) {
                         Text(name)
                             .typography(.s1)
-                            .foregroundColor(.activePrimary)
+                            .foregroundColor(.pastelBlue)
                             .lineLimit(1)
                         
                         Text("\(remaingDays) of \(totalDays) days")
