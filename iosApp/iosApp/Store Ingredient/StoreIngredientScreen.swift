@@ -12,31 +12,81 @@ import Shared
 struct StoreIngredientsScreen: View {
     @SwiftUI.State private var searchText = ""
     @SwiftUI.State private var selectedIngredient: IdentifiableIngredient?
+    @SwiftUI.State private var isScanning = false
     @StateObject private var store: StoreIngredientWrapper = StoreIngredientWrapper()
+    
+    @SwiftUI.State private var scannerOffset: CGFloat = UIScreen.main.bounds.height
+    
     var body: some View {
-        NavigationView {
-            VStack(spacing: 0) {
-                CustomSearchBar(text: $searchText)
-                    .onChange(of: searchText) { query in
-                        if !query.isEmpty && query.count > 2 {
-                            store.dispatch(StoreAction.RecommendIngredient(name: query))
-                        }
+        ZStack {
+            NavigationView {
+                VStack(spacing: 0) {
+                    // Add quick action buttons
+                    HStack(spacing: 16) {
+                        QuickActionButton(
+                            icon: "camera.fill",
+                            title: "Scan Items",
+                            action: { isScanning = true }
+                        )
+                        
+                        QuickActionButton(
+                            icon: "text.viewfinder",
+                            title: "Scan Receipt",
+                            action: { /* Handle receipt scanning */ }
+                        )
                     }
-                
-                List(store.state.ingredients.map { IdentifiableIngredient(ingredient: $0) }, id: \.id) { ingredient in
-                    Button(action: {
-                        selectedIngredient = ingredient
-                    }) {
-                        Text(ingredient.ingredient.name)
-                            .typography(.p1)
-                            .foregroundColor(.primary)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(.vertical, 12)
+                    .padding()
+                    
+                    // Existing search bar and list...
+                    CustomSearchBar(text: $searchText)
+                        .onChange(of: searchText) { query in
+                            if !query.isEmpty && query.count > 2 {
+                                store.dispatch(StoreAction.RecommendIngredient(name: query))
+                            }
+                        }
+                    
+                    // Enhanced ingredient list with animations
+                    ScrollView {
+                        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())]) {
+                            ForEach(store.state.ingredients.map { IdentifiableIngredient(ingredient: $0) }) { ingredient in
+                                IngredientCard(ingredient: ingredient)
+                                    .onTapGesture {
+                                        withAnimation(.spring()) {
+                                            selectedIngredient = ingredient
+                                        }
+                                    }
+                            }
+                        }
+                        .padding()
                     }
                 }
-                .listStyle(.plain)
+                .navigationTitle("Add Ingredients")
             }
-            .navigationTitle("Add Ingredient")
+            
+            // Scanner overlay
+            if isScanning {
+                ScannerView(onScanComplete: { ingredients in
+                    withAnimation(.spring()) {
+                        isScanning = false
+                        // Process scanned ingredients
+                        ingredients.forEach { ingredient in
+                            store.dispatch(StoreAction.RecommendIngredient(name: ingredient.name))
+                        }
+                    }
+                })
+                .offset(y: scannerOffset)
+                .transition(.move(edge: .bottom))
+                .zIndex(1)
+            }
+        }
+        .onChange(of: isScanning) { newValue in
+            withAnimation(.spring(
+                response: 0.6,
+                dampingFraction: 0.8,
+                blendDuration: 0
+            )) {
+                scannerOffset = newValue ? 0 : UIScreen.main.bounds.height
+            }
         }
         .sheet(item: $selectedIngredient) { ingredient in
             ExpiryPickerView(ingredient: ingredient.ingredient) { duration in
@@ -154,6 +204,56 @@ struct ExpiryPickerView: View {
                 )
             )
         }
+    }
+}
+
+// Quick action button component
+struct QuickActionButton: View {
+    let icon: String
+    let title: String
+    let action: () -> Void
+    
+    var body: some View {
+        Button(action: action) {
+            VStack {
+                Image(systemName: icon)
+                    .font(.system(size: 24))
+                Text(title)
+                    .typography(.s2)
+            }
+            .frame(maxWidth: .infinity)
+            .padding()
+            .background(Color.basic.opacity(0.1))
+            .cornerRadius(12)
+        }
+    }
+}
+
+// Enhanced ingredient card with animations
+struct IngredientCard: View {
+    let ingredient: IdentifiableIngredient
+    
+    var body: some View {
+        VStack {
+            AsyncImage(url: URL(string: "https://spoonacular.com/cdn/ingredients_500x500/\(ingredient.ingredient.image)")) { image in
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+            } placeholder: {
+                ProgressView()
+            }
+            .frame(height: 100)
+            
+            Text(ingredient.ingredient.name)
+                .typography(.s1)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, 8)
+        }
+        .frame(maxWidth: .infinity)
+        .padding()
+        .background(Color.basic.opacity(0.05))
+        .cornerRadius(16)
+        .transition(.scale.combined(with: .opacity))
     }
 }
 

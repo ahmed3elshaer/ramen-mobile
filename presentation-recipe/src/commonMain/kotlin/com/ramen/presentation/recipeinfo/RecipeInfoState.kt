@@ -4,7 +4,6 @@ import com.ramen.presentation.Action
 import com.ramen.presentation.Effect
 import com.ramen.presentation.State
 import com.ramen.recipe.domain.model.Recipe
-import com.ramen.recipe.domain.model.SearchRecipe
 
 data class RecipeInfoState(
     val progress: Boolean,

@@ -1,6 +1,5 @@
 package com.ramen.recipe.domain.usecase
 
-import com.ramen.ingredients.domain.usecase.RetrieveIngredients
 import com.ramen.recipe.domain.RecipesRepository
 import com.ramen.recipe.domain.model.SearchRecipe
 

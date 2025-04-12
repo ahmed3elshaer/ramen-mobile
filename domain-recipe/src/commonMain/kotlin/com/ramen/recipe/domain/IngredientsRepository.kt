@@ -1,4 +1,4 @@
-package com.ramen.ingredients.domain
+package com.ramen.recipe.domain
 
 import com.ramen.ingredients.domain.model.AutocompleteIngredient
 import com.ramen.ingredients.domain.model.Ingredient

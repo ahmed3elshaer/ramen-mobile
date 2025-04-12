@@ -3,8 +3,8 @@ package com.ramen.shared
 
 import com.ramen.ingredients.domain.di.IngredientsDomainDI
 import com.ramen.presentation.monitor.MonitorStoreDI
-import com.ramen.presentation.recipe.di.RecipeStoreDI
-import com.ramen.presentation.recipeinfo.di.RecipeInfoStoreDI
+import com.ramen.presentation.recipe.RecipeStoreDI
+import com.ramen.presentation.recipeinfo.RecipeInfoStoreDI
 import com.ramen.presentation.store.StoreIngredientDI
 import com.ramen.recipe.data.di.IngredientsDataDI
 import com.ramen.recipe.data.di.RecipeDataDI

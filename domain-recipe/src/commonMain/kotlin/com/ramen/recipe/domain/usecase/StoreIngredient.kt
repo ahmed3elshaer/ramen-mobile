@@ -1,11 +1,10 @@
-package com.ramen.ingredients.domain.usecase
+package com.ramen.recipe.domain.usecase
 
-import com.ramen.ingredients.domain.IngredientsRepository
+import com.ramen.recipe.domain.IngredientsRepository
 import com.ramen.ingredients.domain.model.AutocompleteIngredient
 import kotlinx.datetime.Clock
 import kotlin.time.Duration
 import kotlin.time.ExperimentalTime
-import kotlin.time.days
 
 class StoreIngredient(private val ingredientsRepository: IngredientsRepository) {
     @OptIn(ExperimentalTime::class)

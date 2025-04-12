@@ -1,6 +1,5 @@
-package com.ramen.presentation.recipe.di
+package com.ramen.presentation.recipe
 
-import com.ramen.presentation.recipe.RecipeStore
 import org.koin.dsl.module
 
 object RecipeStoreDI {

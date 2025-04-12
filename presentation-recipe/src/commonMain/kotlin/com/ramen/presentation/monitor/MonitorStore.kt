@@ -1,7 +1,7 @@
 package com.ramen.presentation.monitor
 
-import com.ramen.ingredients.domain.usecase.RetrieveIngredients
-import com.ramen.ingredients.domain.usecase.StoreIngredient
+import com.ramen.recipe.domain.usecase.RetrieveIngredients
+import com.ramen.recipe.domain.usecase.StoreIngredient
 import com.ramen.presentation.Store
 import io.github.aakira.napier.Napier
 import kotlinx.coroutines.CoroutineScope

@@ -1,7 +1,7 @@
 package com.ramen.presentation.store
 
 import com.ramen.ingredients.domain.usecase.RecommendIngredientSearch
-import com.ramen.ingredients.domain.usecase.StoreIngredient
+import com.ramen.recipe.domain.usecase.StoreIngredient
 import com.ramen.presentation.Store
 import com.ramen.presentation.recipe.StoreAction
 import com.ramen.presentation.recipe.StoreSideEffect

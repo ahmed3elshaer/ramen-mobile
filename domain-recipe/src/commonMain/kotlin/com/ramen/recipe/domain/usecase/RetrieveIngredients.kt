@@ -1,10 +1,7 @@
-package com.ramen.ingredients.domain.usecase
+package com.ramen.recipe.domain.usecase
 
-import com.ramen.ingredients.domain.IngredientsRepository
-import com.ramen.ingredients.domain.model.AutocompleteIngredient
+import com.ramen.recipe.domain.IngredientsRepository
 import com.ramen.ingredients.domain.model.Ingredient
-import kotlinx.datetime.Clock
-import kotlin.time.Duration
 
 class RetrieveIngredients(private val ingredientsRepository: IngredientsRepository) {
     suspend operator fun invoke(): List<Ingredient> {

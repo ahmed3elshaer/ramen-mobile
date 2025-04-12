@@ -1,6 +1,6 @@
 package com.ramen.ingredients.domain.usecase
 
-import com.ramen.ingredients.domain.IngredientsRepository
+import com.ramen.recipe.domain.IngredientsRepository
 import com.ramen.ingredients.domain.model.AutocompleteIngredient
 
 class RecommendIngredientSearch(private val ingredientsRepository: IngredientsRepository) {

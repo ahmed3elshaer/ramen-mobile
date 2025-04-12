@@ -19,6 +19,7 @@ class StoreIngredientWrapper : ObservableObject {
     var stateWatcher : Closeable?
     var sideEffectWatcher : Closeable?
     
+    @Published var smartSuggestions: [IdentifiableIngredient] = []
     
     init() {
         stateWatcher = self.store.watchState().watch { [weak self] state in
@@ -37,9 +38,18 @@ class StoreIngredientWrapper : ObservableObject {
         stateWatcher?.close()
         sideEffectWatcher?.close()
     }
+    
+    func generateSmartSuggestions() {
+        // Based on user's previous ingredients and seasonal data
+        // Implementation for AI-powered suggestions
+    }
+    
+    func addCommonIngredients() {
+        // Quick-add common ingredients based on cuisine preferences
+    }
 }
 
-struct IdentifiableIngredient: Identifiable {
+struct IdentifiableIngredient: Identifiable, Hashable {
     let id = UUID()
     let ingredient: Shared.AutocompleteIngredient
 }
