@@ -1,28 +1,27 @@
 [versions]
-plugin-android = "8.1.4"
-plugin-kotlin = "2.0.10"
+desugar_jdk_libs = "2.0.3"
+plugin-android = "8.10.0"
+plugin-kotlin = "2.1.21"
 plugin-gver = "0.42.0"
-androidx-compose-compiler = "1.5.3"
 androidx-compose-ui = "1.5.3"
-kotlinx-serialization = "1.6.0"
-kotlinx-coroutines = "1.7.3"
-kotlinx-datetime = "0.4.0"
-ktor = "2.3.0"
-napier = "2.6.1"
-multiplatform-settings = "1.0.0"
-voyager = "1.0.0"
-koin = "3.4.0"
-accompanist = "0.31.1-alpha"
-coil = "2.4.0"
-activity-compose = "1.8.0"
-work-runtime-ktx = "2.8.0"
-desugar-jdk-libs = "2.0.3"
+composeHotReload = "1.0.0-alpha10"
+compose-multiplatform = "1.8.1"
+kotlinx-serialization = "1.8.1"
+kotlinx-coroutines = "1.10.2"
+kotlinx-datetime = "0.6.2"
+androidx-lifecycle = "2.9.0"
+ktor = "3.1.3"
+napier = "2.7.1"
+multiplatform-settings = "1.3.0"
+voyager = "1.0.1"
+koin = "4.0.4"
+accompanist = "0.36.0"
+coil = "2.7.0"
+activity-compose = "1.10.1"
+work-runtime-ktx = "2.10.1"
 
 [libraries]
-androidx-compose-ui = { module = "androidx.compose.ui:ui", version.ref = "androidx-compose-ui" }
-androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "androidx-compose-ui" }
-androidx-compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "androidx-compose-ui" }
-androidx-compose-material = { module = "androidx.compose.material:material", version.ref = "androidx-compose-ui" }
+desugar_jdk_libs-v203 = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar_jdk_libs" }
 ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
@@ -45,6 +44,8 @@ activity-compose = { module = "androidx.activity:activity-compose", version.ref 
 accompanist-swiperefresh = { module = "com.google.accompanist:accompanist-swiperefresh", version.ref = "accompanist" }
 work-runtime-ktx = { module = "androidx.work:work-runtime-ktx", version.ref = "work-runtime-ktx" }
 desugar-jdk-libs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar-jdk-libs" }
+androidx-lifecycle-viewmodel = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel", version.ref = "androidx-lifecycle" }
+androidx-lifecycle-runtimeCompose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "plugin-android" }
@@ -53,3 +54,5 @@ pluginKotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", 
 kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "plugin-kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "plugin-kotlin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "plugin-kotlin" }
+compose-multiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
+composeHotReload = { id = "org.jetbrains.compose.hot-reload", version.ref = "composeHotReload" }

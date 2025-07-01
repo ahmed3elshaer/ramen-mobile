@@ -16,16 +16,13 @@
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
+    <key>CADisableMinimumFrameDurationOnPhone</key><true/>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>UIAppFonts</key>
-	<array>
-		<string>EuclidCircular-Bold.ttf</string>
-		<string>Euclid Circula-Regular.ttf</string>
-		<string>Euclid Circular-SemiBold.ttf</string>
-	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>We need camera access to scan ingredients</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -50,7 +47,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSCameraUsageDescription</key>
-	<string>We need camera access to scan ingredients</string>
 </dict>
 </plist>

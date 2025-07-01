@@ -1,7 +1,7 @@
 package com.ramen.recipe.data.model
 
-import com.ramen.ingredient.data.model.AutocompleteIngredientApi
-import com.ramen.ingredient.data.model.IngredientApi
+import com.ramen.recipe.data.remote.AutocompleteIngredientApi
+import com.ramen.recipe.data.remote.IngredientApi
 import com.ramen.recipe.domain.model.Recipe
 import com.ramen.recipe.domain.model.SearchRecipe
 

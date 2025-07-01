@@ -1,8 +1,8 @@
 package com.ramen.recipe.data.di
 
-import com.ramen.ingredient.data.IngredientsRepositoryImpl
-import com.ramen.ingredient.data.storage.remote.IngredientsRemote
-import com.ramen.ingredient.data.storage.IngredientsStorage
+import com.ramen.recipe.data.IngredientsRepositoryImpl
+import com.ramen.recipe.data.storage.remote.IngredientsRemote
+import com.ramen.recipe.data.storage.IngredientsStorage
 import com.ramen.recipe.domain.IngredientsRepository
 import org.koin.dsl.module
 

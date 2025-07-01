@@ -1,8 +1,8 @@
-package com.ramen.ingredient.data.storage.remote
+package com.ramen.recipe.data.storage.remote
 
-import com.ramen.ingredient.data.model.AutocompleteIngredientApi
-import com.ramen.ingredient.data.model.AutocompleteIngredientsWrapper
-import com.ramen.ingredient.data.model.IngredientApi
+import com.ramen.recipe.data.remote.AutocompleteIngredientApi
+import com.ramen.recipe.data.remote.AutocompleteIngredientsWrapper
+import com.ramen.recipe.data.remote.IngredientApi
 import io.github.aakira.napier.Napier
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body

@@ -15,6 +15,7 @@ kotlin {
 				implementation(libs.kotlinx.coroutines.core)
 				implementation(libs.koin.core)
 				implementation(libs.kotlinx.datetime)
+				implementation(projects.components.presentation)
 			}
 		}
 		val iosX64Main by getting

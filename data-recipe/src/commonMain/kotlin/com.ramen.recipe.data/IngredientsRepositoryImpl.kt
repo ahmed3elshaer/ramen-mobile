@@ -1,7 +1,7 @@
-package com.ramen.ingredient.data
+package com.ramen.recipe.data
 
-import com.ramen.ingredient.data.storage.remote.IngredientsRemote
-import com.ramen.ingredient.data.storage.IngredientsStorage
+import com.ramen.recipe.data.storage.remote.IngredientsRemote
+import com.ramen.recipe.data.storage.IngredientsStorage
 import com.ramen.recipe.domain.IngredientsRepository
 import com.ramen.ingredients.domain.model.AutocompleteIngredient
 import com.ramen.ingredients.domain.model.Ingredient

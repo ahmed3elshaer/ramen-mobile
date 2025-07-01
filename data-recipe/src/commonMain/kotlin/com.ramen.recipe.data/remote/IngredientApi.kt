@@ -1,4 +1,4 @@
-package com.ramen.ingredient.data.model
+package com.ramen.recipe.data.remote
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

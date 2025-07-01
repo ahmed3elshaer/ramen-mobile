@@ -6,7 +6,11 @@ plugins {
 
 
 kotlin {
-	androidTarget()
+	androidTarget {
+		compilerOptions {
+			jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
+		}
+	}
 	iosX64()
 	iosArm64()
 	iosSimulatorArm64()
@@ -20,6 +24,7 @@ kotlin {
 				implementation(libs.kotlinx.coroutines.core)
 				implementation(libs.kotlinx.datetime)
 				//DI
+				implementation("io.insert-koin:koin-compose-viewmodel:4.0.3")
 				implementation(libs.koin.core)
 				//Logger
 				implementation(libs.napier)

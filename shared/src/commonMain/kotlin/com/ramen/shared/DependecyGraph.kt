@@ -1,11 +1,11 @@
 package com.ramen.shared
 
 
-import com.ramen.ingredients.domain.di.IngredientsDomainDI
-import com.ramen.presentation.monitor.MonitorStoreDI
-import com.ramen.presentation.recipe.RecipeStoreDI
-import com.ramen.presentation.recipeinfo.RecipeInfoStoreDI
-import com.ramen.presentation.store.StoreIngredientDI
+import com.ramen.recipe.domain.di.IngredientsDomainDI
+import com.ramen.presentation.monitor.MonitorViewModelDI
+import com.ramen.presentation.recipe.RecipeViewModelDI
+import com.ramen.presentation.recipeinfo.RecipeInfoViewModelDI
+import com.ramen.presentation.store.StoreIngredientViewModelDI
 import com.ramen.recipe.data.di.IngredientsDataDI
 import com.ramen.recipe.data.di.RecipeDataDI
 import com.ramen.recipe.domain.di.RecipeDomainDI
@@ -20,10 +20,10 @@ internal val domainGraph = module {
 	includes(RecipeDomainDI.module)
 }
 internal val presentationGraph = module {
-	includes(MonitorStoreDI.module)
-	includes(StoreIngredientDI.module)
-	includes(RecipeStoreDI.module)
-	includes(RecipeInfoStoreDI.module)
+	includes(MonitorViewModelDI.module)
+	includes(StoreIngredientViewModelDI.module)
+	includes(RecipeViewModelDI.module)
+	includes(RecipeInfoViewModelDI.module)
 }
 
 val dependencyGraph = module {

@@ -1,14 +1,14 @@
-package com.ramen.ingredients.domain.di
+package com.ramen.recipe.domain.di
 
-import com.ramen.ingredients.domain.usecase.RecommendIngredientSearch
-import com.ramen.recipe.domain.usecase.RetrieveIngredients
-import com.ramen.recipe.domain.usecase.StoreIngredient
+import com.ramen.recipe.domain.usecase.RecommendIngredientSearchUseCase
+import com.ramen.recipe.domain.usecase.RetrieveIngredientsUseCase
+import com.ramen.recipe.domain.usecase.StoreIngredientUseCase
 import org.koin.dsl.module
 
 object IngredientsDomainDI {
     val module = module {
-        factory { RecommendIngredientSearch(ingredientsRepository = get()) }
-        factory { RetrieveIngredients(ingredientsRepository = get()) }
-        factory { StoreIngredient(ingredientsRepository = get()) }
+        factory { RecommendIngredientSearchUseCase(ingredientsRepository = get()) }
+        factory { RetrieveIngredientsUseCase(ingredientsRepository = get()) }
+        factory { StoreIngredientUseCase(ingredientsRepository = get()) }
     }
 }

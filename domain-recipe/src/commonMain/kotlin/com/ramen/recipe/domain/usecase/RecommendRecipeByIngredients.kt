@@ -1,16 +1,23 @@
 package com.ramen.recipe.domain.usecase
 
+import com.ramen.presentation.Effect
 import com.ramen.recipe.domain.RecipesRepository
 import com.ramen.recipe.domain.model.SearchRecipe
 
-class RecommendRecipeByIngredients(
-    private val recipesRepository: RecipesRepository,
-    private val retrieveIngredients: RetrieveIngredients
+sealed interface RecommendRecipeByIngredientsEffect : Effect {
+    data class Success(val recipes: List<SearchRecipe>) : RecommendRecipeByIngredientsEffect
+    data class Failure(val error: Throwable) : RecommendRecipeByIngredientsEffect
+}
+
+class RecommendRecipeByIngredientsUseCase(
+    private val recipesRepository: RecipesRepository
 ) {
-    suspend operator fun invoke(): List<SearchRecipe> {
-        val ingredients = retrieveIngredients()
-            println(ingredients)
-        return recipesRepository.searchByIngredients(ingredients
-            .map { it.name })
+    suspend operator fun invoke(ingredientNames: List<String>): RecommendRecipeByIngredientsEffect {
+        return try {
+            val recipes = recipesRepository.searchByIngredients(ingredientNames)
+            RecommendRecipeByIngredientsEffect.Success(recipes)
+        } catch (e: Exception) {
+            RecommendRecipeByIngredientsEffect.Failure(e)
+        }
     }
 }
