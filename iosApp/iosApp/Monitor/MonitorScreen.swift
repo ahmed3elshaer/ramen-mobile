@@ -106,26 +106,7 @@ struct MonitorScreen: View {
                     store.dispatch(MonitorAction.Refresh())
                 }
             }
-            
-            // MARK: - Floating Action Button (Always Visible)
-            VStack {
-                Spacer()
-                HStack {
-                    Spacer()
-                    FloatingActionButton {
-                        isStoreIngredientSheetPresented = true
-                    }
-                    .padding(.trailing, 20)
-                    .padding(.bottom, 20)
-                }
-            }
-        }
-        .sheet(isPresented: $isStoreIngredientSheetPresented) {
-            StoreIngredientBottomSheet(isPresented: $isStoreIngredientSheetPresented)
-                .presentationDetents([.large])
-                .presentationDragIndicator(.visible)
-        }
-        .onAppear {
+        }.onAppear {
             store.dispatch(MonitorAction.Refresh())
         }
     }

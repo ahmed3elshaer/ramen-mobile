@@ -141,7 +141,7 @@ struct LiquidGlassIngredientCard: View {
             // MARK: - Background Image filling to edges
             WebImage(url: URL(string: "https://spoonacular.com/cdn/ingredients_500x500/\(ingredient.image)"))
                 .resizable()
-                .aspectRatio(contentMode: .fill)
+                .aspectRatio(contentMode: .fit)
                 .frame(width: imageWidth, height: cardHeight)
                 .clipped()
                 .clipShape(
@@ -255,20 +255,6 @@ struct LiquidGlassIngredientCard: View {
         .shadow(color: .black.opacity(0.06), radius: 10, x: 0, y: 5)
         .shadow(color: stateColors.primary.opacity(0.08), radius: 6, x: 0, y: 3)
         .shadow(color: .black.opacity(0.03), radius: 3, x: 0, y: 1)
-    }
-}
-
-// MARK: - Floating Action Button
-struct FloatingActionButton: View {
-    let action: () -> Void
-    
-    var body: some View {
-        Button(action: action, label: {
-            Image(systemName: "plus")
-                .padding(8)
-                .font(.title)
-        })
-        .buttonStyle(.glass)
     }
 }
 

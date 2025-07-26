@@ -36,14 +36,7 @@ struct StoreIngredientsScreen: View {
                         )
                     }
                     .padding()
-                    
-                    // Existing search bar and list...
-                    CustomSearchBar(text: $searchText)
-                        .onChange(of: searchText) { query in
-                            if !query.isEmpty && query.count > 2 {
-                                store.dispatch(StoreAction.RecommendIngredient(name: query))
-                            }
-                        }
+                        
                     
                     // Enhanced ingredient list with animations
                     ScrollView {
@@ -61,6 +54,15 @@ struct StoreIngredientsScreen: View {
                     }
                 }
                 .navigationTitle("Add Ingredients")
+            }.searchable(
+                       text: $searchText,
+                       placement: .automatic,
+                       prompt: "type here to search"
+                   )
+            .onChange(of: searchText) { query in
+                if !query.isEmpty && query.count > 2 {
+                    store.dispatch(StoreAction.RecommendIngredient(name: query))
+                }
             }
             
             // Scanner overlay
