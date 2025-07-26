@@ -55,6 +55,7 @@
 		64C1A4022D20C14400C8847A /* VoiceInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C1A4012D20C14400C8847A /* VoiceInputView.swift */; };
 		64C1A4032D20C14400C8847A /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C1A3FF2D20C14400C8847A /* ScannerView.swift */; };
 		64C1A4042D20C14400C8847A /* BatchAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C1A3FE2D20C14400C8847A /* BatchAddView.swift */; };
+		ED8F69D82E347EC600D1996F /* LiquidGlassRoundedFloating.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8F69D72E347EC600D1996F /* LiquidGlassRoundedFloating.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -120,6 +121,7 @@
 		64C1A4012D20C14400C8847A /* VoiceInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceInputView.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* Ramen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ramen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED8F69D72E347EC600D1996F /* LiquidGlassRoundedFloating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquidGlassRoundedFloating.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -249,6 +251,7 @@
 		523B597C29361A3700A5F74C /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				ED8F69D72E347EC600D1996F /* LiquidGlassRoundedFloating.swift */,
 				523B597D29361AA000A5F74C /* StoredIngredient.swift */,
 				52F564232946C05900CA5571 /* AutocompleteIngredient.swift */,
 				52C339E32947581400C29312 /* RecipeView.swift */,
@@ -469,6 +472,7 @@
 				523B597E29361AA000A5F74C /* StoredIngredient.swift in Sources */,
 				523B592F29350AA600A5F74C /* TextFields.swift in Sources */,
 				523B593529350AA600A5F74C /* NavigatorsTop.swift in Sources */,
+				ED8F69D82E347EC600D1996F /* LiquidGlassRoundedFloating.swift in Sources */,
 				523B593629350AA600A5F74C /* RadioButtons.swift in Sources */,
 				523B593C29350AA600A5F74C /* Selection.swift in Sources */,
 				523B592E29350AA600A5F74C /* Images.swift in Sources */,

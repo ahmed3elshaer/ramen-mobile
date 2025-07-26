@@ -4,6 +4,7 @@ import Shared
 struct MonitorScreen: View {
     @StateObject var store: MonitorStoreWrapper = MonitorStoreWrapper()
     @Environment(\.colorScheme) var colorScheme
+    @SwiftUI.State private var isStoreIngredientSheetPresented = false
     
     var body: some View {
         let ingredients: [Ingredient] = store.state.ingredients
@@ -96,23 +97,33 @@ struct MonitorScreen: View {
                             .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: 5)
                             .padding(.horizontal, 20)
                         }
-                        
-                        // Add ingredient button with enhanced styling
-                        AddIngredientButton {
-                            // Handle add ingredient action
-                            // This could navigate to the store ingredient screen
-                            print("Add ingredient tapped")
-                        }
-                        .padding(.horizontal, 20)
-                        .padding(.bottom, 20)
                     }
                     .padding(.top, 20)
+                    .padding(.bottom, 100) // Add bottom padding for floating button
                 }
                 .refreshable {
                     // Pull to refresh functionality
                     store.dispatch(MonitorAction.Refresh())
                 }
             }
+            
+            // MARK: - Floating Action Button (Always Visible)
+            VStack {
+                Spacer()
+                HStack {
+                    Spacer()
+                    FloatingActionButton {
+                        isStoreIngredientSheetPresented = true
+                    }
+                    .padding(.trailing, 20)
+                    .padding(.bottom, 20)
+                }
+            }
+        }
+        .sheet(isPresented: $isStoreIngredientSheetPresented) {
+            StoreIngredientBottomSheet(isPresented: $isStoreIngredientSheetPresented)
+                .presentationDetents([.large])
+                .presentationDragIndicator(.visible)
         }
         .onAppear {
             store.dispatch(MonitorAction.Refresh())

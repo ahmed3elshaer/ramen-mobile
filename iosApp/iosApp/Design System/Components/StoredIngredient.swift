@@ -12,7 +12,7 @@ import Shared
 
 struct FridgeHeaderCard: View {
     let freshCount: Int
-    let expiringSoonCount: Int 
+    let expiringSoonCount: Int
     let expiredCount: Int
     
     var body: some View {
@@ -57,7 +57,7 @@ struct FridgeHeaderCard: View {
             }
         }
         .padding(20)
-            .background(
+        .background(
             // Enhanced liquid glass gradient
             LinearGradient(
                 colors: [Color.darkMint, Color.deepGreen.opacity(0.9), Color.forestGreen.opacity(0.8)],
@@ -125,7 +125,7 @@ struct LiquidGlassIngredientCard: View {
     }
     
     private var badgeBackgroundColor: Color {
-        ingredient.getExpiryState() == .expired ? 
+        ingredient.getExpiryState() == .expired ?
         stateColors.primary : Color.black.opacity(0.75)
     }
     
@@ -137,125 +137,117 @@ struct LiquidGlassIngredientCard: View {
     }
     
     var body: some View {
-        HStack(spacing: 16) {
-            // MARK: - Left: Image Section with Glass Overlay
-            ZStack(alignment: .topTrailing) {
-                // Image with glass effect
-                WebImage(url: URL(string: "https://spoonacular.com/cdn/ingredients_500x500/\(ingredient.image)"))
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: imageWidth, height: imageHeight)
-                    .clipped()
-                    .clipShape(RoundedRectangle(cornerRadius: 16))
-                    .glassEffect(.regular, in: RoundedRectangle(cornerRadius: 16))
-                
-                // Days remaining badge
-                Text(ingredient.getDaysRemainingFormatted())
-                    .typography(.c2)
-                    .foregroundColor(.white)
-                    .fontWeight(.bold)
-                    .padding(.horizontal, 10)
-                    .padding(.vertical, 5)
-                    .background(
-                        badgeBackgroundColor,
-                        in: RoundedRectangle(cornerRadius: 10)
-                    )
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.glassHighlight.opacity(0.3), lineWidth: 0.5)
-                    )
-                    .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 2)
-                    .padding(8)
-            }
+        ZStack(alignment: .leading) {
+            // MARK: - Background Image filling to edges
+            WebImage(url: URL(string: "https://spoonacular.com/cdn/ingredients_500x500/\(ingredient.image)"))
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: imageWidth, height: cardHeight)
+                .clipped()
+                .clipShape(
+                    RoundedRectangle(cornerRadius: cornerRadius)
+                )
+                .glassEffect(.regular, in:
+                                RoundedRectangle(cornerRadius: cornerRadius)
+                )
             
-            // MARK: - Right: Content Section with Horizontal Layout
-            VStack(alignment: .leading, spacing: 12) {
-                // Top row: Category and Status
-                HStack {
-                    // Simple category badge (no glass effect)
-                    Text(ingredient.getCategory())
-                        .typography(.c2)
-                        .foregroundColor(stateColors.primary)
-                        .fontWeight(.semibold)
-                        .padding(.horizontal, 10)
-                        .padding(.vertical, 5)
-                        .background(stateColors.background)
-                        .clipShape(RoundedRectangle(cornerRadius: 8))
-                    
-                    Spacer()
-                    
-                    // Status text with glass effect
-                    Text(ingredient.getStatusText())
-                        .typography(.c1)
-                        .foregroundColor(stateColors.primary)
-                        .fontWeight(.semibold)
-                        .padding(.horizontal, 10)
-                        .padding(.vertical, 6)
-                        .glassEffect(.regular.tint(stateColors.primary.opacity(0.2)), in: RoundedRectangle(cornerRadius: 8))
-                }
+            // MARK: - Content Overlay
+            HStack(spacing: 0) {
+                // Left side - just for spacing, image is in background
+                Rectangle()
+                    .fill(Color.clear)
+                    .frame(width: imageWidth)
                 
-                // Ingredient name (larger, single line)
-                Text(formattedIngredientName)
-                    .typography(.h6)
-                    .foregroundColor(.fontStd)
-                    .fontWeight(.medium)
-                    .lineLimit(1)
-                    .truncationMode(.tail)
-                
-                // Progress section with enhanced horizontal layout
-                VStack(alignment: .leading, spacing: 8) {
-                    // Progress bar with glass effect
-                    GeometryReader { geometry in
-                        ZStack(alignment: .leading) {
-                            // Background track with glass effect
-                            RoundedRectangle(cornerRadius: 6)
-                                .fill(Color.glassBorder.opacity(0.2))
-                                .frame(height: 10)
-                                .glassEffect(.regular, in: RoundedRectangle(cornerRadius: 6))
-                            
-                            // Progress fill with glass effect
-                            RoundedRectangle(cornerRadius: 6)
-                                .fill(
-                                    LinearGradient(
-                                        colors: [stateColors.primary, stateColors.secondary],
-                                        startPoint: .leading,
-                                        endPoint: .trailing
-                                    )
-                                )
-                                .frame(
-                                    width: geometry.size.width * max(0.05, min(1, ingredient.expiryProgress())),
-                                    height: 10
-                                )
-                                .glassEffect(.regular.tint(stateColors.primary.opacity(0.3)), in: RoundedRectangle(cornerRadius: 6))
-                        }
-                    }
-                    .frame(height: 10)
-                    
-                    // Days info with glass effects
-                    HStack(spacing: 12) {
-                        Text("\(ingredient.durationUntilExpiry()) DAYS")
-                            .typography(.c1)
-                            .foregroundColor(.fontHint)
+                // Right side - Content
+                VStack(alignment: .leading, spacing: 12) {
+                    // Top row: Category and Status
+                    HStack {
+                        // Simple category badge (no glass effect)
+                        Text(ingredient.getCategory())
+                            .typography(.c2)
+                            .foregroundColor(stateColors.primary)
                             .fontWeight(.semibold)
-                            .padding(.horizontal, 12)
-                            .padding(.vertical, 6)
-                            .glassEffect(.regular, in: RoundedRectangle(cornerRadius: 8))
-                        
-                        Text(ingredient.getTotalDaysFormatted())
-                            .typography(.c1)
-                            .foregroundColor(.fontHint)
-                            .fontWeight(.medium)
-                            .padding(.horizontal, 12)
-                            .padding(.vertical, 6)
-                            .glassEffect(.regular, in: RoundedRectangle(cornerRadius: 8))
+                            .padding(.horizontal, 10)
+                            .padding(.vertical, 5)
+                            .background(stateColors.background)
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
                         
                         Spacer()
+                        
+                        // Status text with glass effect
+                        Text(ingredient.getStatusText())
+                            .typography(.c1)
+                            .foregroundColor(stateColors.primary)
+                            .fontWeight(.semibold)
+                            .padding(.horizontal, 10)
+                            .padding(.vertical, 6)
+                            .glassEffect(.regular.tint(stateColors.primary.opacity(0.2)), in: RoundedRectangle(cornerRadius: 8))
+                    }
+                    
+                    // Ingredient name (larger, single line)
+                    Text(formattedIngredientName)
+                        .typography(.h6)
+                        .foregroundColor(.fontStd)
+                        .fontWeight(.medium)
+                        .lineLimit(1)
+                        .truncationMode(.tail)
+                    
+                    // Progress section with enhanced horizontal layout
+                    VStack(alignment: .leading, spacing: 8) {
+                        // Progress bar with glass effect
+                        GeometryReader { geometry in
+                            ZStack(alignment: .leading) {
+                                // Background track with glass effect
+                                RoundedRectangle(cornerRadius: 6)
+                                    .fill(Color.glassBorder.opacity(0.2))
+                                    .frame(height: 10)
+                                    .glassEffect(.regular, in: RoundedRectangle(cornerRadius: 6))
+                                
+                                // Progress fill with glass effect
+                                RoundedRectangle(cornerRadius: 6)
+                                    .fill(
+                                        LinearGradient(
+                                            colors: [stateColors.primary, stateColors.secondary],
+                                            startPoint: .leading,
+                                            endPoint: .trailing
+                                        )
+                                    )
+                                    .frame(
+                                        width: geometry.size.width * max(0.05, min(1, ingredient.expiryProgress())),
+                                        height: 10
+                                    )
+                                    .glassEffect(.regular.tint(stateColors.primary.opacity(0.3)), in: RoundedRectangle(cornerRadius: 6))
+                            }
+                        }
+                        .frame(height: 10)
+                        
+                        // Days info with glass effects
+                        HStack(spacing: 12) {
+                            Text("\(ingredient.durationUntilExpiry()) DAYS")
+                                .typography(.c1)
+                                .foregroundColor(.fontHint)
+                                .fontWeight(.semibold)
+                                .padding(.horizontal, 12)
+                                .padding(.vertical, 6)
+                                .glassEffect(.regular, in: RoundedRectangle(cornerRadius: 8))
+                            
+                            Text(ingredient.getTotalDaysFormatted())
+                                .typography(.c1)
+                                .foregroundColor(.fontHint)
+                                .fontWeight(.medium)
+                                .padding(.horizontal, 12)
+                                .padding(.vertical, 6)
+                                .glassEffect(.regular, in: RoundedRectangle(cornerRadius: 8))
+                            
+                            Spacer()
+                        }
                     }
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.horizontal, 20)
+                .padding(.vertical, 20)
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .padding(20)
         .frame(maxWidth: .infinity)
         .frame(height: cardHeight)
         .glassEffect(.regular, in: RoundedRectangle(cornerRadius: cornerRadius))
@@ -263,6 +255,252 @@ struct LiquidGlassIngredientCard: View {
         .shadow(color: .black.opacity(0.06), radius: 10, x: 0, y: 5)
         .shadow(color: stateColors.primary.opacity(0.08), radius: 6, x: 0, y: 3)
         .shadow(color: .black.opacity(0.03), radius: 3, x: 0, y: 1)
+    }
+}
+
+// MARK: - Floating Action Button
+struct FloatingActionButton: View {
+    let action: () -> Void
+    
+    var body: some View {
+        Button(action: action, label: {
+            Image(systemName: "plus")
+                .padding(8)
+                .font(.title)
+        })
+        .buttonStyle(.glass)
+    }
+}
+
+// MARK: - Reusable Store Ingredient Bottom Sheet
+struct StoreIngredientBottomSheet: View {
+    @Binding var isPresented: Bool
+    @StateObject private var store: StoreIngredientWrapper = StoreIngredientWrapper()
+    @SwiftUI.State private var searchText = ""
+    @SwiftUI.State private var selectedIngredient: IdentifiableIngredient?
+    @SwiftUI.State private var isScanning = false
+    @SwiftUI.State private var scannerOffset: CGFloat = UIScreen.main.bounds.height
+    
+    var body: some View {
+        NavigationView {
+            VStack(spacing: 0) {
+                // Add quick action buttons
+                HStack(spacing: 16) {
+                    QuickActionButton(
+                        icon: "camera.fill",
+                        title: "Scan Items",
+                        action: { isScanning = true }
+                    )
+                    
+                    QuickActionButton(
+                        icon: "text.viewfinder",
+                        title: "Scan Receipt",
+                        action: { /* Handle receipt scanning */ }
+                    )
+                }
+                .padding()
+                
+                // Search bar
+                CustomSearchBar(text: $searchText)
+                    .onChange(of: searchText) { query in
+                        if !query.isEmpty && query.count > 2 {
+                            store.dispatch(StoreAction.RecommendIngredient(name: query))
+                        }
+                    }
+                
+                // Enhanced ingredient list with animations
+                ScrollView {
+                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())]) {
+                        ForEach(store.state.ingredients.map { IdentifiableIngredient(ingredient: $0) }) { ingredient in
+                            IngredientCard(ingredient: ingredient)
+                                .onTapGesture {
+                                    withAnimation(.spring()) {
+                                        selectedIngredient = ingredient
+                                    }
+                                }
+                        }
+                    }
+                    .padding()
+                }
+            }
+            .navigationTitle("Add Ingredients")
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarItems(
+                leading: Button("Cancel") {
+                    isPresented = false
+                }
+                    .foregroundColor(.activePrimary)
+            )
+        }
+        .sheet(item: $selectedIngredient) { ingredient in
+            ExpiryPickerView(ingredient: ingredient.ingredient) { duration in
+                store.dispatch(StoreAction.StoreIngredient(
+                    autocompleteIngredient: ingredient.ingredient,
+                    expiryDuration: duration
+                ))
+                // Close the bottom sheet after adding ingredient
+                isPresented = false
+            }
+            .presentationDetents([.medium])
+        }
+        .onChange(of: isScanning) { newValue in
+            withAnimation(.spring(
+                response: 0.6,
+                dampingFraction: 0.8,
+                blendDuration: 0
+            )) {
+                scannerOffset = newValue ? 0 : UIScreen.main.bounds.height
+            }
+        }
+    }
+}
+
+// MARK: - Supporting Components for Bottom Sheet
+
+struct CustomSearchBar: View {
+    @Binding var text: String
+    
+    var body: some View {
+        HStack {
+            Image(systemName: "magnifyingglass")
+                .foregroundColor(.primary)
+            TextField("Search ingredients", text: $text)
+                .typography(.p2)
+                .foregroundColor(.secondary)
+                .autocapitalization(.none)
+                .disableAutocorrection(true)
+            if !text.isEmpty {
+                Button(action: { text = "" }) {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundColor(.secondary)
+                }
+            }
+        }
+        .padding(12)
+        .background(Color.basic.opacity(0.1))
+        .cornerRadius(45)
+        .padding(.horizontal)
+    }
+}
+
+struct QuickActionButton: View {
+    let icon: String
+    let title: String
+    let action: () -> Void
+    
+    var body: some View {
+        Button(action: action) {
+            VStack {
+                Image(systemName: icon)
+                    .font(.system(size: 24))
+                Text(title)
+                    .typography(.s2)
+            }
+            .frame(maxWidth: .infinity)
+            .padding()
+            .background(Color.basic.opacity(0.1))
+            .cornerRadius(12)
+        }
+    }
+}
+
+struct IngredientCard: View {
+    let ingredient: IdentifiableIngredient
+    
+    var body: some View {
+        VStack {
+            AsyncImage(url: URL(string: "https://spoonacular.com/cdn/ingredients_500x500/\(ingredient.ingredient.image)")) { image in
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+            } placeholder: {
+                ProgressView()
+            }
+            .frame(height: 100)
+            
+            Text(ingredient.ingredient.name)
+                .typography(.s1)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, 8)
+        }
+        .frame(maxWidth: .infinity)
+        .padding()
+        .background(Color.basic.opacity(0.05))
+        .cornerRadius(16)
+        .transition(.scale.combined(with: .opacity))
+    }
+}
+
+struct ExpiryPickerView: View {
+    let ingredient: Shared.AutocompleteIngredient
+    let onSave: (Int64) -> Void
+    @Environment(\.dismiss) var dismiss
+    
+    @SwiftUI.State private var selectedUnit = 0
+    @SwiftUI.State private var selectedNumber = 0
+    
+    let units = ["Days", "Weeks", "Months"]
+    let numbers = Array(1...90)
+    
+    var durationInNanos: Int64 {
+        let daysInMonth = 30
+        let secondsInDay: Int64 = 24 * 60 * 60
+        let nanosInSecond: Int64 = 1_000_000_000
+        
+        let days: Int
+        switch units[selectedUnit] {
+        case "Days": days = numbers[selectedNumber]
+        case "Weeks": days = numbers[selectedNumber] * 7
+        case "Months": days = numbers[selectedNumber] * daysInMonth
+        default: days = numbers[selectedNumber]
+        }
+        
+        return Int64(days) * secondsInDay * nanosInSecond * 2
+    }
+    
+    var body: some View {
+        NavigationView {
+            VStack {
+                Text("How long will it stay fresh?")
+                    .typography(.h2)
+                    .padding(.top)
+                
+                HStack {
+                    Picker("Number", selection: $selectedNumber) {
+                        ForEach(0..<numbers.count, id: \.self) { index in
+                            Text("\(numbers[index])")
+                                .typography(.p1)
+                                .tag(index)
+                        }
+                    }
+                    .pickerStyle(.wheel)
+                    .frame(width: 100)
+                    
+                    Picker("Unit", selection: $selectedUnit) {
+                        ForEach(0..<units.count, id: \.self) { index in
+                            Text(units[index])
+                                .typography(.p1)
+                                .tag(index)
+                        }
+                    }
+                    .pickerStyle(.wheel)
+                    .frame(width: 100)
+                }
+                .padding()
+                
+                Button("Add to Fridge") {
+                    onSave(durationInNanos)
+                    dismiss()
+                }
+                .padding(.horizontal)
+                .padding(.bottom)
+            }
+            .navigationBarItems(trailing:
+                                    Button("Cancel") {
+                dismiss()
+            }
+            )
+        }
     }
 }
 
