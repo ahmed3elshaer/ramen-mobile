@@ -4,7 +4,7 @@ import com.ramen.ingredient.data.storage.remote.IngredientsRemote
 import com.ramen.ingredient.data.storage.IngredientsStorage
 import com.ramen.recipe.domain.IngredientsRepository
 import com.ramen.ingredients.domain.model.AutocompleteIngredient
-import com.ramen.ingredients.domain.model.Ingredient
+import com.ramen.recipe.domain.model.Ingredient
 import com.ramen.recipe.data.model.toDomain
 
 internal class IngredientsRepositoryImpl(

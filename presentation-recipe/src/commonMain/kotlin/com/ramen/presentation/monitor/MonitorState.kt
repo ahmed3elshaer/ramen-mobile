@@ -1,7 +1,7 @@
 package com.ramen.presentation.monitor
 
 import com.ramen.ingredients.domain.model.AutocompleteIngredient
-import com.ramen.ingredients.domain.model.Ingredient
+import com.ramen.recipe.domain.model.Ingredient
 import com.ramen.presentation.Action
 import com.ramen.presentation.Effect
 import com.ramen.presentation.State

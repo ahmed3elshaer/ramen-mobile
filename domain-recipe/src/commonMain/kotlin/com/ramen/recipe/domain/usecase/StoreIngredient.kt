@@ -1,8 +1,8 @@
 package com.ramen.recipe.domain.usecase
 
-import com.ramen.recipe.domain.IngredientsRepository
 import com.ramen.ingredients.domain.model.AutocompleteIngredient
-import kotlinx.datetime.Clock
+import com.ramen.recipe.domain.IngredientsRepository
+import kotlin.time.Clock
 import kotlin.time.Duration
 import kotlin.time.ExperimentalTime
 

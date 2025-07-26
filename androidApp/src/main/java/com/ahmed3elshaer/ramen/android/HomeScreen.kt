@@ -3,7 +3,6 @@ package com.ahmed3elshaer.ramen.android
 import ScrollableColumn
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Button
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
@@ -17,7 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.ramen.ingredients.domain.model.AutocompleteIngredient
-import com.ramen.ingredients.domain.model.Ingredient
+import com.ramen.recipe.domain.model.Ingredient
 import com.ramen.presentation.monitor.MonitorAction.*
 import com.ramen.presentation.monitor.MonitorSideEffect
 import com.ramen.presentation.monitor.MonitorStore

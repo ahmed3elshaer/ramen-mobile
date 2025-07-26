@@ -3,45 +3,155 @@ import Shared
 
 struct MonitorScreen: View {
     @StateObject var store: MonitorStoreWrapper = MonitorStoreWrapper()
-    private let columns = [
-        GridItem(.adaptive(minimum: 160, maximum: 180), spacing: 16)
-    ]
-    
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         let ingredients: [Ingredient] = store.state.ingredients
-        ScrollView {
-            VStack(alignment: .leading, spacing: 0) {
-                Text("Fridge Storage")
-                    .typography(.h3)
-                    .padding(.horizontal, 20)
-                    .padding(.vertical, 16)
-                
-                LazyVGrid(columns: columns, spacing: 16) {
-                    ForEach(ingredients, id: \.self.hashValue) { ingredient in
-                        StoredIngredient(
-                            imageUrl: ingredient.image,
-                            name: ingredient.name,
-                            totalDays: ingredient.totalDurationInDays(),
-                            remaingDays: ingredient.durationUntilExpiry(),
-                            progress: ingredient.expiryProgress()
+        
+        ZStack {
+            // MARK: - Full-Screen Gradient Background
+            LinearGradient(
+                gradient: Gradient(colors: colorScheme == .dark ? [
+                    Color.darkMint.opacity(0.3),
+                    Color.forestGreen.opacity(0.2),
+                    Color.oceanBlue.opacity(0.1),
+                    Color.background
+                ] : [
+                    Color.pastelBlue.opacity(0.4),
+                    Color.laurelGreen.opacity(0.3),
+                    Color.lemonMeringue.opacity(0.1),
+                    Color.background
+                ]),
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+            .ignoresSafeArea(.all)
+            
+            // MARK: - Subtle Radial Gradient Overlay
+            RadialGradient(
+                gradient: Gradient(colors: colorScheme == .dark ? [
+                    Color.darkMint.opacity(0.1),
+                    Color.clear
+                ] : [
+                    Color.pastelBlue.opacity(0.2),
+                    Color.clear
+                ]),
+                center: .topLeading,
+                startRadius: 50,
+                endRadius: 400
+            )
+            .ignoresSafeArea(.all)
+            
+            GeometryReader { geometry in
+                ScrollView {
+                    LazyVStack(spacing: 20) {
+                        // Header card with enhanced design
+                        FridgeHeaderCard(
+                            freshCount: calculateFreshCount(ingredients),
+                            expiringSoonCount: calculateExpiringSoonCount(ingredients),
+                            expiredCount: calculateExpiredCount(ingredients)
                         )
+                        .padding(.horizontal, 20)
+                        
+                        // Ingredients list with full-width liquid glass cards
+                        if !ingredients.isEmpty {
+                            LazyVStack(spacing: 16) {
+                                ForEach(ingredients, id: \.id) { ingredient in
+                                    LiquidGlassIngredientCard(ingredient: ingredient)
+                                        .padding(.horizontal, 20)
+                                        .transition(.asymmetric(
+                                            insertion: .scale.combined(with: .opacity),
+                                            removal: .scale.combined(with: .opacity)
+                                        ))
+                                }
+                            }
+                            .animation(.easeInOut(duration: 0.3), value: ingredients.count)
+                        } else {
+                            // Enhanced empty state with liquid glass styling
+                            VStack(spacing: 20) {
+                                Image(systemName: "refrigerator")
+                                    .font(.system(size: 70))
+                                    .foregroundStyle(
+                                        LinearGradient(
+                                            gradient: Gradient(colors: [Color.fontHint.opacity(0.6), Color.fontHint.opacity(0.3)]),
+                                            startPoint: .top,
+                                            endPoint: .bottom
+                                        )
+                                    )
+                                
+                                VStack(spacing: 8) {
+                                    Text("Your fridge is empty")
+                                        .typography(.h4)
+                                        .foregroundColor(.fontStd)
+                                    
+                                    Text("Add ingredients to start tracking their freshness")
+                                        .typography(.p3)
+                                        .foregroundColor(.fontHint)
+                                        .multilineTextAlignment(.center)
+                                }
+                            }
+                            .padding(.vertical, 50)
+                            .padding(.horizontal, 30)
+                            .glassEffect(.regular, in: RoundedRectangle(cornerRadius: 20))
+                            .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: 5)
+                            .padding(.horizontal, 20)
+                        }
+                        
+                        // Add ingredient button with enhanced styling
+                        AddIngredientButton {
+                            // Handle add ingredient action
+                            // This could navigate to the store ingredient screen
+                            print("Add ingredient tapped")
+                        }
+                        .padding(.horizontal, 20)
+                        .padding(.bottom, 20)
                     }
+                    .padding(.top, 20)
                 }
-                .padding(.horizontal, 20)
-                .padding(.bottom, 20)
+                .refreshable {
+                    // Pull to refresh functionality
+                    store.dispatch(MonitorAction.Refresh())
+                }
             }
-            .background(Color.background)
         }
         .onAppear {
             store.dispatch(MonitorAction.Refresh())
         }
     }
     
+    // MARK: - Helper Methods
+    
+    private func calculateFreshCount(_ ingredients: [Ingredient]) -> Int {
+        return ingredients.filter { ingredient in
+            ingredient.getExpiryState() == .fresh
+        }.count
+    }
+    
+    private func calculateExpiringSoonCount(_ ingredients: [Ingredient]) -> Int {
+        return ingredients.filter { ingredient in
+            ingredient.getExpiryState() == .expiringSoon
+        }.count
+    }
+    
+    private func calculateExpiredCount(_ ingredients: [Ingredient]) -> Int {
+        return ingredients.filter { ingredient in
+            ingredient.getExpiryState() == .expired
+        }.count
+    }
 }
+
+// MARK: - Preview
 
 struct MonitorScreen_Previews: PreviewProvider {
     static var previews: some View {
-        MonitorScreen()
+        Group {
+            MonitorScreen()
+                .preferredColorScheme(.light)
+                .previewDisplayName("Light Mode")
+            
+            MonitorScreen()
+                .preferredColorScheme(.dark)
+                .previewDisplayName("Dark Mode")
+        }
     }
 }

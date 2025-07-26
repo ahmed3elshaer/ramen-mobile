@@ -3,11 +3,12 @@ package com.ramen.ingredient.data.storage
 import com.ramen.data.Settings
 import com.ramen.ingredient.data.model.IngredientApi
 import com.ramen.recipe.data.model.toData
+import com.ramen.recipe.domain.model.Ingredient
 import kotlinx.serialization.builtins.ListSerializer
 
 internal class IngredientsStorage(val settings: Settings) {
 
-    fun storeIngredient(ingredient: com.ramen.ingredients.domain.model.Ingredient) {
+    fun storeIngredient(ingredient: Ingredient) {
         val mutableList = retrieveIngredients()
             .toMutableList().apply {
                 add(ingredient.toData())

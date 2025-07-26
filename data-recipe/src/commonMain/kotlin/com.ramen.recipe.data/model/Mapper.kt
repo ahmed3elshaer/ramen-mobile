@@ -2,6 +2,7 @@ package com.ramen.recipe.data.model
 
 import com.ramen.ingredient.data.model.AutocompleteIngredientApi
 import com.ramen.ingredient.data.model.IngredientApi
+import com.ramen.recipe.domain.model.Ingredient
 import com.ramen.recipe.domain.model.Recipe
 import com.ramen.recipe.domain.model.SearchRecipe
 
@@ -136,62 +137,62 @@ internal fun RecipeApi.ExtendedIngredientApi.MeasuresApi.UsApi.toDomain() =
 		)
 
 
-fun IngredientApi.toDomain() = com.ramen.ingredients.domain.model.Ingredient(
-		id = this.id,
-		image = this.image,
-		name = this.name,
-		aisle = this.aisle,
-		amount = this.amount,
-		original = this.original,
-		originalName = this.originalName,
-		possibleUnits = this.possibleUnits,
-		shoppingListUnits = this.shoppingListUnits,
-		unit = this.unit,
-		unitLong = this.unitLong,
-		unitShort = this.unitShort,
-		categoryPath = this.categoryPath,
-		consistency = this.consistency,
-		storedAt = this.storedAt,
-		expirationAt = this.expirationAt,
-		expiryDuration = this.expiryDuration,
-		estimatedCost = com.ramen.ingredients.domain.model.Ingredient.EstimatedCost(
-				unit = this.estimatedCost.unit,
-				value = this.estimatedCost.value
-		),
-		nutrition = com.ramen.ingredients.domain.model.Ingredient.Nutrition(
-				caloricBreakdown = com.ramen.ingredients.domain.model.Ingredient.Nutrition.CaloricBreakdown(
-						percentCarbs = this.nutrition.caloricBreakdown.percentCarbs,
-						percentFat = this.nutrition.caloricBreakdown.percentFat,
-						percentProtein = this.nutrition.caloricBreakdown.percentProtein
-				),
-				flavonoids = this.nutrition.flavonoids.map {
-					com.ramen.ingredients.domain.model.Ingredient.Nutrition.Flavonoid(
-							amount = it.amount, name = it.name, unit = it.unit
-					)
-				},
-				nutrients = this.nutrition.nutrients.map {
-					com.ramen.ingredients.domain.model.Ingredient.Nutrition.Nutrient(
-							amount = it.amount,
-							name = it.name,
-							percentOfDailyNeeds = it.percentOfDailyNeeds,
-							unit = it.unit
-					)
-				},
-				properties = this.nutrition.properties.map {
-					com.ramen.ingredients.domain.model.Ingredient.Nutrition.Property(
-							amount = it.amount,
-							name = it.name,
-							unit = it.unit
-					)
-				},
-				weightPerServing = com.ramen.ingredients.domain.model.Ingredient.WeightPerServing(
-						amount = this.nutrition.weightPerServing.amount,
-						unit = this.nutrition.weightPerServing.unit
-				)
-		)
+fun IngredientApi.toDomain() = Ingredient(
+    id = this.id,
+    image = this.image,
+    name = this.name,
+    aisle = this.aisle,
+    amount = this.amount,
+    original = this.original,
+    originalName = this.originalName,
+    possibleUnits = this.possibleUnits,
+    shoppingListUnits = this.shoppingListUnits,
+    unit = this.unit,
+    unitLong = this.unitLong,
+    unitShort = this.unitShort,
+    categoryPath = this.categoryPath,
+    consistency = this.consistency,
+    storedAt = this.storedAt,
+    expirationAt = this.expirationAt,
+    expiryDuration = this.expiryDuration,
+    estimatedCost = Ingredient.EstimatedCost(
+        unit = this.estimatedCost.unit,
+        value = this.estimatedCost.value
+    ),
+    nutrition = Ingredient.Nutrition(
+        caloricBreakdown = Ingredient.Nutrition.CaloricBreakdown(
+            percentCarbs = this.nutrition.caloricBreakdown.percentCarbs,
+            percentFat = this.nutrition.caloricBreakdown.percentFat,
+            percentProtein = this.nutrition.caloricBreakdown.percentProtein
+        ),
+        flavonoids = this.nutrition.flavonoids.map {
+            Ingredient.Nutrition.Flavonoid(
+                amount = it.amount, name = it.name, unit = it.unit
+            )
+        },
+        nutrients = this.nutrition.nutrients.map {
+            Ingredient.Nutrition.Nutrient(
+                amount = it.amount,
+                name = it.name,
+                percentOfDailyNeeds = it.percentOfDailyNeeds,
+                unit = it.unit
+            )
+        },
+        properties = this.nutrition.properties.map {
+            Ingredient.Nutrition.Property(
+                amount = it.amount,
+                name = it.name,
+                unit = it.unit
+            )
+        },
+        weightPerServing = Ingredient.WeightPerServing(
+            amount = this.nutrition.weightPerServing.amount,
+            unit = this.nutrition.weightPerServing.unit
+        )
+    )
 )
 
-fun com.ramen.ingredients.domain.model.Ingredient.toData() = IngredientApi(
+fun Ingredient.toData() = IngredientApi(
 		id = this.id,
 		image = this.image,
 		name = this.name,
