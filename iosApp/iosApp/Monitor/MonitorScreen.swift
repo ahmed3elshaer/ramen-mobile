@@ -12,7 +12,7 @@ struct MonitorScreen: View {
         ZStack {
             // MARK: - Full-Screen Gradient Background
             LinearGradient(
-                gradient: Gradient(colors: colorScheme == .dark ? [
+               gradient: Gradient(colors: colorScheme == .dark ? [
                     Color.darkMint.opacity(0.3),
                     Color.forestGreen.opacity(0.2),
                     Color.oceanBlue.opacity(0.1),

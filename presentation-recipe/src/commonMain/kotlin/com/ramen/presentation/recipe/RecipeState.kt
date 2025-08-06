@@ -20,6 +20,7 @@ data class RecipeState(
 
 sealed class RecipeAction : Action {
     object RecommendRecipes : RecipeAction()
+    data class UpdateSelectedIngredients(val ingredients: List<String>) : RecipeAction()
 
     data class Data(val searchRecipe: List<SearchRecipe>) : RecipeAction()
     data class Error(val error: Exception) : RecipeAction()

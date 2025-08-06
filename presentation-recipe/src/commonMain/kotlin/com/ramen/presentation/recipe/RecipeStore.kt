@@ -12,6 +12,8 @@ class RecipeStore(
     private val recommendRecipeByIngredients: RecommendRecipeByIngredients
 ) : Store<RecipeState, RecipeAction, RecipeSideEffect>(RecipeState.Initial),
     CoroutineScope by CoroutineScope(Dispatchers.Main) {
+    
+    private var selectedIngredients: List<String> = emptyList()
 
     override fun dispatch(action: RecipeAction) {
         val oldState = state.value
@@ -49,6 +51,11 @@ class RecipeStore(
                     oldState.copy(progress = true)
                 }
             }
+            
+            is RecipeAction.UpdateSelectedIngredients -> {
+                selectedIngredients = action.ingredients
+                oldState
+            }
         }
 
         if (newState != oldState) {
@@ -58,7 +65,7 @@ class RecipeStore(
 
     private suspend fun recommendIngredient() {
         try {
-            dispatch(RecipeAction.Data(recommendRecipeByIngredients()))
+            dispatch(RecipeAction.Data(recommendRecipeByIngredients(selectedIngredients)))
         } catch (e: Exception) {
             e.printStackTrace()
             dispatch(RecipeAction.Error(e))
