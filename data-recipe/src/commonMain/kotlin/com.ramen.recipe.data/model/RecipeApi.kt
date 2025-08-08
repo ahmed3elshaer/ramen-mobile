@@ -29,7 +29,7 @@ internal data class RecipeApi(
     @SerialName("glutenFree")
     val glutenFree: Boolean = false,
     @SerialName("healthScore")
-    val healthScore: Int = 0,
+    val healthScore: Double = 0.0,
     @SerialName("id")
     val id: Int = 0,
     @SerialName("image")

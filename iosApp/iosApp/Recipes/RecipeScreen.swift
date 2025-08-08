@@ -5,8 +5,9 @@ struct RecipeScreen: View {
     @SwiftUI.State private var selection: String? = nil
     @StateObject var store: RecipeStoreWrapper = RecipeStoreWrapper()
     @Environment(\.colorScheme) var colorScheme
-    @SwiftUI.State private var selectedIngredients: [SearchRecipe.Ingredient] = []
+    @SwiftUI.State private var selectedIngredients: [String] = []
     @SwiftUI.State private var isIngredientSheetPresented = false
+    @SwiftUI.State private var selectedIngredientsSheet: [SearchRecipe.Ingredient] = []
     
     var body: some View {
         let recipes = store.state.searchRecipes.sorted { first, second in
@@ -59,7 +60,7 @@ struct RecipeScreen: View {
                             
                             // MARK: - Recipe Cards
                             LazyVStack(spacing: 20) {
-                                ForEach(recipes.prefix(2), id: \.self.hashValue) { recipe in
+                                ForEach(recipes, id: \.id.description) { recipe in
                                     NavigationLink(
                                         destination: RecipeDetail(recipeId: recipe.id.description),
                                         tag: recipe.id.description,
@@ -86,73 +87,32 @@ struct RecipeScreen: View {
         .background(Color.background)
         .sheet(isPresented: $isIngredientSheetPresented) {
             StoreIngredientSelectionSheet(
-                selectedIngredients: $selectedIngredients,
+                selectedIngredients: $selectedIngredientsSheet,
                 onIngredientsSelected: { ingredients in
-                    // Convert SearchRecipe.Ingredient to String names for API
+                    // Convert selected items from sheet to names and dispatch
                     let ingredientNames = ingredients.map { $0.name }
+                    selectedIngredients = ingredientNames
                     store.dispatch(RecipeAction.UpdateSelectedIngredients(ingredients: ingredientNames))
-                    store.dispatch(RecipeAction.RecommendRecipes())
                 }
             )
             .presentationDetents([.medium, .large])
             .presentationDragIndicator(.visible)
         }
         .onAppear {
-            store.dispatch(RecipeAction.RecommendRecipes())
-            
-            // Add sample selected ingredients for demo
-            if selectedIngredients.isEmpty {
-                selectedIngredients = [
-                    SearchRecipe.Ingredient(
-                        aisle: "Produce",
-                        amount: 1.0,
-                        id: 1,
-                        image: "fresh-spinach.jpg",
-                        name: "Fresh Spinach",
-                        original: "1 cup fresh spinach",
-                        originalName: "Fresh Spinach",
-                        unit: "cup",
-                        unitLong: "cup",
-                        unitShort: "cup"
-                    ),
-                    SearchRecipe.Ingredient(
-                        aisle: "Dairy",
-                        amount: 0.5,
-                        id: 2,
-                        image: "greek-yogurt.jpg",
-                        name: "Greek Yogurt",
-                        original: "0.5 cup Greek yogurt",
-                        originalName: "Greek Yogurt",
-                        unit: "cup",
-                        unitLong: "cup",
-                        unitShort: "cup"
-                    ),
-                    SearchRecipe.Ingredient(
-                        aisle: "Produce",
-                        amount: 1.0,
-                        id: 3,
-                        image: "fresh-avocado.jpg",
-                        name: "Fresh Avocado",
-                        original: "1 fresh avocado",
-                        originalName: "Fresh Avocado",
-                        unit: "piece",
-                        unitLong: "piece",
-                        unitShort: "piece"
-                    ),
-                    SearchRecipe.Ingredient(
-                        aisle: "Dairy",
-                        amount: 0.25,
-                        id: 4,
-                        image: "cheddar-cheese.jpg",
-                        name: "Cheddar Cheese",
-                        original: "0.25 cup cheddar cheese",
-                        originalName: "Cheddar Cheese",
-                        unit: "cup",
-                        unitLong: "cup",
-                        unitShort: "cup"
-                    )
-                ]
+            // Initialize from stored ingredients; store will trigger recommendation
+            store.dispatch(RecipeAction.Initialize())
+        }
+        .onReceive(store.$state) { newState in
+            // Keep UI in sync with store-selected ingredients
+            let names = (newState.selectedIngredientNames as? [String])
+                ?? newState.selectedIngredientNames.map { "\($0)" }
+            if names != selectedIngredients {
+                selectedIngredients = names
             }
+        }
+        .onChange(of: selectedIngredients) { newValue in
+            // Propagate UI changes (e.g., removals) to store; store will debounce/dedupe
+            store.dispatch(RecipeAction.UpdateSelectedIngredients(ingredients: newValue))
         }
     }
 }
@@ -212,10 +172,10 @@ struct ModernRecipeCard: View {
                     HStack {
                         // Rating
                         HStack(spacing: 4) {
-                            Image(systemName: "star.fill")
+                            Image(systemName: "heart.fill")
                                 .font(.caption)
-                                .foregroundColor(.yellow)
-                            Text("4.\(Int.random(in: 5...9))")
+                                .foregroundColor(.red)
+                            Text("\(recipe.likes)")
                                 .typography(.c2)
                                 .foregroundColor(.white)
                                 .fontWeight(.semibold)
@@ -224,6 +184,7 @@ struct ModernRecipeCard: View {
                         .padding(.vertical, 4)
                         .background(Color.black.opacity(0.6))
                         .clipShape(RoundedRectangle(cornerRadius: 8))
+                        .glassEffect()
                         
                         Spacer()
                         
@@ -244,12 +205,12 @@ struct ModernRecipeCard: View {
                     
                     // MARK: - Bottom Overlays
                     HStack(spacing: 8) {
-                        // Time
+                        // Used ingredients
                         HStack(spacing: 4) {
-                            Image(systemName: "clock")
+                            Image(systemName: "checkmark.circle")
                                 .font(.caption)
                                 .foregroundColor(.white)
-                            Text("\(Int.random(in: 15...45))m")
+                            Text("\(recipe.usedIngredients.count) used")
                                 .typography(.c2)
                                 .foregroundColor(.white)
                                 .fontWeight(.medium)
@@ -259,12 +220,12 @@ struct ModernRecipeCard: View {
                         .background(Color.black.opacity(0.6))
                         .clipShape(RoundedRectangle(cornerRadius: 8))
                         
-                        // Servings
+                        // Missing ingredients
                         HStack(spacing: 4) {
-                            Image(systemName: "person.2")
+                            Image(systemName: "exclamationmark.triangle")
                                 .font(.caption)
                                 .foregroundColor(.white)
-                            Text("\(Int.random(in: 2...6))")
+                            Text("\(recipe.missedIngredients.count) missing")
                                 .typography(.c2)
                                 .foregroundColor(.white)
                                 .fontWeight(.medium)
@@ -272,21 +233,7 @@ struct ModernRecipeCard: View {
                         .padding(.horizontal, 8)
                         .padding(.vertical, 4)
                         .background(Color.black.opacity(0.6))
-                        .clipShape(RoundedRectangle(cornerRadius: 8))
-                        
-                        // Calories
-                        HStack(spacing: 4) {
-                            Image(systemName: "flame")
-                                .font(.caption)
-                                .foregroundColor(.white)
-                            Text("\(Int.random(in: 200...600))")
-                                .typography(.c2)
-                                .foregroundColor(.white)
-                                .fontWeight(.medium)
-                        }
-                        .padding(.horizontal, 8)
-                        .padding(.vertical, 4)
-                        .background(Color.black.opacity(0.6))
+                        .glassEffect()
                         .clipShape(RoundedRectangle(cornerRadius: 8))
                         
                         Spacer()
@@ -356,11 +303,11 @@ struct ModernRecipeCard: View {
                     }
                 }
                 
-                // Nutrition Info
+                // Info
                 HStack(spacing: 20) {
-                    NutritionInfo(label: "Protein", value: "\(Int.random(in: 8...25))g")
+                    NutritionInfo(label: "Likes", value: "\(recipe.likes)")
                     NutritionInfo(label: "Difficulty", value: difficulty)
-                    NutritionInfo(label: "Time", value: "\(Int.random(in: 15...45))m")
+                    NutritionInfo(label: "Match", value: "\(matchPercentage)%")
                 }
                 
                 // Action Buttons
@@ -380,7 +327,7 @@ struct ModernRecipeCard: View {
                         .foregroundColor(.white)
                         .padding(.horizontal, 12)
                         .padding(.vertical, 6)
-                        .background(Color.indigo.opacity(0.6))
+                        .glassEffect()
                         .clipShape(RoundedRectangle(cornerRadius: 8))
                     }
                     
@@ -401,7 +348,7 @@ struct ModernRecipeCard: View {
                         .foregroundColor(.white)
                         .padding(.horizontal, 12)
                         .padding(.vertical, 6)
-                        .background(Color.mint.opacity(0.6))
+                        .glassEffect()
                         .clipShape(RoundedRectangle(cornerRadius: 8))
                     }
                 }
@@ -410,7 +357,7 @@ struct ModernRecipeCard: View {
         }
         .background(
             RoundedRectangle(cornerRadius: 20)
-                .fill(Color.black.opacity(0.7))
+                .fill(Color.black.opacity(0.3))
         )
         .glassEffect(.regular, in: RoundedRectangle(cornerRadius: 20))
         .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 5)
@@ -461,7 +408,7 @@ struct NutritionInfo: View {
 
 // MARK: - Simple Ingredients Toolbar
 struct IngredientsToolbar: View {
-    @Binding var selectedIngredients: [SearchRecipe.Ingredient]
+    @Binding var selectedIngredients: [String]
     let onAddIngredient: () -> Void
     
     var body: some View {
@@ -495,11 +442,11 @@ struct IngredientsToolbar: View {
             if !selectedIngredients.isEmpty {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 8) {
-                        ForEach(selectedIngredients, id: \.id) { ingredient in
+                        ForEach(selectedIngredients, id: \.self) { ingredient in
                             IngredientTag(
                                 ingredient: ingredient,
                                 onRemove: {
-                                    selectedIngredients.removeAll { $0.id == ingredient.id }
+                                    selectedIngredients.removeAll { $0 == ingredient }
                                 }
                             )
                         }
@@ -519,12 +466,12 @@ struct IngredientsToolbar: View {
 
 // MARK: - Ingredient Tag Component
 struct IngredientTag: View {
-    let ingredient: SearchRecipe.Ingredient
+    let ingredient: String
     let onRemove: () -> Void
     
     var body: some View {
         HStack(spacing: 6) {
-            Text(ingredient.name)
+            Text(ingredient)
                 .typography(.c2)
                 .foregroundColor(.white)
                 .fontWeight(.medium)
@@ -584,7 +531,7 @@ struct StoreIngredientSelectionSheet: View {
                             HStack(spacing: 8) {
                                 ForEach(selectedIngredients, id: \.id) { ingredient in
                                     IngredientTag(
-                                        ingredient: ingredient,
+                                        ingredient: ingredient.name,
                                         onRemove: {
                                             selectedIngredients.removeAll { $0.id == ingredient.id }
                                         }

@@ -11,7 +11,7 @@ internal class RecipesRepositoryImpl(
 ) : RecipesRepository {
     override suspend fun searchByIngredients(ingredients: List<String>): List<SearchRecipe> {
         return remote
-            .searchRecipesByIngredients(ingredients = ingredients.joinToString { "$it," })
+            .searchRecipesByIngredients(ingredients = formatIngredientsParam(ingredients))
             .map { it.toDomain() }
     }
 
@@ -22,3 +22,9 @@ internal class RecipesRepositoryImpl(
     }
 
 }
+
+internal fun formatIngredientsParam(input: List<String>): String = input
+    .map { it.trim() }
+    .filter { it.isNotEmpty() }
+    .distinct()
+    .joinToString(",")

@@ -7,18 +7,21 @@ import com.ramen.recipe.domain.model.SearchRecipe
 
 data class RecipeState(
     val progress: Boolean,
-    val searchRecipes: List<SearchRecipe>
+    val searchRecipes: List<SearchRecipe>,
+    val selectedIngredientNames: List<String>
 ) : State {
     companion object {
         val Initial = RecipeState(
             progress = false,
-            searchRecipes = emptyList()
+            searchRecipes = emptyList(),
+            selectedIngredientNames = emptyList()
         )
     }
 }
 
 
 sealed class RecipeAction : Action {
+    object Initialize : RecipeAction()
     object RecommendRecipes : RecipeAction()
     data class UpdateSelectedIngredients(val ingredients: List<String>) : RecipeAction()
 

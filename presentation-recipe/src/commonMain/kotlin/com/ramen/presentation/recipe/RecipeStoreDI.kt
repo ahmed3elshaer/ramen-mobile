@@ -5,7 +5,10 @@ import org.koin.dsl.module
 object RecipeStoreDI {
     val module = module {
         factory {
-            RecipeStore(recommendRecipeByIngredients = get())
+            RecipeStore(
+                recommendRecipeByIngredients = get(),
+                retrieveIngredients = get()
+            )
         }
     }
 }

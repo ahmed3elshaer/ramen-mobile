@@ -11,7 +11,7 @@ data class Recipe(
     val extendedIngredients: List<ExtendedIngredient> = listOf(),
     val gaps: String = "",
     val glutenFree: Boolean = false,
-    val healthScore: Int = 0,
+    val healthScore: Double = 0.0,
     val id: Int = 0,
     val image: String = "",
     val imageType: String = "",
